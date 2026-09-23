@@ -99,10 +99,10 @@ table{border-collapse:collapse;width:100%}
 
 <h2>6. Pelaporan Kerusakan</h2>
 <p>Laporan kerusakan adalah dokumen resmi internal, sehingga dibuat lewat halaman formulir tersendiri, bukan modal singkat.</p>
-<img class="shot" src="panduan/10-s.png"><p class="cap">Papan status lima kolom (Dilaporkan sampai Selesai) dan tabel seluruh laporan. Setiap kartu dan nomor tiket bisa diklik menuju detail.</p>
+<img class="shot" src="panduan/10-s.png"><p class="cap">Papan status empat kolom (Dilaporkan, Diverifikasi, Diusulkan Perbaikan, Selesai) dan tabel seluruh laporan. Setiap kartu dan nomor tiket bisa diklik menuju detail.</p>
 
 <h3>6.1 Membuat laporan</h3>
-<p>Formulir sengaja dibuat pendek, mengikuti mitigasi risiko pada RAP yang meminta formulir sederhana dengan data wajib. Hanya tiga bagian: Identitas Aset (pencarian dengan saran ketik, kartu ringkas terisi otomatis dari master aset, lalu satu pertanyaan apakah barang ada di lokasi tercatat), Rincian Kerusakan (jenis, deskripsi minimal 20 karakter, dampak terhadap layanan), dan Dokumentasi (foto). Tanggal, nama pelapor, dan unit kerja terisi sendiri dari akun yang sedang masuk, jadi tidak ditanyakan lagi.</p>
+<p>Formulir sengaja dibuat pendek, mengikuti mitigasi risiko pada RAP yang meminta formulir sederhana dengan data wajib. Hanya tiga bagian: Identitas Aset (pencarian dengan saran ketik, kartu ringkas terisi otomatis dari master aset, lalu satu pertanyaan apakah barang ada di lokasi tercatat), Rincian Kerusakan (jenis, uraian kejadian, dampak terhadap layanan), dan Dokumentasi (foto). Uraian kejadian wajib diisi tetapi tidak dibatasi jumlah huruf, karena kerusakan sederhana memang cukup dijelaskan singkat. Tanggal, nama pelapor, dan unit kerja terisi sendiri dari akun yang sedang masuk, jadi tidak ditanyakan lagi.</p>
 <img class="shot" src="panduan/04-f.png"><p class="cap">Kartu ringkas otomatis terisi dari master aset, dan pita peringatan saat aset berklasifikasi Kritis.</p>
 <img class="shot" src="panduan/05-f.png"><p class="cap">Pilihan Dampak terhadap Layanan berupa kartu klik, bukan dropdown, agar konsekuensi setiap pilihan terlihat jelas.</p>
 <img class="shot" src="panduan/16-s.png"><p class="cap">Klasifikasi tidak ditanyakan terpisah. Begitu dampak dipilih, sistem menetapkan sendiri Kritis, Tinggi, atau Rutin beserta jatuh tempo verifikasi dan penetapan prioritasnya.</p>
@@ -111,7 +111,9 @@ table{border-collapse:collapse;width:100%}
 <h3>6.2 Detail dan tindak lanjut laporan</h3>
 <p>Klik nomor tiket manapun membuka halaman detail: timeline riwayat penanganan, rincian kerusakan, galeri foto, kartu informasi aset read only, dan komentar internal.</p>
 <img class="shot" src="panduan/13-s.png"><p class="cap">Rincian kerusakan, galeri foto placeholder, dan kolom komentar internal pada Detail Laporan.</p>
-<p><strong>Panel Tindakan</strong> berubah mengikuti status: Dilaporkan menampilkan Verifikasi/Tolak; Diverifikasi menampilkan Tetapkan Prioritas; Prioritas Ditetapkan menampilkan Usulkan Perbaikan; Diusulkan Perbaikan menampilkan Tandai Selesai; Selesai menampilkan ringkasan penyelesaian. Setiap tindakan memerlukan catatan wajib dan langsung memperbarui timeline, papan kanban, dan Dashboard.</p>
+<p>Alur penanganan sengaja dibuat empat tahap, bukan lima. Verifikasi dan penetapan prioritas digabung menjadi satu tindakan, mengikuti PDF standar layanan internal yang menuliskannya sebagai satu baris layanan dengan satu batas waktu 3 hari kerja. Karena klasifikasi sudah terbit otomatis dari dampak saat laporan dibuat, pemeriksa tinggal membenarkan atau mengoreksinya.</p>
+<p><strong>Panel Tindakan</strong> berubah mengikuti status: Dilaporkan menampilkan Verifikasi/Tolak; Diverifikasi menampilkan dua pilihan, yaitu Usulkan Perbaikan bila memerlukan biaya atau penyedia, dan Tandai Selesai Tanpa Usulan bila sudah dapat ditangani sendiri; Diusulkan Perbaikan menampilkan Tandai Selesai; Selesai menampilkan ringkasan penyelesaian. Jalan pintas itu membuat kerusakan ringan cukup tiga langkah, sesuai ketentuan bahwa usulan perbaikan hanya berlaku sesuai prioritas dan ketersediaan anggaran.</p>
+<p>Laporan yang dibuat sendiri oleh Pengelola BMN langsung berstatus Diverifikasi, karena kerusakannya ia periksa sendiri saat melapor. Verifikasi hanya diperlukan untuk laporan yang masuk dari petugas atau unit pengguna, sehingga tidak ada orang yang memverifikasi laporannya sendiri. Setiap tindakan tetap memerlukan catatan wajib dan langsung memperbarui timeline, papan status, dan Dashboard.</p>
 
 <h2>7. Pemeriksaan Fisik</h2>
 <p>Pemeriksaan fisik mencocokkan keberadaan aset di lapangan dengan data tercatat. Frekuensinya diatur dalam SOP satker, bukan ditetapkan oleh aplikasi.</p>

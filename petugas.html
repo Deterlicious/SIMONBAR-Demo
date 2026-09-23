@@ -314,7 +314,7 @@
 <label class="lbl">Ceritakan kejadiannya</label>
 <textarea value="{{ lapDeskripsi }}" onChange="{{ setLapDeskripsi }}" rows="4" placeholder="Kapan mulai rusak, apa yang terjadi, apakah masih bisa dipakai" class="field" style="resize:vertical"></textarea>
 <div class="hint" style="margin-top:7px">{{ lapHitung }}</div>
-<sc-if value="{{ errLapDeskripsi }}" hint-placeholder-val="{{ false }}"><div class="err">Mohon tulis minimal 20 huruf agar pengelola BMN paham</div></sc-if>
+<sc-if value="{{ errLapDeskripsi }}" hint-placeholder-val="{{ false }}"><div class="err">Mohon ceritakan dulu kejadiannya</div></sc-if>
 </div>
 
 <div style="margin-bottom:18px">
@@ -629,7 +629,7 @@ class Component extends DCLogic {
     const lap = this.state.lap;
     const err = {};
     if (!lap.jenis || lap.jenis === 'Pilih jenis kerusakan') err.jenis = true;
-    if (lap.deskripsi.trim().length < 20) err.deskripsi = true;
+    if (!lap.deskripsi.trim()) err.deskripsi = true;
     if (!lap.dampak) err.dampak = true;
     const d = this.dampakDefs.filter(x => x.v === lap.dampak)[0];
     if (d && d.kelas !== 'Rutin' && lap.foto.length === 0) err.foto = true;
@@ -806,7 +806,7 @@ class Component extends DCLogic {
       errLapJenis: !!st.lapErr.jenis,
       lapDeskripsi: lap.deskripsi,
       setLapDeskripsi: (e) => { const v = e.target.value; this.setState(s => ({ lap: Object.assign({}, s.lap, { deskripsi: v }), lapErr: Object.assign({}, s.lapErr, { deskripsi: false }) })); },
-      lapHitung: lap.deskripsi.trim().length + ' huruf. Minimal 20 huruf.',
+      lapHitung: 'Tulis sesingkat atau selengkap yang Anda perlukan.',
       errLapDeskripsi: !!st.lapErr.deskripsi,
       dampakOpts: this.dampakDefs.map(d => {
         const on = lap.dampak === d.v;

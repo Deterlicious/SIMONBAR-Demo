@@ -564,8 +564,7 @@
 <label style="display:block;font:600 12px 'IBM Plex Sans';color:#3a4249;margin-bottom:6px">Deskripsi Kerusakan *</label>
 <textarea value="{{ kfDeskripsi }}" onChange="{{ kfSetDeskripsi }}" rows="4" placeholder="Uraikan gejala, waktu mulai terjadi, dan dampak terhadap layanan" style="width:100%;padding:10px 12px;border:1px solid {{ kfDeskripsiBd }};border-radius:5px;font:400 12.5px/1.6 'IBM Plex Sans';color:#1d2429;resize:vertical"></textarea>
 <div style="display:flex;justify-content:space-between;gap:12px;margin-top:5px">
-<sc-if value="{{ kfDeskripsiErr }}" hint-placeholder-val="{{ false }}"><span style="font:500 11.5px 'IBM Plex Sans';color:#b42318">Deskripsi minimal 20 karakter</span></sc-if>
-<span style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8a9299;margin-left:auto">{{ kfHitung }}</span>
+<sc-if value="{{ kfDeskripsiErr }}" hint-placeholder-val="{{ false }}"><span style="font:500 11.5px 'IBM Plex Sans';color:#b42318">Deskripsi kerusakan wajib diisi</span></sc-if>
 </div>
 </div>
 <div>
@@ -630,7 +629,7 @@
 <div style="width:56px;height:56px;margin:0 auto 20px;border-radius:50%;background:#e7f5ec;border:1.5px solid #bfe3cd;display:flex;align-items:center;justify-content:center"><span style="display:block;width:18px;height:9px;border-left:2.5px solid #14653f;border-bottom:2.5px solid #14653f;transform:rotate(-45deg);margin-top:-4px"></span></div>
 <div style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#7b858d;text-transform:uppercase;margin-bottom:10px">Laporan Terkirim</div>
 <div style="font:600 30px/1.2 'IBM Plex Mono',monospace;color:#16211c;margin-bottom:12px">{{ lapS.tiket }}</div>
-<p style="font:400 13px/1.7 'IBM Plex Sans';color:#5b646c;margin:0 auto 26px;max-width:40em">Laporan masuk ke antrean verifikasi Pengelola BMN. Nomor tiket ini dipakai untuk seluruh komunikasi tindak lanjut.</p>
+<p style="font:400 13px/1.7 'IBM Plex Sans';color:#5b646c;margin:0 auto 26px;max-width:40em">Laporan tercatat dan masuk ke daftar tindak lanjut. Nomor tiket ini dipakai untuk seluruh komunikasi selanjutnya.</p>
 <div style="text-align:left;border:1px solid #e3e6e9;border-radius:6px;overflow:hidden;margin-bottom:20px">
 <div style="padding:10px 16px;background:#fafbfc;border-bottom:1px solid #e3e6e9;font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#7b858d">Ringkasan Laporan</div>
 <div style="padding:6px 16px 12px">
@@ -641,7 +640,7 @@
 </div>
 <div style="text-align:left;padding:14px 16px;border-radius:6px;background:#f4f8f6;border:1px solid #cfdcd6;margin-bottom:24px">
 <div style="font:600 12px 'IBM Plex Sans';color:#14603f;margin-bottom:8px">Langkah berikutnya</div>
-<div style="font:400 12.5px/1.7 'IBM Plex Sans';color:#3a4249">Pengelola BMN memverifikasi laporan paling lambat {{ lapS.dueVerifikasi }}. Setelah terverifikasi, prioritas penanganan ditetapkan paling lambat {{ lapS.duePrioritas }}. Pelapor akan menerima notifikasi pada setiap perubahan status.</div>
+<div style="font:400 12.5px/1.7 'IBM Plex Sans';color:#3a4249">Laporan langsung berstatus Diverifikasi karena kerusakan Anda periksa sendiri saat melaporkannya, dengan prioritas {{ lapS.klasifikasi }} yang terbit dari dampak terhadap layanan. Selanjutnya tinggal diusulkan perbaikan bila memerlukan biaya, atau langsung ditandai selesai bila sudah dapat ditangani sendiri.</div>
 </div>
 <div style="display:flex;justify-content:center;gap:9px">
 <button type="button" onClick="{{ goKerusakan }}" style="padding:10px 16px;border:1px solid #d5dade;border-radius:5px;background:#fff;font:500 12.5px 'IBM Plex Sans';color:#3a4249;cursor:pointer">Kembali ke Daftar Laporan</button>
@@ -726,10 +725,9 @@
 <button type="button" onClick="{{ openTolak }}" style="padding:10px;border:1px solid #eeb8b2;border-radius:5px;background:#fff;color:#b42318;font:600 12.5px 'IBM Plex Sans';cursor:pointer">Tolak Laporan</button>
 </sc-if>
 <sc-if value="{{ lapAksiDiverifikasi }}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{ openPrioritas }}" style="padding:10px;border:none;border-radius:5px;background:#0f4c3a;color:#fff;font:600 12.5px 'IBM Plex Sans';cursor:pointer">Tetapkan Prioritas</button>
-</sc-if>
-<sc-if value="{{ lapAksiPrioritas }}" hint-placeholder-val="{{ false }}">
+<div style="padding:11px 13px;background:#fafbfc;border:1px solid #e9ecee;border-radius:5px;font:400 12px/1.6 'IBM Plex Sans';color:#5b646c;margin-bottom:2px">Perlu biaya, suku cadang, atau penyedia? Ajukan usulan perbaikan. Bila sudah dapat ditangani sendiri, langsung tandai selesai.</div>
 <button type="button" onClick="{{ openUsul }}" style="padding:10px;border:none;border-radius:5px;background:#0f4c3a;color:#fff;font:600 12.5px 'IBM Plex Sans';cursor:pointer">Usulkan Perbaikan</button>
+<button type="button" onClick="{{ openTandaiSelesai }}" style="padding:10px;border:1px solid #bfe3cd;border-radius:5px;background:#fff;color:#14653f;font:600 12.5px 'IBM Plex Sans';cursor:pointer">Tandai Selesai Tanpa Usulan</button>
 </sc-if>
 <sc-if value="{{ lapAksiUsul }}" hint-placeholder-val="{{ false }}">
 <button type="button" onClick="{{ openTandaiSelesai }}" style="padding:10px;border:none;border-radius:5px;background:#0f4c3a;color:#fff;font:600 12.5px 'IBM Plex Sans';cursor:pointer">Tandai Selesai</button>
@@ -1319,9 +1317,9 @@ class Component extends DCLogic {
   laporanAwal = [
     { tiket: 'KRS-2026-0041', aset: 'A.C. Split', kodenup: '3050204004 · NUP 2', pelapor: 'Dedi Kurniawan', unit: 'Ruang Server', tanggal: '24 Agustus 2026', klasifikasi: 'Kritis', status: 'Diverifikasi', sla: '1 hari lagi', over: false, jenis: 'Tidak Berfungsi Total', dampak: 'Menghentikan layanan', deskripsi: 'Unit pendingin ruang server mati total sejak pukul 07.10. Suhu ruangan naik menjadi 31 derajat dan alarm perangkat jaringan berbunyi. Pendingin cadangan tidak tersedia.', dueVerifikasi: '25 Agustus 2026', duePrioritas: '27 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '24 Agu 2026, 14:20', pelaksana: 'Dedi Kurniawan', catatan: 'Laporan dibuat setelah suhu ruang server melewati batas aman.' }, { status: 'Diverifikasi', waktu: '25 Agu 2026, 08:05', pelaksana: 'Mego Sukoco', catatan: 'Kerusakan terverifikasi di lapangan. Dampak terhadap layanan jaringan dikonfirmasi.' }], komentar: [{ aktor: 'Mego Sukoco', waktu: '25 Agu 2026, 08:12', teks: 'Mohon sementara gunakan kipas industri dari gudang sampai unit pengganti tersedia.' }] },
     { tiket: 'KRS-2026-0040', aset: 'P.C Unit', kodenup: '3100102001 · NUP 7', pelapor: 'Ahmad Fauzi', unit: 'Subbag Tata Usaha', tanggal: '23 Agustus 2026', klasifikasi: 'Rutin', status: 'Dilaporkan', sla: 'Jatuh tempo hari ini', over: false, jenis: 'Berfungsi Sebagian', dampak: 'Mengganggu sebagian layanan', deskripsi: 'Komputer sering mati sendiri setelah dipakai sekitar dua jam. Berkas persuratan sempat hilang dua kali karena mati mendadak.', dueVerifikasi: '24 Agustus 2026', duePrioritas: '26 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '23 Agu 2026, 16:41', pelaksana: 'Ahmad Fauzi', catatan: 'Laporan awal disertai dua foto kondisi perangkat.' }], komentar: [] },
-    { tiket: 'KRS-2026-0039', aset: 'Hand Metal Detector', kodenup: '3050105029 · NUP 4', pelapor: 'Budi Santoso', unit: 'Portir / Pintu Utama (P2U)', tanggal: '21 Agustus 2026', klasifikasi: 'Tinggi', status: 'Prioritas Ditetapkan', sla: 'Prioritas ditetapkan tepat waktu', over: false, jenis: 'Kerusakan Komponen', dampak: 'Mengganggu sebagian layanan', deskripsi: 'Sensor tidak berbunyi saat pengujian dengan logam standar. Pemeriksaan pengunjung dialihkan sementara ke satu unit lain.', dueVerifikasi: '22 Agustus 2026', duePrioritas: '24 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '21 Agu 2026, 09:30', pelaksana: 'Budi Santoso', catatan: 'Ditemukan saat pengujian rutin sebelum jam kunjungan.' }, { status: 'Diverifikasi', waktu: '22 Agu 2026, 08:15', pelaksana: 'Mego Sukoco', catatan: 'Kerusakan sensor dikonfirmasi bersama teknisi internal.' }, { status: 'Prioritas Ditetapkan', waktu: '22 Agu 2026, 10:40', pelaksana: 'Mego Sukoco', catatan: 'Ditetapkan prioritas Tinggi karena menyangkut pemeriksaan pengunjung.' }], komentar: [] },
-    { tiket: 'KRS-2026-0038', aset: 'Printer (Peralatan Personal Komputer)', kodenup: '3100203003 · NUP 5', pelapor: 'Siti Nurhaliza', unit: 'Seksi Pembinaan Narapidana', tanggal: '19 Agustus 2026', klasifikasi: 'Rutin', status: 'Diusulkan Perbaikan', sla: 'Prioritas ditetapkan tepat waktu', over: false, jenis: 'Kerusakan Fisik', dampak: 'Tidak mengganggu layanan', deskripsi: 'Roller penarik kertas macet sehingga kertas tersangkut pada setiap cetakan. Pencetakan dialihkan ke unit lain.', dueVerifikasi: '20 Agustus 2026', duePrioritas: '22 Agustus 2026', biaya: 'Rp 850.000', justifikasi: 'Penggantian roller dan pembersihan mekanik oleh penyedia lokal.', hist: [{ status: 'Dilaporkan', waktu: '19 Agu 2026, 11:05', pelaksana: 'Siti Nurhaliza', catatan: 'Kertas tersangkut berulang sejak pekan lalu.' }, { status: 'Diverifikasi', waktu: '20 Agu 2026, 09:00', pelaksana: 'Mego Sukoco', catatan: 'Kerusakan mekanik dikonfirmasi.' }, { status: 'Prioritas Ditetapkan', waktu: '20 Agu 2026, 13:20', pelaksana: 'Mego Sukoco', catatan: 'Prioritas Rutin, tidak menghentikan layanan.' }, { status: 'Diusulkan Perbaikan', waktu: '21 Agu 2026, 15:10', pelaksana: 'Mego Sukoco', catatan: 'Usulan perbaikan diajukan dengan estimasi biaya Rp 850.000.' }], komentar: [] },
-    { tiket: 'KRS-2026-0037', aset: 'Lampu Emergency', kodenup: '3050206086 · NUP 9', pelapor: 'Budi Santoso', unit: 'Blok Hunian B', tanggal: '14 Agustus 2026', klasifikasi: 'Tinggi', status: 'Selesai', sla: 'Selesai tepat waktu', over: false, jenis: 'Gangguan Kelistrikan', dampak: 'Mengganggu sebagian layanan', deskripsi: 'Lampu darurat tidak menyala saat uji pemadaman. Baterai internal diduga habis.', dueVerifikasi: '15 Agustus 2026', duePrioritas: '17 Agustus 2026', biaya: 'Rp 420.000', hasil: 'Baterai internal diganti dan uji pemadaman ulang berhasil.', hist: [{ status: 'Dilaporkan', waktu: '14 Agu 2026, 20:15', pelaksana: 'Budi Santoso', catatan: 'Ditemukan saat uji pemadaman malam.' }, { status: 'Diverifikasi', waktu: '15 Agu 2026, 08:30', pelaksana: 'Mego Sukoco', catatan: 'Baterai internal tidak menahan daya.' }, { status: 'Prioritas Ditetapkan', waktu: '15 Agu 2026, 10:00', pelaksana: 'Mego Sukoco', catatan: 'Prioritas Tinggi karena menyangkut keselamatan blok hunian.' }, { status: 'Diusulkan Perbaikan', waktu: '16 Agu 2026, 09:20', pelaksana: 'Mego Sukoco', catatan: 'Usulan penggantian baterai diajukan.' }, { status: 'Selesai', waktu: '18 Agu 2026, 14:45', pelaksana: 'Yusuf Ramadhan', catatan: 'Baterai diganti, uji pemadaman ulang berhasil.' }], komentar: [{ aktor: 'Budi Santoso', waktu: '18 Agu 2026, 15:02', teks: 'Sudah dicek ulang pada patroli malam, lampu menyala normal.' }] },
+    { tiket: 'KRS-2026-0039', aset: 'Hand Metal Detector', kodenup: '3050105029 · NUP 4', pelapor: 'Budi Santoso', unit: 'Portir / Pintu Utama (P2U)', tanggal: '21 Agustus 2026', klasifikasi: 'Tinggi', status: 'Diverifikasi', sla: 'Terverifikasi tepat waktu', over: false, jenis: 'Kerusakan Komponen', dampak: 'Mengganggu sebagian layanan', deskripsi: 'Sensor tidak berbunyi saat pengujian dengan logam standar. Pemeriksaan pengunjung dialihkan sementara ke satu unit lain.', dueVerifikasi: '22 Agustus 2026', duePrioritas: '24 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '21 Agu 2026, 09:30', pelaksana: 'Budi Santoso', catatan: 'Ditemukan saat pengujian rutin sebelum jam kunjungan.' }, { status: 'Diverifikasi', waktu: '22 Agu 2026, 08:15', pelaksana: 'Mego Sukoco', catatan: 'Kerusakan sensor dikonfirmasi bersama teknisi internal. Prioritas Tinggi dipertahankan karena menyangkut pemeriksaan pengunjung.' }], komentar: [] },
+    { tiket: 'KRS-2026-0038', aset: 'Printer (Peralatan Personal Komputer)', kodenup: '3100203003 · NUP 5', pelapor: 'Siti Nurhaliza', unit: 'Seksi Pembinaan Narapidana', tanggal: '19 Agustus 2026', klasifikasi: 'Rutin', status: 'Diusulkan Perbaikan', sla: 'Terverifikasi tepat waktu', over: false, jenis: 'Kerusakan Fisik', dampak: 'Tidak mengganggu layanan', deskripsi: 'Roller penarik kertas macet sehingga kertas tersangkut pada setiap cetakan. Pencetakan dialihkan ke unit lain.', dueVerifikasi: '20 Agustus 2026', duePrioritas: '22 Agustus 2026', biaya: 'Rp 850.000', justifikasi: 'Penggantian roller dan pembersihan mekanik oleh penyedia lokal.', hist: [{ status: 'Dilaporkan', waktu: '19 Agu 2026, 11:05', pelaksana: 'Siti Nurhaliza', catatan: 'Kertas tersangkut berulang sejak pekan lalu.' }, { status: 'Diverifikasi', waktu: '20 Agu 2026, 09:00', pelaksana: 'Mego Sukoco', catatan: 'Kerusakan mekanik dikonfirmasi. Prioritas Rutin dipertahankan, tidak menghentikan layanan.' }, { status: 'Diusulkan Perbaikan', waktu: '21 Agu 2026, 15:10', pelaksana: 'Mego Sukoco', catatan: 'Usulan perbaikan diajukan dengan estimasi biaya Rp 850.000.' }], komentar: [] },
+    { tiket: 'KRS-2026-0037', aset: 'Lampu Emergency', kodenup: '3050206086 · NUP 9', pelapor: 'Budi Santoso', unit: 'Blok Hunian B', tanggal: '14 Agustus 2026', klasifikasi: 'Tinggi', status: 'Selesai', sla: 'Selesai tepat waktu', over: false, jenis: 'Gangguan Kelistrikan', dampak: 'Mengganggu sebagian layanan', deskripsi: 'Lampu darurat tidak menyala saat uji pemadaman. Baterai internal diduga habis.', dueVerifikasi: '15 Agustus 2026', duePrioritas: '17 Agustus 2026', biaya: 'Rp 420.000', hasil: 'Baterai internal diganti dan uji pemadaman ulang berhasil.', hist: [{ status: 'Dilaporkan', waktu: '14 Agu 2026, 20:15', pelaksana: 'Budi Santoso', catatan: 'Ditemukan saat uji pemadaman malam.' }, { status: 'Diverifikasi', waktu: '15 Agu 2026, 08:30', pelaksana: 'Mego Sukoco', catatan: 'Baterai internal tidak menahan daya. Prioritas Tinggi dipertahankan karena menyangkut keselamatan blok hunian.' }, { status: 'Diusulkan Perbaikan', waktu: '16 Agu 2026, 09:20', pelaksana: 'Mego Sukoco', catatan: 'Usulan penggantian baterai diajukan.' }, { status: 'Selesai', waktu: '18 Agu 2026, 14:45', pelaksana: 'Yusuf Ramadhan', catatan: 'Baterai diganti, uji pemadaman ulang berhasil.' }], komentar: [{ aktor: 'Budi Santoso', waktu: '18 Agu 2026, 15:02', teks: 'Sudah dicek ulang pada patroli malam, lampu menyala normal.' }] },
     { tiket: 'KRS-2026-0036', aset: 'Steamer (Alat Pengukus)', kodenup: '3050205030 · NUP 2', pelapor: 'Yusuf Ramadhan', unit: 'Dapur / Instalasi Gizi', tanggal: '11 Agustus 2026', klasifikasi: 'Kritis', status: 'Diverifikasi', sla: 'SLA terlampaui 12 hari', over: true, jenis: 'Tidak Berfungsi Total', dampak: 'Menghentikan layanan', deskripsi: 'Elemen pemanas tidak bekerja sehingga pengukusan bahan makanan dialihkan ke dandang manual. Waktu penyiapan makan bertambah dua jam.', dueVerifikasi: '12 Agustus 2026', duePrioritas: '14 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '11 Agu 2026, 06:40', pelaksana: 'Yusuf Ramadhan', catatan: 'Ditemukan saat persiapan makan pagi.' }, { status: 'Diverifikasi', waktu: '12 Agu 2026, 09:10', pelaksana: 'Mego Sukoco', catatan: 'Elemen pemanas dipastikan rusak, menunggu penetapan prioritas.' }], komentar: [{ aktor: 'Mego Sukoco', waktu: '20 Agu 2026, 08:00', teks: 'Penetapan prioritas tertunda karena menunggu hasil survei harga penyedia.' }] },
     { tiket: 'KRS-2026-0035', aset: 'Handy Talky (HT)', kodenup: '3060201006 · NUP 12', pelapor: 'Budi Santoso', unit: 'Regu Pengamanan (Rupam)', tanggal: '10 Agustus 2026', klasifikasi: 'Tinggi', status: 'Dilaporkan', sla: 'SLA terlampaui 13 hari', over: true, jenis: 'Kerusakan Komponen', deskripsi: 'Tombol pembicaraan tidak merespons dan suara terputus putus pada jarak lebih dari lima puluh meter.', dampak: 'Mengganggu sebagian layanan', dueVerifikasi: '11 Agustus 2026', duePrioritas: '13 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '10 Agu 2026, 19:25', pelaksana: 'Budi Santoso', catatan: 'Dilaporkan setelah pergantian regu jaga malam.' }], komentar: [] }
   ];
@@ -1337,7 +1335,7 @@ class Component extends DCLogic {
     { v: 'Tinggi', hari: 3, batas: 'Verifikasi maksimal 1 hari kerja, penetapan prioritas maksimal 3 hari kerja', contoh: 'Contoh: aset penunjang layanan harian' },
     { v: 'Rutin', hari: 3, batas: 'Verifikasi maksimal 1 hari kerja, penetapan prioritas maksimal 3 hari kerja', contoh: 'Contoh: perlengkapan kantor umum' }
   ];
-  statusOrder = ['Dilaporkan', 'Diverifikasi', 'Prioritas Ditetapkan', 'Diusulkan Perbaikan', 'Selesai'];
+  statusOrder = ['Dilaporkan', 'Diverifikasi', 'Diusulkan Perbaikan', 'Selesai'];
 
   kelasDari(dampak) {
     return { 'Menghentikan layanan': 'Kritis', 'Mengganggu sebagian layanan': 'Tinggi', 'Tidak mengganggu layanan': 'Rutin' }[dampak] || '';
@@ -1444,7 +1442,6 @@ class Component extends DCLogic {
       'Perlu Perbaikan Data': { bg: '#fdf4e3', fg: '#8a5300', bd: '#f0dcb0' },
       'Dilaporkan': { bg: '#eef0f2', fg: '#4a5259', bd: '#dfe3e6' },
       'Diverifikasi': { bg: '#e9eefb', fg: '#1d4ed8', bd: '#c7d5f5' },
-      'Prioritas Ditetapkan': { bg: '#fdf0e3', fg: '#9a4a06', bd: '#f2d6b6' },
       'Diusulkan Perbaikan': { bg: '#e6f0f4', fg: '#0e5a72', bd: '#c4dbe4' },
       'Selesai': { bg: '#e7f5ec', fg: '#14653f', bd: '#bfe3cd' },
       'Sudah Ditindaklanjuti': { bg: '#e9eefb', fg: '#1d4ed8', bd: '#c7d5f5' },
@@ -1593,7 +1590,7 @@ class Component extends DCLogic {
 
   submitForm = () => {
     const f = this.state.form, kind = f._kind;
-    const req = { opsAdd: ['aset', 'lokasi', 'pic'], perbarui: ['alasan'], bulkPic: ['pic', 'alasan'], bulkLokasi: ['lokasi', 'alasan'], ringkasan: [], krsVerifikasi: ['catatan'], krsTolak: ['catatan'], krsPrioritas: ['catatan'], krsUsul: ['biaya', 'justifikasi'], krsSelesai: ['hasil'], rekonTelusur: ['temuan', 'rencana'], akunBaru: ['nama', 'username', 'peran', 'unit'], akunUbah: [] }[kind] || [];
+    const req = { opsAdd: ['aset', 'lokasi', 'pic'], perbarui: ['alasan'], bulkPic: ['pic', 'alasan'], bulkLokasi: ['lokasi', 'alasan'], ringkasan: [], krsVerifikasi: ['catatan'], krsTolak: ['catatan'], krsUsul: ['biaya', 'justifikasi'], krsSelesai: ['hasil'], rekonTelusur: ['temuan', 'rencana'], akunBaru: ['nama', 'username', 'peran', 'unit'], akunUbah: [] }[kind] || [];
     const errors = {};
     req.forEach(k => { if (!f[k] || String(f[k]).trim() === '' || String(f[k]).indexOf('Pilih ') === 0) errors[k] = true; });
     if (Object.keys(errors).length) { this.setState({ errors }); this.toast('Lengkapi dahulu field wajib yang ditandai merah', 'err'); return; }
@@ -1662,17 +1659,14 @@ class Component extends DCLogic {
       const lap = this.state.laporan.filter(l => l.tiket === tiket)[0];
       const pel = 'Mego Sukoco — Pengelola BMN';
       if (kind === 'krsVerifikasi') {
-        this.krsUpdate(tiket, { status: 'Diverifikasi', over: false, sla: 'Penetapan prioritas sampai ' + (lap.duePrioritas || this.plusHari(3)) }, { status: 'Diverifikasi', waktu: this.nowText(), pelaksana: pel, catatan: f.catatan });
-        this.toast('Laporan ' + tiket + ' berhasil diverifikasi');
+        const kls = f.tingkat || lap.klasifikasi;
+        const ubah = kls !== lap.klasifikasi ? (' Prioritas diubah dari ' + lap.klasifikasi + ' menjadi ' + kls + '.') : (' Prioritas ' + kls + ' dipertahankan.');
+        this.krsUpdate(tiket, { status: 'Diverifikasi', klasifikasi: kls, over: false, sla: 'Terverifikasi tepat waktu' }, { status: 'Diverifikasi', waktu: this.nowText(), pelaksana: pel, catatan: f.catatan + ubah });
+        this.toast('Laporan ' + tiket + ' diverifikasi dengan prioritas ' + kls);
       }
       if (kind === 'krsTolak') {
         this.krsUpdate(tiket, { status: 'Selesai', ditolak: true, over: false, sla: 'Laporan ditolak' }, { status: 'Selesai', waktu: this.nowText(), pelaksana: pel, catatan: 'Laporan ditolak. ' + f.catatan });
         this.toast('Laporan ' + tiket + ' ditolak dengan catatan');
-      }
-      if (kind === 'krsPrioritas') {
-        const u = this.urgensiOptions.filter(x => x.v === (f.tingkat || lap.klasifikasi))[0];
-        this.krsUpdate(tiket, { status: 'Prioritas Ditetapkan', klasifikasi: u.v, over: false, duePrioritas: this.plusHari(u.hari), sla: u.hari + ' hari lagi' }, { status: 'Prioritas Ditetapkan', waktu: this.nowText(), pelaksana: pel, catatan: 'Prioritas ' + u.v + '. ' + f.catatan });
-        this.toast('Prioritas ' + u.v + ' ditetapkan untuk ' + tiket);
       }
       if (kind === 'krsUsul') {
         this.krsUpdate(tiket, { status: 'Diusulkan Perbaikan', biaya: f.biaya, justifikasi: f.justifikasi, over: false }, { status: 'Diusulkan Perbaikan', waktu: this.nowText(), pelaksana: pel, catatan: 'Estimasi biaya ' + f.biaya + '. ' + f.justifikasi });
@@ -1723,7 +1717,7 @@ class Component extends DCLogic {
     const err = {};
     if (!kf.asetId) err.aset = true;
     if (!kf.jenis || kf.jenis.indexOf('Pilih ') === 0) err.jenis = true;
-    if (kf.deskripsi.trim().length < 20) err.deskripsi = true;
+    if (!kf.deskripsi.trim()) err.deskripsi = true;
     if (!kf.dampak) err.dampak = true;
     if (!kf.lokasiSama) err.lokasiSama = true;
     if (kf.lokasiSama === 'tidak' && (!kf.lokasiAktual || kf.lokasiAktual.indexOf('Pilih ') === 0)) err.lokasiAktual = true;
@@ -1732,7 +1726,7 @@ class Component extends DCLogic {
     if (Object.keys(err).length) { this.setState({ kfErr: err }); this.toast('Lengkapi dahulu field wajib yang ditandai merah', 'err'); return; }
     const aset = this.state.assets.filter(a => a.id === kf.asetId)[0];
     this.askConfirm({
-      title: 'Kirim laporan kerusakan?', message: 'Kirim laporan kerusakan untuk ' + aset.nama + '? Laporan akan masuk ke antrean verifikasi Pengelola BMN.', okLabel: 'Kirim', okBg: '#0f4c3a',
+      title: 'Kirim laporan kerusakan?', message: 'Kirim laporan kerusakan untuk ' + aset.nama + '? Laporan tercatat atas nama Anda dan tidak dapat dihapus setelah dikirim.', okLabel: 'Kirim', okBg: '#0f4c3a',
       ok: () => {
         const nums = this.state.laporan.map(l => Number(l.tiket.slice(-4)));
         const tiket = 'KRS-2026-' + String(Math.max.apply(null, nums) + 1).padStart(4, '0');
@@ -1740,10 +1734,13 @@ class Component extends DCLogic {
         const u = this.urgensiOptions.filter(x => x.v === kelas)[0];
         const baru = {
           tiket, aset: aset.nama, kodenup: aset.kode + ' · NUP ' + aset.nup, pelapor: 'Mego Sukoco', unit: kf.lokasiSama === 'tidak' ? kf.lokasiAktual : aset.lokasi,
-          tanggal: '26 Agustus 2026', klasifikasi: kelas, status: 'Dilaporkan', sla: u.hari + ' hari lagi', over: false,
+          tanggal: '26 Agustus 2026', klasifikasi: kelas, status: 'Diverifikasi', sla: 'Terverifikasi tepat waktu', over: false,
           jenis: kf.jenis, dampak: kf.dampak, deskripsi: kf.deskripsi,
           dueVerifikasi: this.plusHari(1), duePrioritas: this.plusHari(u.hari), foto: kf.foto.slice(),
-          hist: [{ status: 'Dilaporkan', waktu: this.nowText(), pelaksana: 'Mego Sukoco — Pengelola BMN', catatan: 'Laporan dibuat melalui formulir SIMONBAR.' }], komentar: []
+          hist: [
+            { status: 'Dilaporkan', waktu: this.nowText(), pelaksana: 'Mego Sukoco — Pengelola BMN', catatan: 'Laporan dibuat melalui formulir SIMONBAR.' },
+            { status: 'Diverifikasi', waktu: this.nowText(), pelaksana: 'Mego Sukoco — Pengelola BMN', catatan: 'Kerusakan diperiksa langsung oleh Pengelola BMN saat laporan dibuat, sehingga tidak memerlukan verifikasi ulang. Prioritas ' + kelas + ' ditetapkan dari dampak terhadap layanan.' }
+          ], komentar: []
         };
         this.setState(s => ({
           laporan: [baru].concat(s.laporan), krsId: tiket, page: 'krsSukses', confirm: null,
@@ -1789,8 +1786,8 @@ class Component extends DCLogic {
     crumbs = [{ label: 'SIMONBAR', go: this.go('dashboard'), fg: '#8a9299', fw: 400, sep: '/' }].concat(crumbs);
 
     const activeNav = { dashboard: 'Dashboard', aset: 'Daftar Aset BMN', detail: 'Daftar Aset BMN', kerusakan: 'Pelaporan Kerusakan', krsForm: 'Pelaporan Kerusakan', krsSukses: 'Pelaporan Kerusakan', krsDetail: 'Pelaporan Kerusakan', opname: 'Pemeriksaan Fisik', rekonsiliasi: 'Rekonsiliasi' }[p] || p;
-    const kolomKanban = ['Dilaporkan', 'Diverifikasi', 'Prioritas Ditetapkan', 'Diusulkan Perbaikan', 'Selesai'];
-    const kolomColor = { 'Dilaporkan': '#8a9299', 'Diverifikasi': '#1d4ed8', 'Prioritas Ditetapkan': '#b45309', 'Diusulkan Perbaikan': '#0e5a72', 'Selesai': '#1a7f4f' };
+    const kolomKanban = ['Dilaporkan', 'Diverifikasi', 'Diusulkan Perbaikan', 'Selesai'];
+    const kolomColor = { 'Dilaporkan': '#8a9299', 'Diverifikasi': '#1d4ed8', 'Diusulkan Perbaikan': '#0e5a72', 'Selesai': '#1a7f4f' };
     const dec = (k) => Object.assign({}, k, { kb: this.badge(k.klasifikasi), sb: this.badge(k.status), slaColor: k.over ? '#b42318' : '#14653f', go: () => this.setState({ page: 'krsDetail', krsId: k.tiket }) });
 
     const chipMap = { akun: 'Akun', kondisi: 'Kondisi', unit: 'Unit Kerja', prioritas: 'Prioritas', verifikasi: 'Verifikasi' };
@@ -1907,17 +1904,17 @@ class Component extends DCLogic {
         fields: [fld('select', 'format', 'Format', ['PDF', 'Excel']), fld('select', 'periode', 'Periode', ['Agustus 2026', 'Triwulan III 2026', 'Semester I 2026', 'Tahun 2026'])]
       };
       if (kind === 'krsVerifikasi') mv = {
-        title: 'Verifikasi Laporan ' + lap.tiket, sub: 'Konfirmasi hasil pemeriksaan lapangan atas laporan ini', submitLabel: 'Verifikasi',
-        fields: [fld('area', 'catatan', 'Catatan Verifikasi', null, 'Uraikan hasil pemeriksaan lapangan', true)]
+        title: 'Verifikasi dan Penetapan Prioritas', sub: lap.tiket + ' · ' + lap.aset, submitLabel: 'Verifikasi',
+        warn: true, warnText: 'Prioritas sudah terisi otomatis dari dampak yang dilaporkan. Ubah hanya bila hasil pemeriksaan lapangan berbeda.',
+        fields: [
+          fld('select', 'tingkat', 'Tingkat Prioritas', [lap.klasifikasi].concat(['Kritis', 'Tinggi', 'Rutin'].filter(x => x !== lap.klasifikasi))),
+          fld('area', 'catatan', 'Catatan Verifikasi', null, 'Uraikan hasil pemeriksaan lapangan', true)
+        ]
       };
       if (kind === 'krsTolak') mv = {
-        title: 'Tolak Laporan ' + lap.tiket, sub: 'Laporan tidak dilanjutkan ke penetapan prioritas', submitLabel: 'Tolak Laporan',
+        title: 'Tolak Laporan ' + lap.tiket, sub: 'Laporan tidak dilanjutkan ke usulan perbaikan', submitLabel: 'Tolak Laporan',
         warn: true, warnText: 'Laporan yang ditolak tetap tersimpan dan tercatat pada riwayat penanganan.',
         fields: [fld('area', 'catatan', 'Alasan Penolakan', null, 'Wajib diisi', true)]
-      };
-      if (kind === 'krsPrioritas') mv = {
-        title: 'Tetapkan Prioritas ' + lap.tiket, sub: 'Batas waktu penanganan mengikuti tingkat prioritas', submitLabel: 'Tetapkan',
-        fields: [fld('select', 'tingkat', 'Tingkat Prioritas', [lap.klasifikasi].concat(['Kritis', 'Tinggi', 'Rutin'].filter(x => x !== lap.klasifikasi))), fld('area', 'catatan', 'Dasar Penetapan', null, 'Wajib diisi', true)]
       };
       if (kind === 'krsUsul') mv = {
         title: 'Usulkan Perbaikan ' + lap.tiket, sub: 'Usulan disampaikan kepada Kepala Lapas melalui Subbag Tata Usaha', submitLabel: 'Ajukan Usulan',
@@ -2074,7 +2071,7 @@ class Component extends DCLogic {
       kfJenisBd: st.kfErr.jenis ? '#b42318' : '#d5dade', kfJenisErr: !!st.kfErr.jenis,
       kfDeskripsi: kf.deskripsi, kfSetDeskripsi: this.setK('deskripsi'),
       kfDeskripsiBd: st.kfErr.deskripsi ? '#b42318' : '#d5dade', kfDeskripsiErr: !!st.kfErr.deskripsi,
-      kfHitung: kf.deskripsi.length + ' karakter, minimal 20',
+      
       kfDampakList: this.dampakOptions.map(o => ({ label: o.v, desc: o.d, on: kf.dampak === o.v, pick: this.pickK('dampak', o.v), bd: kf.dampak === o.v ? primary : (st.kfErr.dampak ? '#b42318' : '#e3e6e9'), bg: kf.dampak === o.v ? '#f4f8f6' : '#fff', dotBg: kf.dampak === o.v ? primary : 'transparent' })),
       kfDampakErr: !!st.kfErr.dampak,
       kfAdaKelas: !!kfKelas,
@@ -2093,8 +2090,8 @@ class Component extends DCLogic {
         else this.setState({ page: 'kerusakan' });
       },
       kfKirim: this.kirimLaporan,
-      kfSiap: !!(kf.asetId && kf.lokasiSama && kf.dampak && kf.deskripsi.trim().length >= 20),
-      kfKirimBg: (kf.asetId && kf.lokasiSama && kf.dampak && kf.deskripsi.trim().length >= 20) ? primary : '#c8cdd1',
+      kfSiap: !!(kf.asetId && kf.lokasiSama && kf.dampak && kf.deskripsi.trim()),
+      kfKirimBg: (kf.asetId && kf.lokasiSama && kf.dampak && kf.deskripsi.trim()) ? primary : '#c8cdd1',
 
       lapS: Object.assign({}, lap, { kb: this.badge(lap.klasifikasi), sb: this.badge(lap.status), slaColor: lap.over ? '#b42318' : '#14653f' }),
       lapAset: (function (as, kn) { const kode = kn.split(' · ')[0]; const nup = kn.split('NUP ')[1]; return as.filter(a => a.kode === kode && a.nup === nup)[0] || as[0]; })(st.assets, lap.kodenup),
@@ -2110,14 +2107,12 @@ class Component extends DCLogic {
       ],
       lapAksiDilaporkan: lap.status === 'Dilaporkan',
       lapAksiDiverifikasi: lap.status === 'Diverifikasi',
-      lapAksiPrioritas: lap.status === 'Prioritas Ditetapkan',
       lapAksiUsul: lap.status === 'Diusulkan Perbaikan',
       lapSelesai: lap.status === 'Selesai',
       lapHasil: lap.ditolak ? 'Laporan ditolak dan tidak dilanjutkan ke usulan perbaikan.' : (lap.hasil || 'Perbaikan selesai dan aset kembali berfungsi.'),
       lapBiaya: lap.biaya || 'Tidak ada biaya',
       openVerifikasi: this.openModal('form', { _kind: 'krsVerifikasi' }),
       openTolak: this.openModal('form', { _kind: 'krsTolak' }),
-      openPrioritas: this.openModal('form', { _kind: 'krsPrioritas' }),
       openUsul: this.openModal('form', { _kind: 'krsUsul' }),
       openTandaiSelesai: this.openModal('form', { _kind: 'krsSelesai' }),
       lapKomentar: lap.komentar || [], lapKomentarKosong: (lap.komentar || []).length === 0,
