@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMONBAR — Sistem Monitoring Barang Milik Negara</title>
+<meta name="description" content="Demo antarmuka SIMONBAR, sistem monitoring BMN Lapas Narkotika Kelas IIA Kasongan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f5f6;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#16211c}
+a{text-decoration:none;color:inherit}
+.band{background:#0d3f30;color:#eef3f0;padding:38px 24px 44px}
+.wrap{max-width:960px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:11px;margin-bottom:26px}
+.logo span{font:600 15px/1 'IBM Plex Sans';letter-spacing:.16em}
+.eyebrow{font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.22em;color:#8fb8a8;margin-bottom:16px}
+h1{font:600 34px/1.22 'IBM Plex Sans';margin:0 0 14px;max-width:16em}
+.lead{font:400 15px/1.7 'IBM Plex Sans';color:#c2d6cd;margin:0;max-width:44em}
+main{max-width:960px;margin:0 auto;padding:0 24px 56px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:-26px}
+.card{display:flex;flex-direction:column;background:#fff;border:1px solid #e3e6e9;border-radius:12px;padding:24px;box-shadow:0 4px 16px rgba(16,24,40,.06);transition:transform .14s,box-shadow .14s}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(16,24,40,.12)}
+.tag{display:inline-block;align-self:flex-start;padding:4px 10px;border-radius:5px;font:600 11px 'IBM Plex Sans';margin-bottom:14px}
+.tag.k{background:#e7f5ec;border:1px solid #bfe3cd;color:#14653f}
+.tag.p{background:#e9eefb;border:1px solid #c7d5f5;color:#1d4ed8}
+.card h2{font:600 20px/1.3 'IBM Plex Sans';margin:0 0 8px}
+.card p{font:400 13.5px/1.7 'IBM Plex Sans';color:#5b646c;margin:0 0 16px}
+ul{list-style:none;margin:0 0 18px;padding:0}
+li{font:400 13px/1.6 'IBM Plex Sans';color:#3a4249;padding:5px 0 5px 20px;position:relative}
+li::before{content:"";position:absolute;left:4px;top:11px;width:6px;height:6px;border-radius:2px;background:#0f4c3a}
+.note{font:400 12.5px/1.65 'IBM Plex Sans';color:#7a5300;background:#fdf4e3;border:1px solid #f0dcb0;border-radius:8px;padding:11px 13px;margin-bottom:18px}
+.btn{margin-top:auto;display:block;text-align:center;padding:14px;border-radius:9px;background:#0f4c3a;color:#fff;font:600 14.5px 'IBM Plex Sans';transition:background .14s}
+.card:hover .btn{background:#0b3a2c}
+.strip{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:#fff;border:1px solid #e3e6e9;border-radius:12px;padding:20px 24px}
+.strip h3{font:600 15px/1.35 'IBM Plex Sans';margin:0 0 5px}
+.strip p{font:400 13px/1.6 'IBM Plex Sans';color:#5b646c;margin:0;max-width:52em}
+.btn2{flex:none;padding:11px 18px;border:1.5px solid #c9d1d4;border-radius:9px;font:600 13px 'IBM Plex Sans';color:#16211c;background:#fff;transition:background .14s}
+.strip:hover .btn2{background:#f4f6f7}
+footer{border-top:1px solid #e3e6e9;margin-top:34px;padding-top:20px;font:400 12px/1.75 'IBM Plex Sans';color:#8a9299}
+@media(max-width:760px){
+ .band{padding:30px 18px 40px}
+ h1{font-size:26px}
+ main{padding:0 18px 44px}
+ .cards{grid-template-columns:1fr;gap:14px}
+ .strip{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div class="band">
+<div class="wrap">
+<div class="logo"><span style="width:28px;height:28px;background:#eef3f0;border-radius:4px;display:block"></span><span>SIMONBAR</span></div>
+<div class="eyebrow">LAPISAN MONITORING OPERASIONAL</div>
+<h1>Sistem Monitoring Barang Milik Negara</h1>
+<p class="lead">Melengkapi SIMAN dan SAKTI dengan data operasional lapangan: lokasi persis, penanggung jawab, kondisi terkini, dan tindak lanjut kerusakan. Satu aplikasi, dua pintu masuk — satu basis data, satu sistem login, satu catatan perubahan.</p>
+</div>
+</div>
+
+<main>
+<div class="cards">
+
+<a class="card" href="kantor.html">
+<span class="tag k">DIBUKA DI KOMPUTER</span>
+<h2>Sisi Kantor</h2>
+<p>Untuk pengelola BMN, administrator, dan pimpinan. Memverifikasi laporan, menetapkan prioritas, dan memantau seluruh unit kerja.</p>
+<ul>
+<li>Dashboard pimpinan</li>
+<li>Daftar dan detail aset BMN</li>
+<li>Pelaporan kerusakan dan tindak lanjut</li>
+<li>Opname fisik dan rekonsiliasi</li>
+<li>Kelola akun dan hak akses</li>
+</ul>
+<div class="note">Nama pengguna dan kata sandi sudah terisi otomatis. Cukup tekan Masuk.</div>
+<span class="btn">Buka Sisi Kantor</span>
+</a>
+
+<a class="card" href="petugas.html">
+<span class="tag p">DIBUKA DI HP</span>
+<h2>Sisi Petugas</h2>
+<p>Untuk pegawai yang memeriksa barang di lapangan. Memindai stiker QR pada barang, lalu mencatat hasilnya langsung di tempat.</p>
+<ul>
+<li>Pindai QR barang</li>
+<li>Catat keberadaan dan kondisi</li>
+<li>Lapor kerusakan disertai foto</li>
+<li>Daftar periksa per unit kerja</li>
+<li>Kelola perangkat terdaftar</li>
+</ul>
+<div class="note">Paling pas dibuka di HP. Di layar lebar tampilannya otomatis jadi bingkai ponsel.</div>
+<span class="btn">Buka Sisi Petugas</span>
+</a>
+
+</div>
+
+<a class="strip" href="panduan.html">
+<div>
+<h3>Panduan Pengguna</h3>
+<p>Penjelasan lengkap tiap modul, batas kewenangan setiap peran, dan dua studi kasus satu siklus penuh dari temuan kerusakan sampai penutupan rekonsiliasi.</p>
+</div>
+<span class="btn2">Baca Panduan</span>
+</a>
+
+<footer>
+Demo antarmuka SIMONBAR &middot; Lapas Narkotika Kelas IIA Kasongan &middot; Kementerian Imigrasi dan Pemasyarakatan<br>
+Seluruh data pada demo ini bersifat contoh dan tidak terhubung ke basis data SIMAN maupun SAKTI yang sesungguhnya. SIMONBAR melengkapi sistem resmi pemerintah, bukan menggantikannya.
+</footer>
+</main>
+
+</body>
+</html>
