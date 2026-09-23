@@ -527,6 +527,29 @@
 <sc-if value="{{ kfKritis }}" hint-placeholder-val="{{ false }}">
 <div style="margin-top:12px;padding:12px 14px;border-radius:5px;background:#f8e0dd;border:1px solid #eeb8b2;font:500 12.5px/1.6 'IBM Plex Sans';color:#7a1512">Aset ini berklasifikasi kritis. Laporan akan otomatis mendapat prioritas penanganan tertinggi.</div>
 </sc-if>
+
+<div style="margin-top:18px">
+<label style="display:block;font:600 12px 'IBM Plex Sans';color:#3a4249;margin-bottom:3px">Barang ada di lokasi tercatat? *</label>
+<div style="font:400 11.5px 'IBM Plex Sans';color:#8a9299;margin-bottom:9px">Lokasi tercatat: {{ kfLokasiTercatat }}</div>
+<div style="display:grid;gap:9px;max-width:520px">
+<sc-for list="{{ kfLokasiOpts }}" as="l" hint-placeholder-count="2">
+<button type="button" onClick="{{ l.pick }}" style="display:flex;align-items:flex-start;gap:10px;text-align:left;padding:11px 13px;border:1px solid {{ l.bd }};border-radius:5px;background:{{ l.bg }};cursor:pointer">
+<span style="width:14px;height:14px;flex:none;border-radius:50%;border:1.5px solid #0f4c3a;margin-top:2px;background:{{ l.dotBg }}"></span>
+<span><span style="display:block;font:600 12.5px 'IBM Plex Sans';color:#16211c">{{ l.label }}</span><span style="display:block;font:400 11.5px/1.5 'IBM Plex Sans';color:#7b858d;margin-top:2px">{{ l.desc }}</span></span>
+</button>
+</sc-for>
+</div>
+<sc-if value="{{ kfLokasiSamaErr }}" hint-placeholder-val="{{ false }}"><div style="font:500 11.5px 'IBM Plex Sans';color:#b42318;margin-top:6px">Pilih dulu keberadaan barangnya</div></sc-if>
+<sc-if value="{{ kfLokasiBeda }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:12px;padding:13px 15px;background:#fdf4e3;border:1px solid #f0dcb0;border-radius:5px;max-width:520px">
+<label style="display:block;font:600 12px 'IBM Plex Sans';color:#7a5300;margin-bottom:6px">Barang ini sekarang ada di mana? *</label>
+<select value="{{ kfLokasiAktual }}" onChange="{{ kfSetLokasiAktual }}" style="width:100%;padding:9px 10px;border:1px solid {{ kfLokasiAktualBd }};border-radius:5px;font:400 12.5px 'IBM Plex Sans';background:#fff">
+<sc-for list="{{ kfLokasiAktualOptions }}" as="o" hint-placeholder-count="5"><option>{{ o }}</option></sc-for>
+</select>
+<sc-if value="{{ kfLokasiAktualErr }}" hint-placeholder-val="{{ false }}"><div style="font:500 11.5px 'IBM Plex Sans';color:#b42318;margin-top:6px">Pilih lokasi barang sekarang</div></sc-if>
+</div>
+</sc-if>
+</div>
 </sc-if>
 </div>
 </div>
@@ -534,8 +557,7 @@
 <div style="background:#fff;border:1px solid #e3e6e9;border-radius:6px;margin-bottom:14px;overflow:hidden">
 <div style="padding:14px 20px;border-bottom:1px solid #e3e6e9;background:#fafbfc;display:flex;align-items:center;gap:10px"><span style="width:20px;height:20px;border-radius:50%;background:#0f4c3a;color:#fff;font:600 11px/20px 'IBM Plex Sans';text-align:center">2</span><span style="font:600 13px 'IBM Plex Sans';color:#16211c">Rincian Kerusakan</span></div>
 <div style="padding:20px;display:flex;flex-direction:column;gap:16px">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-<div><label style="display:block;font:600 12px 'IBM Plex Sans';color:#3a4249;margin-bottom:6px">Tanggal Diketahui *</label><input value="{{ kfTanggal }}" onChange="{{ kfSetTanggal }}" style="width:100%;padding:9px 11px;border:1px solid #d5dade;border-radius:5px;font:400 12.5px 'IBM Plex Sans';color:#1d2429"></div>
+<div style="max-width:420px">
 <div><label style="display:block;font:600 12px 'IBM Plex Sans';color:#3a4249;margin-bottom:6px">Jenis Kerusakan *</label><select value="{{ kfJenis }}" onChange="{{ kfSetJenis }}" style="width:100%;padding:9px 10px;border:1px solid {{ kfJenisBd }};border-radius:5px;font:400 12.5px 'IBM Plex Sans';background:#fff"><sc-for list="{{ kfJenisOptions }}" as="o" hint-placeholder-count="6"><option>{{ o }}</option></sc-for></select><sc-if value="{{ kfJenisErr }}" hint-placeholder-val="{{ false }}"><div style="font:500 11.5px 'IBM Plex Sans';color:#b42318;margin-top:5px">Jenis kerusakan wajib dipilih</div></sc-if></div>
 </div>
 <div>
@@ -558,38 +580,24 @@
 </div>
 <sc-if value="{{ kfDampakErr }}" hint-placeholder-val="{{ false }}"><div style="font:500 11.5px 'IBM Plex Sans';color:#b42318;margin-top:6px">Dampak terhadap layanan wajib dipilih</div></sc-if>
 </div>
-<div style="max-width:420px"><label style="display:block;font:600 12px 'IBM Plex Sans';color:#3a4249;margin-bottom:6px">Lokasi Aktual Saat Ditemukan Rusak</label><select value="{{ kfLokasi }}" onChange="{{ kfSetLokasi }}" style="width:100%;padding:9px 10px;border:1px solid #d5dade;border-radius:5px;font:400 12.5px 'IBM Plex Sans';background:#fff"><sc-for list="{{ kfLokasiOptions }}" as="o" hint-placeholder-count="5"><option>{{ o }}</option></sc-for></select></div>
+<sc-if value="{{ kfAdaKelas }}" hint-placeholder-val="{{ false }}">
+<div style="padding:14px 16px;border-radius:6px;background:#f4f8f6;border:1px solid #cfdcd6">
+<div style="display:flex;align-items:center;gap:9px;margin-bottom:11px">
+<span style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#14603f">Ditetapkan otomatis</span>
+<span style="padding:2px 9px;border-radius:4px;background:{{ kfKelasBadge.bg }};border:1px solid {{ kfKelasBadge.bd }};color:{{ kfKelasBadge.fg }};font:600 11px 'IBM Plex Sans'">{{ kfKelas }}</span>
 </div>
-</div>
-
-<div style="background:#fff;border:1px solid #e3e6e9;border-radius:6px;margin-bottom:14px;overflow:hidden">
-<div style="padding:14px 20px;border-bottom:1px solid #e3e6e9;background:#fafbfc;display:flex;align-items:center;gap:10px"><span style="width:20px;height:20px;border-radius:50%;background:#0f4c3a;color:#fff;font:600 11px/20px 'IBM Plex Sans';text-align:center">3</span><span style="font:600 13px 'IBM Plex Sans';color:#16211c">Klasifikasi dan Batas Waktu</span></div>
-<div style="padding:20px">
-<label style="display:block;font:600 12px 'IBM Plex Sans';color:#3a4249;margin-bottom:9px">Tingkat Urgensi *</label>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-<sc-for list="{{ kfUrgensiList }}" as="u" hint-placeholder-count="3">
-<button type="button" onClick="{{ u.pick }}" style="text-align:left;padding:14px;border:1.5px solid {{ u.bd }};border-radius:6px;background:{{ u.bg }};cursor:pointer">
-<div style="font:600 14px 'IBM Plex Sans';color:{{ u.fg }};margin-bottom:7px">{{ u.label }}</div>
-<div style="font:400 11.5px/1.55 'IBM Plex Sans';color:#5b646c;margin-bottom:8px">{{ u.batas }}</div>
-<div style="font:400 11px/1.5 'IBM Plex Sans';color:#8a9299">{{ u.contoh }}</div>
-</button>
-</sc-for>
-</div>
-<sc-if value="{{ kfUrgensiErr }}" hint-placeholder-val="{{ false }}"><div style="font:500 11.5px 'IBM Plex Sans';color:#b42318;margin-top:8px">Tingkat urgensi wajib dipilih</div></sc-if>
-<sc-if value="{{ kfAdaUrgensi }}" hint-placeholder-val="{{ false }}">
-<div style="margin-top:16px;padding:14px 16px;border-radius:6px;background:#f4f8f6;border:1px solid #cfdcd6">
-<div style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#14603f;margin-bottom:10px">Perhitungan Otomatis Batas Waktu</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
 <div><div style="font:400 11.5px 'IBM Plex Sans';color:#5b646c">Jatuh tempo verifikasi</div><div style="font:600 13.5px 'IBM Plex Sans';color:#16211c;margin-top:3px">{{ kfDueVerifikasi }}</div></div>
 <div><div style="font:400 11.5px 'IBM Plex Sans';color:#5b646c">Jatuh tempo penetapan prioritas</div><div style="font:600 13.5px 'IBM Plex Sans';color:#16211c;margin-top:3px">{{ kfDuePrioritas }}</div></div>
 </div>
+<div style="font:400 11.5px/1.6 'IBM Plex Sans';color:#5b646c;margin-top:10px">Klasifikasi diturunkan dari dampak yang Anda pilih, sesuai standar layanan internal.</div>
 </div>
 </sc-if>
 </div>
 </div>
 
 <div style="background:#fff;border:1px solid #e3e6e9;border-radius:6px;margin-bottom:14px;overflow:hidden">
-<div style="padding:14px 20px;border-bottom:1px solid #e3e6e9;background:#fafbfc;display:flex;align-items:center;gap:10px"><span style="width:20px;height:20px;border-radius:50%;background:#0f4c3a;color:#fff;font:600 11px/20px 'IBM Plex Sans';text-align:center">4</span><span style="font:600 13px 'IBM Plex Sans';color:#16211c">Dokumentasi dan Pelapor</span></div>
+<div style="padding:14px 20px;border-bottom:1px solid #e3e6e9;background:#fafbfc;display:flex;align-items:center;gap:10px"><span style="width:20px;height:20px;border-radius:50%;background:#0f4c3a;color:#fff;font:600 11px/20px 'IBM Plex Sans';text-align:center">3</span><span style="font:600 13px 'IBM Plex Sans';color:#16211c">Dokumentasi</span></div>
 <div style="padding:20px;display:flex;flex-direction:column;gap:16px">
 <div>
 <label style="display:block;font:600 12px 'IBM Plex Sans';color:#3a4249;margin-bottom:6px">Unggah Foto Kondisi</label>
@@ -605,26 +613,12 @@
 </sc-for>
 </div>
 </div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-<div><label style="display:block;font:600 12px 'IBM Plex Sans';color:#3a4249;margin-bottom:6px">Nama Pelapor</label><input value="Mego Sukoco" readOnly="{{ true }}" style="width:100%;padding:9px 11px;border:1px solid #e3e6e9;border-radius:5px;font:400 12.5px 'IBM Plex Sans';color:#7b858d;background:#f7f8f9"></div>
-<div><label style="display:block;font:600 12px 'IBM Plex Sans';color:#3a4249;margin-bottom:6px">Unit Kerja Pelapor</label><input value="Subbag Tata Usaha" readOnly="{{ true }}" style="width:100%;padding:9px 11px;border:1px solid #e3e6e9;border-radius:5px;font:400 12.5px 'IBM Plex Sans';color:#7b858d;background:#f7f8f9"></div>
+<div style="padding:11px 14px;background:#fafbfc;border:1px solid #e9ecee;border-radius:5px;font:400 12px/1.6 'IBM Plex Sans';color:#5b646c">Dilaporkan oleh <strong style="color:#16211c">Mego Sukoco</strong> — Subbag Tata Usaha, pada 26 Agustus 2026. Nama pelapor dan waktu tercatat otomatis dari akun yang sedang masuk.</div>
 </div>
-<div style="max-width:320px"><label style="display:block;font:600 12px 'IBM Plex Sans';color:#3a4249;margin-bottom:6px">Nomor Kontak</label><input value="{{ kfKontak }}" onChange="{{ kfSetKontak }}" placeholder="Contoh: 0812 3456 7890" style="width:100%;padding:9px 11px;border:1px solid #d5dade;border-radius:5px;font:400 12.5px 'IBM Plex Sans';color:#1d2429"></div>
-<div><label style="display:block;font:600 12px 'IBM Plex Sans';color:#3a4249;margin-bottom:6px">Catatan Tambahan</label><textarea value="{{ kfCatatan }}" onChange="{{ kfSetCatatan }}" rows="3" placeholder="Opsional" style="width:100%;padding:10px 12px;border:1px solid #d5dade;border-radius:5px;font:400 12.5px/1.6 'IBM Plex Sans';color:#1d2429;resize:vertical"></textarea></div>
-</div>
-</div>
-
-<div style="background:#fff;border:1px solid #e3e6e9;border-radius:6px;padding:18px 20px;margin-bottom:16px">
-<label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
-<input type="checkbox" checked="{{ kfSetuju }}" onChange="{{ kfToggleSetuju }}" style="margin-top:3px;accent-color:#0f4c3a">
-<span style="font:400 12.5px/1.65 'IBM Plex Sans';color:#3a4249">Saya menyatakan bahwa informasi yang saya laporkan benar dan dapat dipertanggungjawabkan.</span>
-</label>
-<sc-if value="{{ kfSetujuErr }}" hint-placeholder-val="{{ false }}"><div style="font:500 11.5px 'IBM Plex Sans';color:#b42318;margin-top:8px;padding-left:24px">Pernyataan wajib dicentang sebelum laporan dikirim</div></sc-if>
 </div>
 
 <div style="display:flex;justify-content:flex-end;gap:9px;padding-bottom:12px">
 <button type="button" onClick="{{ kfBatal }}" style="padding:10px 16px;border:1px solid #d5dade;border-radius:5px;background:#fff;font:500 12.5px 'IBM Plex Sans';color:#3a4249;cursor:pointer">Batal</button>
-<button type="button" onClick="{{ kfDraf }}" style="padding:10px 16px;border:1px solid #d5dade;border-radius:5px;background:#f1f2f4;font:500 12.5px 'IBM Plex Sans';color:#3a4249;cursor:pointer">Simpan sebagai Draf</button>
 <button type="button" onClick="{{ kfKirim }}" style="padding:10px 18px;border:none;border-radius:5px;background:{{ kfKirimBg }};color:#fff;font:600 12.5px 'IBM Plex Sans';cursor:pointer">Kirim Laporan</button>
 </div>
 </div>
@@ -1345,6 +1339,10 @@ class Component extends DCLogic {
   ];
   statusOrder = ['Dilaporkan', 'Diverifikasi', 'Prioritas Ditetapkan', 'Diusulkan Perbaikan', 'Selesai'];
 
+  kelasDari(dampak) {
+    return { 'Menghentikan layanan': 'Kritis', 'Mengganggu sebagian layanan': 'Tinggi', 'Tidak mengganggu layanan': 'Rutin' }[dampak] || '';
+  }
+
   rekonInit() {
     const t3 = [
       { kode: '3100102001', nama: 'P.C Unit', siman: 35, simonbar: 34, keterangan: 'Satu unit dipindahkan ke Aula tanpa berita acara pemindahan', status: 'Dalam Penelusuran', nups: ['NUP 12'], kronologi: [{ t: '4 Juli 2026', k: 'Opname triwulan mencatat unit tidak berada di Subbag Tata Usaha.' }, { t: '18 Juli 2026', k: 'Petugas menemukan unit dipakai di Aula untuk kegiatan pembinaan.' }], penelusuran: [] },
@@ -1376,7 +1374,7 @@ class Component extends DCLogic {
   plusHari(n) { const d = new Date(2026, 7, 26); d.setDate(d.getDate() + n); return this.fmtTanggal(d); }
 
   kfInit() {
-    return { asetId: '', q: '', tanggal: '26 Agustus 2026', jenis: 'Pilih jenis kerusakan', deskripsi: '', dampak: '', lokasi: '', urgensi: '', foto: [], kontak: '', catatan: '', setuju: false };
+    return { asetId: '', q: '', jenis: 'Pilih jenis kerusakan', deskripsi: '', dampak: '', lokasiSama: '', lokasiAktual: 'Pilih unit kerja', foto: [] };
   }
 
   aktivitasAwal = [
@@ -1727,9 +1725,10 @@ class Component extends DCLogic {
     if (!kf.jenis || kf.jenis.indexOf('Pilih ') === 0) err.jenis = true;
     if (kf.deskripsi.trim().length < 20) err.deskripsi = true;
     if (!kf.dampak) err.dampak = true;
-    if (!kf.urgensi) err.urgensi = true;
-    if (!kf.setuju) err.setuju = true;
-    if ((kf.urgensi === 'Kritis' || kf.urgensi === 'Tinggi') && kf.foto.length === 0) err.foto = true;
+    if (!kf.lokasiSama) err.lokasiSama = true;
+    if (kf.lokasiSama === 'tidak' && (!kf.lokasiAktual || kf.lokasiAktual.indexOf('Pilih ') === 0)) err.lokasiAktual = true;
+    const kls = this.kelasDari(kf.dampak);
+    if (kls && kls !== 'Rutin' && kf.foto.length === 0) err.foto = true;
     if (Object.keys(err).length) { this.setState({ kfErr: err }); this.toast('Lengkapi dahulu field wajib yang ditandai merah', 'err'); return; }
     const aset = this.state.assets.filter(a => a.id === kf.asetId)[0];
     this.askConfirm({
@@ -1737,18 +1736,19 @@ class Component extends DCLogic {
       ok: () => {
         const nums = this.state.laporan.map(l => Number(l.tiket.slice(-4)));
         const tiket = 'KRS-2026-' + String(Math.max.apply(null, nums) + 1).padStart(4, '0');
-        const u = this.urgensiOptions.filter(x => x.v === kf.urgensi)[0];
+        const kelas = this.kelasDari(kf.dampak);
+        const u = this.urgensiOptions.filter(x => x.v === kelas)[0];
         const baru = {
-          tiket, aset: aset.nama, kodenup: aset.kode + ' · NUP ' + aset.nup, pelapor: 'Mego Sukoco', unit: kf.lokasi || aset.lokasi,
-          tanggal: '26 Agustus 2026', klasifikasi: kf.urgensi, status: 'Dilaporkan', sla: u.hari + ' hari lagi', over: false,
-          jenis: kf.jenis, dampak: kf.dampak, deskripsi: kf.deskripsi, kontak: kf.kontak, catatan: kf.catatan,
+          tiket, aset: aset.nama, kodenup: aset.kode + ' · NUP ' + aset.nup, pelapor: 'Mego Sukoco', unit: kf.lokasiSama === 'tidak' ? kf.lokasiAktual : aset.lokasi,
+          tanggal: '26 Agustus 2026', klasifikasi: kelas, status: 'Dilaporkan', sla: u.hari + ' hari lagi', over: false,
+          jenis: kf.jenis, dampak: kf.dampak, deskripsi: kf.deskripsi,
           dueVerifikasi: this.plusHari(1), duePrioritas: this.plusHari(u.hari), foto: kf.foto.slice(),
           hist: [{ status: 'Dilaporkan', waktu: this.nowText(), pelaksana: 'Mego Sukoco — Pengelola BMN', catatan: 'Laporan dibuat melalui formulir SIMONBAR.' }], komentar: []
         };
         this.setState(s => ({
           laporan: [baru].concat(s.laporan), krsId: tiket, page: 'krsSukses', confirm: null,
           kf: this.kfInit(), kfErr: {},
-          aktivitas: [{ waktu: this.nowText(), aktor: 'Mego Sukoco', teks: 'membuat laporan kerusakan ' + tiket + ' untuk ' + aset.nama + ' di ' + (kf.lokasi || aset.lokasi) + '.' }].concat(s.aktivitas)
+          aktivitas: [{ waktu: this.nowText(), aktor: 'Mego Sukoco', teks: 'membuat laporan kerusakan ' + tiket + ' untuk ' + aset.nama + ' di ' + (kf.lokasiSama === 'tidak' ? kf.lokasiAktual : aset.lokasi) + '.' }].concat(s.aktivitas)
         }));
         this.toast('Laporan kerusakan ' + tiket + ' berhasil dibuat');
       }
@@ -2027,7 +2027,7 @@ class Component extends DCLogic {
       const q = kf.q.trim().toLowerCase();
       return a.nama.toLowerCase().indexOf(q) >= 0 || a.kode.indexOf(q) >= 0 || a.nup === q;
     }).slice(0, 6);
-    const uSel = this.urgensiOptions.filter(x => x.v === kf.urgensi)[0];
+    const kfKelas = this.kelasDari(kf.dampak);
     const idxStatus = this.statusOrder.indexOf(lap.status);
     const adminAktif = st.users.filter(u => u.peran === 'Administrator' && u.status === 'Aktif');
     const akunRows = st.akunFilter === 'Semua Peran' ? st.users : st.users.filter(u => u.peran === st.akunFilter);
@@ -2053,7 +2053,23 @@ class Component extends DCLogic {
         { k: 'PIC', v: kfAset.pic }, { k: 'Kondisi Terakhir', v: kfAset.kondisi }
       ] : [],
       kfKritis: !!kfAset && kfAset.prioritas === 'Kritis',
-      kfTanggal: kf.tanggal, kfSetTanggal: this.setK('tanggal'),
+      kfLokasiTercatat: kfAset ? kfAset.lokasi : '',
+      kfLokasiOpts: [
+        { v: 'ya', label: 'Ya, ada di lokasi tercatat', desc: kfAset ? kfAset.lokasi : 'Sesuai data operasional' },
+        { v: 'tidak', label: 'Tidak, barang ada di tempat lain', desc: 'Lokasi aktual perlu dicatat' }
+      ].map(o => ({
+        label: o.label, desc: o.desc,
+        bd: kf.lokasiSama === o.v ? primary : (st.kfErr.lokasiSama ? '#b42318' : '#e3e6e9'),
+        bg: kf.lokasiSama === o.v ? '#f4f8f6' : '#fff',
+        dotBg: kf.lokasiSama === o.v ? primary : 'transparent',
+        pick: () => this.setState(s => ({ kf: Object.assign({}, s.kf, { lokasiSama: o.v }), kfErr: Object.assign({}, s.kfErr, { lokasiSama: false }) }))
+      })),
+      kfLokasiSamaErr: !!st.kfErr.lokasiSama,
+      kfLokasiBeda: kf.lokasiSama === 'tidak',
+      kfLokasiAktual: kf.lokasiAktual, kfSetLokasiAktual: this.setK('lokasiAktual'),
+      kfLokasiAktualOptions: ['Pilih unit kerja'].concat(this.unitList),
+      kfLokasiAktualBd: st.kfErr.lokasiAktual ? '#b42318' : '#d5dade',
+      kfLokasiAktualErr: !!st.kfErr.lokasiAktual,
       kfJenis: kf.jenis, kfSetJenis: this.setK('jenis'), kfJenisOptions: ['Pilih jenis kerusakan'].concat(this.jenisKerusakan),
       kfJenisBd: st.kfErr.jenis ? '#b42318' : '#d5dade', kfJenisErr: !!st.kfErr.jenis,
       kfDeskripsi: kf.deskripsi, kfSetDeskripsi: this.setK('deskripsi'),
@@ -2061,15 +2077,10 @@ class Component extends DCLogic {
       kfHitung: kf.deskripsi.length + ' karakter, minimal 20',
       kfDampakList: this.dampakOptions.map(o => ({ label: o.v, desc: o.d, on: kf.dampak === o.v, pick: this.pickK('dampak', o.v), bd: kf.dampak === o.v ? primary : (st.kfErr.dampak ? '#b42318' : '#e3e6e9'), bg: kf.dampak === o.v ? '#f4f8f6' : '#fff', dotBg: kf.dampak === o.v ? primary : 'transparent' })),
       kfDampakErr: !!st.kfErr.dampak,
-      kfLokasi: kf.lokasi || (kfAset ? kfAset.lokasi : this.unitList[0]), kfSetLokasi: this.setK('lokasi'), kfLokasiOptions: this.unitList,
-      kfUrgensiList: this.urgensiOptions.map(o => ({
-        label: o.v, batas: o.batas, contoh: o.contoh, on: kf.urgensi === o.v, pick: this.pickK('urgensi', o.v),
-        bd: kf.urgensi === o.v ? primary : (st.kfErr.urgensi ? '#b42318' : '#e3e6e9'), bg: kf.urgensi === o.v ? '#f4f8f6' : '#fff',
-        fg: kf.urgensi === o.v ? primary : '#16211c'
-      })),
-      kfUrgensiErr: !!st.kfErr.urgensi,
-      kfAdaUrgensi: !!uSel,
-      kfDueVerifikasi: this.plusHari(1), kfDuePrioritas: uSel ? this.plusHari(uSel.hari) : '',
+      kfAdaKelas: !!kfKelas,
+      kfKelas: kfKelas,
+      kfKelasBadge: this.badge(kfKelas || 'Rutin'),
+      kfDueVerifikasi: this.plusHari(1), kfDuePrioritas: kfKelas ? this.plusHari(3) : '',
       kfFoto: kf.foto, kfFotoKosong: kf.foto.length === 0, kfFotoErr: !!st.kfErr.foto,
       kfFotoBd: st.kfErr.foto ? '#b42318' : '#d5dade',
       kfAddFoto: () => this.setState(s => {
@@ -2077,18 +2088,13 @@ class Component extends DCLogic {
         const n = s.kf.foto.length + 1;
         return { kf: Object.assign({}, s.kf, { foto: s.kf.foto.concat([{ nama: 'IMG_20260826_00' + n + '.jpg', slot: 'foto kondisi ' + n }]) }), kfErr: Object.assign({}, s.kfErr, { foto: false }) };
       }),
-      kfKontak: kf.kontak, kfSetKontak: this.setK('kontak'),
-      kfCatatan: kf.catatan, kfSetCatatan: this.setK('catatan'),
-      kfSetuju: kf.setuju, kfSetujuErr: !!st.kfErr.setuju,
-      kfToggleSetuju: () => this.setState(s => ({ kf: Object.assign({}, s.kf, { setuju: !s.kf.setuju }), kfErr: Object.assign({}, s.kfErr, { setuju: false }) })),
       kfBatal: () => {
         if (kf.asetId || kf.deskripsi) this.askConfirm({ title: 'Tinggalkan formulir?', message: 'Perubahan belum disimpan. Yakin ingin menutup?', okLabel: 'Tinggalkan', okBg: '#b42318', ok: () => this.setState({ page: 'kerusakan', kf: this.kfInit(), kfErr: {}, confirm: null }) });
         else this.setState({ page: 'kerusakan' });
       },
-      kfDraf: () => { this.toast('Laporan disimpan sebagai draf'); this.setState({ page: 'kerusakan' }); },
       kfKirim: this.kirimLaporan,
-      kfSiap: !!(kf.asetId && kf.dampak && kf.urgensi && kf.setuju && kf.deskripsi.trim().length >= 20),
-      kfKirimBg: (kf.asetId && kf.dampak && kf.urgensi && kf.setuju && kf.deskripsi.trim().length >= 20) ? primary : '#c8cdd1',
+      kfSiap: !!(kf.asetId && kf.lokasiSama && kf.dampak && kf.deskripsi.trim().length >= 20),
+      kfKirimBg: (kf.asetId && kf.lokasiSama && kf.dampak && kf.deskripsi.trim().length >= 20) ? primary : '#c8cdd1',
 
       lapS: Object.assign({}, lap, { kb: this.badge(lap.klasifikasi), sb: this.badge(lap.status), slaColor: lap.over ? '#b42318' : '#14653f' }),
       lapAset: (function (as, kn) { const kode = kn.split(' · ')[0]; const nup = kn.split('NUP ')[1]; return as.filter(a => a.kode === kode && a.nup === nup)[0] || as[0]; })(st.assets, lap.kodenup),

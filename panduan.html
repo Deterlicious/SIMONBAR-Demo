@@ -102,10 +102,10 @@ table{border-collapse:collapse;width:100%}
 <img class="shot" src="panduan/10-s.png"><p class="cap">Papan status lima kolom (Dilaporkan sampai Selesai) dan tabel seluruh laporan. Setiap kartu dan nomor tiket bisa diklik menuju detail.</p>
 
 <h3>6.1 Membuat laporan</h3>
-<p>Formulir dibagi empat bagian: Identitas Aset (pencarian dengan saran ketik, kartu ringkas otomatis terisi dari master aset), Rincian Kerusakan (jenis, deskripsi minimal 20 karakter, dampak terhadap layanan), Klasifikasi dan Batas Waktu (kartu Kritis/Tinggi/Rutin yang menghitung otomatis jatuh tempo verifikasi dan penetapan prioritas sesuai standar layanan internal), dan Dokumentasi/Pelapor.</p>
+<p>Formulir sengaja dibuat pendek, mengikuti mitigasi risiko pada RAP yang meminta formulir sederhana dengan data wajib. Hanya tiga bagian: Identitas Aset (pencarian dengan saran ketik, kartu ringkas terisi otomatis dari master aset, lalu satu pertanyaan apakah barang ada di lokasi tercatat), Rincian Kerusakan (jenis, deskripsi minimal 20 karakter, dampak terhadap layanan), dan Dokumentasi (foto). Tanggal, nama pelapor, dan unit kerja terisi sendiri dari akun yang sedang masuk, jadi tidak ditanyakan lagi.</p>
 <img class="shot" src="panduan/04-f.png"><p class="cap">Kartu ringkas otomatis terisi dari master aset, dan pita peringatan saat aset berklasifikasi Kritis.</p>
 <img class="shot" src="panduan/05-f.png"><p class="cap">Pilihan Dampak terhadap Layanan berupa kartu klik, bukan dropdown, agar konsekuensi setiap pilihan terlihat jelas.</p>
-<img class="shot" src="panduan/16-s.png"><p class="cap">Tiga kartu Tingkat Urgensi dengan batas waktu dan contoh kasus; panel di bawahnya menghitung otomatis jatuh tempo begitu urgensi dipilih.</p>
+<img class="shot" src="panduan/16-s.png"><p class="cap">Klasifikasi tidak ditanyakan terpisah. Begitu dampak dipilih, sistem menetapkan sendiri Kritis, Tinggi, atau Rutin beserta jatuh tempo verifikasi dan penetapan prioritasnya.</p>
 <p>Setelah Kirim Laporan, sistem meminta konfirmasi, membuat nomor tiket baru (format KRS-2026-00XX), dan mengarahkan ke halaman konfirmasi terkirim.</p>
 
 <h3>6.2 Detail dan tindak lanjut laporan</h3>
@@ -137,10 +137,10 @@ table{border-collapse:collapse;width:100%}
 Dedi Kurniawan, Operator CCTV, mendapati unit A.C. Split (kode 3050204004, NUP 2) mati total. Suhu ruangan naik ke 31 derajat dan alarm perangkat jaringan berbunyi. Ia membuka <strong>Pelaporan Kerusakan → Buat Laporan Kerusakan</strong>, mengetik "A.C. Split" pada Identitas Aset, dan memilih unit yang tepat dari saran yang muncul. Kartu ringkas otomatis menampilkan lokasi tercatat (Ruang Server) dan PIC (Dedi Kurniawan).
 </div>
 <div class="case">
-Pada bagian Rincian Kerusakan ia menuliskan deskripsi kejadian, memilih dampak <strong>Menghentikan layanan</strong>, lalu pada Klasifikasi ia memilih kartu <strong>Kritis</strong> karena menyangkut kelistrikan utama ruang server. Panel otomatis menghitung jatuh tempo verifikasi 25 Agustus dan penetapan prioritas 27 Agustus. Karena klasifikasi Kritis, sistem mewajibkan foto sebelum laporan dapat dikirim.
+Pada bagian Rincian Kerusakan ia menuliskan deskripsi kejadian, memilih dampak <strong>Menghentikan layanan</strong>, Sistem langsung menetapkan klasifikasi <strong>Kritis</strong> dari dampak tersebut, lengkap dengan jatuh tempo verifikasi 25 Agustus dan penetapan prioritas 27 Agustus. Ia tidak perlu menilai urgensi sendiri. Karena klasifikasi Kritis, sistem mewajibkan foto sebelum laporan dapat dikirim.
 </div>
 <div class="case">
-Setelah mencentang pernyataan kebenaran informasi dan menekan <strong>Kirim Laporan</strong>, muncul konfirmasi, lalu tiket <strong>KRS-2026-0041</strong> terbit. Angka Kerusakan Terbuka pada Dashboard bertambah menjadi tujuh laporan, dan entri baru muncul pada panel Aktivitas Terakhir.
+Setelah menekan <strong>Kirim Laporan</strong>, muncul konfirmasi, lalu tiket <strong>KRS-2026-0041</strong> terbit. Angka Kerusakan Terbuka pada Dashboard bertambah menjadi tujuh laporan, dan entri baru muncul pada panel Aktivitas Terakhir.
 </div>
 <div class="case">
 <strong>Selasa, 25 Agustus, pukul 08.05</strong> — Mego Sukoco, Pengelola BMN, membuka detail laporan KRS-2026-0041 dan menekan <strong>Verifikasi Laporan</strong> setelah memastikan kerusakan di lapangan, dengan catatan verifikasi wajib diisi. Status berubah menjadi Diverifikasi dan tercatat pada timeline riwayat penanganan.
