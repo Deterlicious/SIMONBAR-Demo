@@ -96,6 +96,8 @@
 </div>
 </div>
 
+<div style="padding:11px 16px;background:#fdf4e3;border:1px solid #f0dcb0;border-radius:6px;margin-bottom:16px;font:500 12.5px/1.6 'IBM Plex Sans';color:#7a5300">Seluruh angka pada demo ini adalah contoh. Nilai awal yang sebenarnya dihimpun melalui pemetaan dan pemeriksaan fisik pada tahap pelaksanaan aksi perubahan.</div>
+
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px">
 <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
 <button type="button" onClick="{{ s.go }}" style="text-align:left;background:#fff;border:1px solid #e3e6e9;border-radius:6px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,.04);cursor:pointer" style-hover="border-color:#0f4c3a">
@@ -151,7 +153,7 @@
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
 <div style="background:#fff;border:1px solid #e3e6e9;border-radius:6px;overflow:hidden">
-<div style="padding:15px 18px;border-bottom:1px solid #e3e6e9;display:flex;align-items:center;justify-content:space-between"><div><div style="font:600 13px/1.3 'IBM Plex Sans';color:#16211c">Aset Prioritas Kritis</div><div style="font:400 11.5px 'IBM Plex Sans';color:#8a9299;margin-top:2px">Wajib diperiksa setiap bulan</div></div><button type="button" onClick="{{ goAsetKritis }}" style="padding:5px 11px;border:1px solid #d5dade;border-radius:4px;background:#fff;font:500 11.5px 'IBM Plex Sans';color:#3a4249;cursor:pointer">Lihat Semua</button></div>
+<div style="padding:15px 18px;border-bottom:1px solid #e3e6e9;display:flex;align-items:center;justify-content:space-between"><div><div style="font:600 13px/1.3 'IBM Plex Sans';color:#16211c">Aset Prioritas Kritis</div><div style="font:400 11.5px 'IBM Plex Sans';color:#8a9299;margin-top:2px">Berpengaruh langsung pada layanan dan keamanan</div></div><button type="button" onClick="{{ goAsetKritis }}" style="padding:5px 11px;border:1px solid #d5dade;border-radius:4px;background:#fff;font:500 11.5px 'IBM Plex Sans';color:#3a4249;cursor:pointer">Lihat Semua</button></div>
 <table><thead><tr>
 <th style="padding:8px 18px;text-align:left;font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#7b858d;background:#fafbfc;border-bottom:1px solid #e3e6e9">Aset</th>
 <th style="padding:8px 12px;text-align:left;font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#7b858d;background:#fafbfc;border-bottom:1px solid #e3e6e9">Lokasi</th>
@@ -439,7 +441,7 @@
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:20px">
 <div>
 <h1 style="font:600 24px/1.25 'IBM Plex Sans';color:#16211c;margin:0 0 6px">Pelaporan Kerusakan</h1>
-<p style="font:400 13px/1.6 'IBM Plex Sans';color:#5b646c;margin:0">Setiap laporan memiliki batas waktu penanganan. Kritis 3 hari kerja, Tinggi 7 hari kerja, Rutin 14 hari kerja.</p>
+<p style="font:400 13px/1.6 'IBM Plex Sans';color:#5b646c;margin:0">Setiap laporan diverifikasi paling lambat 1 hari kerja dan ditetapkan prioritasnya paling lambat 3 hari kerja sejak diterima, berlaku untuk semua klasifikasi.</p>
 </div>
 <button type="button" onClick="{{ goKrsForm }}" style="flex:none;padding:9px 15px;border:none;border-radius:5px;background:#0f4c3a;color:#fff;font:600 12.5px 'IBM Plex Sans';cursor:pointer">Buat Laporan Kerusakan</button>
 </div>
@@ -825,11 +827,11 @@
 <div style="background:#fff;border:1px solid #e3e6e9;border-radius:6px;padding:18px 20px;margin-bottom:16px">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:14px">
 <div>
-<h1 style="font:600 22px/1.25 'IBM Plex Sans';color:#16211c;margin:0 0 6px">Opname Fisik Triwulan III</h1>
+<h1 style="font:600 22px/1.25 'IBM Plex Sans';color:#16211c;margin:0 0 6px">Pemeriksaan Fisik</h1>
 <p style="font:400 13px 'IBM Plex Sans';color:#5b646c;margin:0">{{ opProgressText }}</p>
 </div>
 <div style="display:flex;align-items:flex-end;gap:16px;flex:none">
-<button type="button" onClick="{{ openBaOpname }}" style="padding:8px 13px;border:1px solid #d5dade;border-radius:5px;background:#fff;font:500 12px 'IBM Plex Sans';color:#3a4249;cursor:pointer">Unduh Berita Acara Opname</button>
+<button type="button" onClick="{{ openBaOpname }}" style="padding:8px 13px;border:1px solid #d5dade;border-radius:5px;background:#fff;font:500 12px 'IBM Plex Sans';color:#3a4249;cursor:pointer">Unduh Berita Acara</button>
 <div style="text-align:right"><div style="font:600 26px/1 'IBM Plex Sans';color:#0f4c3a;font-variant-numeric:tabular-nums">{{ opPctLabel }}</div><div style="font:400 11.5px 'IBM Plex Sans';color:#8a9299;margin-top:4px">Progres pemeriksaan</div></div>
 </div>
 </div>
@@ -841,7 +843,7 @@
 <label style="display:flex;align-items:center;gap:8px;font:600 12px 'IBM Plex Sans';color:#3a4249">Unit Kerja<select value="{{ opUnit }}" onChange="{{ onOpUnit }}" style="padding:7px 9px;border:1px solid #d5dade;border-radius:5px;font:400 12.5px 'IBM Plex Sans';color:#1d2429;background:#fff"><sc-for list="{{ unitOptions }}" as="u" hint-placeholder-count="5"><option>{{ u }}</option></sc-for></select></label>
 <div style="flex:1"></div>
 <button type="button" onClick="{{ tandaiSemua }}" style="padding:8px 13px;border:1px solid #d5dade;border-radius:5px;background:#fff;font:500 12px 'IBM Plex Sans';color:#3a4249;cursor:pointer">Tandai Semua Ditemukan</button>
-<button type="button" onClick="{{ simpanOpname }}" style="padding:8px 13px;border:none;border-radius:5px;background:#0f4c3a;color:#fff;font:600 12px 'IBM Plex Sans';cursor:pointer">Simpan Hasil Opname</button>
+<button type="button" onClick="{{ simpanOpname }}" style="padding:8px 13px;border:none;border-radius:5px;background:#0f4c3a;color:#fff;font:600 12px 'IBM Plex Sans';cursor:pointer">Simpan Hasil Pemeriksaan</button>
 </div>
 <div style="overflow-x:auto">
 <table><thead><tr>
@@ -1148,7 +1150,7 @@
 <div onClick="{{ requestClose }}" style="position:fixed;inset:0;z-index:70;background:rgba(16,24,40,.42);display:flex;align-items:flex-start;justify-content:center;padding:60px 20px;overflow:auto;animation:fin .14s ease">
 <div onClick="{{ stop }}" style="width:100%;max-width:600px;background:#fff;border-radius:8px;box-shadow:0 18px 44px rgba(16,24,40,.24);overflow:hidden;animation:tin .18s ease">
 <div style="padding:16px 20px;border-bottom:1px solid #e3e6e9;display:flex;align-items:center;justify-content:space-between">
-<div><div style="font:600 15px 'IBM Plex Sans';color:#16211c">Pratinjau Berita Acara Opname Fisik</div><div style="font:400 11.5px 'IBM Plex Sans';color:#8a9299;margin-top:3px">Triwulan III 2026</div></div>
+<div><div style="font:600 15px 'IBM Plex Sans';color:#16211c">Pratinjau Berita Acara Pemeriksaan Fisik</div><div style="font:400 11.5px 'IBM Plex Sans';color:#8a9299;margin-top:3px">Triwulan III 2026</div></div>
 <button type="button" onClick="{{ requestClose }}" style="width:28px;height:28px;border:1px solid #d5dade;border-radius:5px;background:#fff;font:400 15px/1 'IBM Plex Sans';color:#5b646c;cursor:pointer">×</button>
 </div>
 <div style="padding:24px;background:#fafbfc">
@@ -1159,8 +1161,8 @@
 <div style="font:600 11.5px/1.6 'IBM Plex Sans';color:#3a4249">LEMBAGA PEMASYARAKATAN NARKOTIKA KELAS IIA KASONGAN</div>
 <div style="font:400 10.5px/1.6 'IBM Plex Sans';color:#7b858d">Kode Satker 137041400692777000KD</div>
 </div>
-<div style="text-align:center;margin:20px 0 6px;font:600 13px 'IBM Plex Sans';color:#16211c">BERITA ACARA OPNAME FISIK BMN</div>
-<div style="text-align:center;font:400 11.5px 'IBM Plex Sans';color:#5b646c;margin-bottom:20px">Periode 1 Juli s.d. 30 September 2026</div>
+<div style="text-align:center;margin:20px 0 6px;font:600 13px 'IBM Plex Sans';color:#16211c">BERITA ACARA PEMERIKSAAN FISIK BMN</div>
+<div style="text-align:center;font:400 11.5px 'IBM Plex Sans';color:#5b646c;margin-bottom:20px">Dilaksanakan sesuai jadwal pemeriksaan pada SOP satker</div>
 <div style="font:400 12px/1.9 'IBM Plex Sans';color:#3a4249">Pada hari ini telah dilaksanakan pemeriksaan fisik Barang Milik Negara pada Lapas Narkotika Kelas IIA Kasongan dengan hasil sebagai berikut.</div>
 <div style="margin:16px 0;border:1px solid #e3e6e9">
 <div style="display:grid;grid-template-columns:1fr auto;gap:12px;padding:9px 14px;border-bottom:1px solid #eef0f2;font:400 12px 'IBM Plex Sans';color:#3a4249"><span>Aset ditemukan sesuai lokasi tercatat</span><strong style="font-weight:600">{{ mv.opF }}</strong></div>
@@ -1249,9 +1251,9 @@
 </sc-if>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;halamanAwal&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Login&quot;,&quot;Dashboard&quot;,&quot;Daftar Aset BMN&quot;,&quot;Detail Aset&quot;,&quot;Pelaporan Kerusakan&quot;,&quot;Rekonsiliasi&quot;,&quot;Opname Fisik&quot;],&quot;default&quot;:&quot;Login&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Demo&quot;},&quot;temaWarna&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Hijau Pemasyarakatan&quot;,&quot;Biru Institusional&quot;],&quot;default&quot;:&quot;Hijau Pemasyarakatan&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tampilan&quot;},&quot;tampilkanKolomSLA&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Tampilan&quot;},&quot;tandaiDataTerbatas&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Tampilan&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;halamanAwal&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Login&quot;,&quot;Dashboard&quot;,&quot;Daftar Aset BMN&quot;,&quot;Detail Aset&quot;,&quot;Pelaporan Kerusakan&quot;,&quot;Rekonsiliasi&quot;,&quot;Pemeriksaan Fisik&quot;],&quot;default&quot;:&quot;Login&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Demo&quot;},&quot;temaWarna&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Hijau Pemasyarakatan&quot;,&quot;Biru Institusional&quot;],&quot;default&quot;:&quot;Hijau Pemasyarakatan&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tampilan&quot;},&quot;tampilkanKolomSLA&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Tampilan&quot;},&quot;tandaiDataTerbatas&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Tampilan&quot;}}">
 class Component extends DCLogic {
-  pageOf = { 'Login': 'login', 'Dashboard': 'dashboard', 'Daftar Aset BMN': 'aset', 'Detail Aset': 'detail', 'Pelaporan Kerusakan': 'kerusakan', 'Rekonsiliasi': 'rekonsiliasi', 'Opname Fisik': 'opname' };
+  pageOf = { 'Login': 'login', 'Dashboard': 'dashboard', 'Daftar Aset BMN': 'aset', 'Detail Aset': 'detail', 'Pelaporan Kerusakan': 'kerusakan', 'Rekonsiliasi': 'rekonsiliasi', 'Pemeriksaan Fisik': 'opname' };
 
   unitList = ['Klinik/Poliklinik Lapas', 'Portir / Pintu Utama (P2U)', 'Ruang CCTV / Monitoring', 'Ruang Kepala Lapas', 'Subbag Tata Usaha', 'Seksi Pembinaan Narapidana', 'Seksi Kegiatan Kerja', 'Seksi Administrasi Keamanan dan Ketertiban', 'Regu Pengamanan (Rupam)', 'Blok Hunian A', 'Blok Hunian B', 'Blok Hunian C', 'Dapur / Instalasi Gizi', 'Gudang Umum', 'Ruang Kunjungan', 'Masjid / Tempat Ibadah', 'Ruang Server', 'Aula', 'Rumah Dinas'];
 
@@ -1322,12 +1324,12 @@ class Component extends DCLogic {
 
   laporanAwal = [
     { tiket: 'KRS-2026-0041', aset: 'A.C. Split', kodenup: '3050204004 · NUP 2', pelapor: 'Dedi Kurniawan', unit: 'Ruang Server', tanggal: '24 Agustus 2026', klasifikasi: 'Kritis', status: 'Diverifikasi', sla: '1 hari lagi', over: false, jenis: 'Tidak Berfungsi Total', dampak: 'Menghentikan layanan', deskripsi: 'Unit pendingin ruang server mati total sejak pukul 07.10. Suhu ruangan naik menjadi 31 derajat dan alarm perangkat jaringan berbunyi. Pendingin cadangan tidak tersedia.', dueVerifikasi: '25 Agustus 2026', duePrioritas: '27 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '24 Agu 2026, 14:20', pelaksana: 'Dedi Kurniawan', catatan: 'Laporan dibuat setelah suhu ruang server melewati batas aman.' }, { status: 'Diverifikasi', waktu: '25 Agu 2026, 08:05', pelaksana: 'Mego Sukoco', catatan: 'Kerusakan terverifikasi di lapangan. Dampak terhadap layanan jaringan dikonfirmasi.' }], komentar: [{ aktor: 'Mego Sukoco', waktu: '25 Agu 2026, 08:12', teks: 'Mohon sementara gunakan kipas industri dari gudang sampai unit pengganti tersedia.' }] },
-    { tiket: 'KRS-2026-0040', aset: 'P.C Unit', kodenup: '3100102001 · NUP 7', pelapor: 'Ahmad Fauzi', unit: 'Subbag Tata Usaha', tanggal: '23 Agustus 2026', klasifikasi: 'Rutin', status: 'Dilaporkan', sla: '11 hari lagi', over: false, jenis: 'Berfungsi Sebagian', dampak: 'Mengganggu sebagian layanan', deskripsi: 'Komputer sering mati sendiri setelah dipakai sekitar dua jam. Berkas persuratan sempat hilang dua kali karena mati mendadak.', dueVerifikasi: '24 Agustus 2026', duePrioritas: '6 September 2026', hist: [{ status: 'Dilaporkan', waktu: '23 Agu 2026, 16:41', pelaksana: 'Ahmad Fauzi', catatan: 'Laporan awal disertai dua foto kondisi perangkat.' }], komentar: [] },
-    { tiket: 'KRS-2026-0039', aset: 'Hand Metal Detector', kodenup: '3050105029 · NUP 4', pelapor: 'Budi Santoso', unit: 'Portir / Pintu Utama (P2U)', tanggal: '21 Agustus 2026', klasifikasi: 'Tinggi', status: 'Prioritas Ditetapkan', sla: '3 hari lagi', over: false, jenis: 'Kerusakan Komponen', dampak: 'Mengganggu sebagian layanan', deskripsi: 'Sensor tidak berbunyi saat pengujian dengan logam standar. Pemeriksaan pengunjung dialihkan sementara ke satu unit lain.', dueVerifikasi: '22 Agustus 2026', duePrioritas: '28 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '21 Agu 2026, 09:30', pelaksana: 'Budi Santoso', catatan: 'Ditemukan saat pengujian rutin sebelum jam kunjungan.' }, { status: 'Diverifikasi', waktu: '22 Agu 2026, 08:15', pelaksana: 'Mego Sukoco', catatan: 'Kerusakan sensor dikonfirmasi bersama teknisi internal.' }, { status: 'Prioritas Ditetapkan', waktu: '22 Agu 2026, 10:40', pelaksana: 'Mego Sukoco', catatan: 'Ditetapkan prioritas Tinggi karena menyangkut pemeriksaan pengunjung.' }], komentar: [] },
-    { tiket: 'KRS-2026-0038', aset: 'Printer (Peralatan Personal Komputer)', kodenup: '3100203003 · NUP 5', pelapor: 'Siti Nurhaliza', unit: 'Seksi Pembinaan Narapidana', tanggal: '19 Agustus 2026', klasifikasi: 'Rutin', status: 'Diusulkan Perbaikan', sla: '6 hari lagi', over: false, jenis: 'Kerusakan Fisik', dampak: 'Tidak mengganggu layanan', deskripsi: 'Roller penarik kertas macet sehingga kertas tersangkut pada setiap cetakan. Pencetakan dialihkan ke unit lain.', dueVerifikasi: '20 Agustus 2026', duePrioritas: '2 September 2026', biaya: 'Rp 850.000', justifikasi: 'Penggantian roller dan pembersihan mekanik oleh penyedia lokal.', hist: [{ status: 'Dilaporkan', waktu: '19 Agu 2026, 11:05', pelaksana: 'Siti Nurhaliza', catatan: 'Kertas tersangkut berulang sejak pekan lalu.' }, { status: 'Diverifikasi', waktu: '20 Agu 2026, 09:00', pelaksana: 'Mego Sukoco', catatan: 'Kerusakan mekanik dikonfirmasi.' }, { status: 'Prioritas Ditetapkan', waktu: '20 Agu 2026, 13:20', pelaksana: 'Mego Sukoco', catatan: 'Prioritas Rutin, tidak menghentikan layanan.' }, { status: 'Diusulkan Perbaikan', waktu: '21 Agu 2026, 15:10', pelaksana: 'Mego Sukoco', catatan: 'Usulan perbaikan diajukan dengan estimasi biaya Rp 850.000.' }], komentar: [] },
-    { tiket: 'KRS-2026-0037', aset: 'Lampu Emergency', kodenup: '3050206086 · NUP 9', pelapor: 'Budi Santoso', unit: 'Blok Hunian B', tanggal: '14 Agustus 2026', klasifikasi: 'Tinggi', status: 'Selesai', sla: 'Selesai tepat waktu', over: false, jenis: 'Gangguan Kelistrikan', dampak: 'Mengganggu sebagian layanan', deskripsi: 'Lampu darurat tidak menyala saat uji pemadaman. Baterai internal diduga habis.', dueVerifikasi: '15 Agustus 2026', duePrioritas: '21 Agustus 2026', biaya: 'Rp 420.000', hasil: 'Baterai internal diganti dan uji pemadaman ulang berhasil.', hist: [{ status: 'Dilaporkan', waktu: '14 Agu 2026, 20:15', pelaksana: 'Budi Santoso', catatan: 'Ditemukan saat uji pemadaman malam.' }, { status: 'Diverifikasi', waktu: '15 Agu 2026, 08:30', pelaksana: 'Mego Sukoco', catatan: 'Baterai internal tidak menahan daya.' }, { status: 'Prioritas Ditetapkan', waktu: '15 Agu 2026, 10:00', pelaksana: 'Mego Sukoco', catatan: 'Prioritas Tinggi karena menyangkut keselamatan blok hunian.' }, { status: 'Diusulkan Perbaikan', waktu: '16 Agu 2026, 09:20', pelaksana: 'Mego Sukoco', catatan: 'Usulan penggantian baterai diajukan.' }, { status: 'Selesai', waktu: '18 Agu 2026, 14:45', pelaksana: 'Yusuf Ramadhan', catatan: 'Baterai diganti, uji pemadaman ulang berhasil.' }], komentar: [{ aktor: 'Budi Santoso', waktu: '18 Agu 2026, 15:02', teks: 'Sudah dicek ulang pada patroli malam, lampu menyala normal.' }] },
-    { tiket: 'KRS-2026-0036', aset: 'Steamer (Alat Pengukus)', kodenup: '3050205030 · NUP 2', pelapor: 'Yusuf Ramadhan', unit: 'Dapur / Instalasi Gizi', tanggal: '11 Agustus 2026', klasifikasi: 'Kritis', status: 'Diverifikasi', sla: 'SLA terlampaui 4 hari', over: true, jenis: 'Tidak Berfungsi Total', dampak: 'Menghentikan layanan', deskripsi: 'Elemen pemanas tidak bekerja sehingga pengukusan bahan makanan dialihkan ke dandang manual. Waktu penyiapan makan bertambah dua jam.', dueVerifikasi: '12 Agustus 2026', duePrioritas: '14 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '11 Agu 2026, 06:40', pelaksana: 'Yusuf Ramadhan', catatan: 'Ditemukan saat persiapan makan pagi.' }, { status: 'Diverifikasi', waktu: '12 Agu 2026, 09:10', pelaksana: 'Mego Sukoco', catatan: 'Elemen pemanas dipastikan rusak, menunggu penetapan prioritas.' }], komentar: [{ aktor: 'Mego Sukoco', waktu: '20 Agu 2026, 08:00', teks: 'Penetapan prioritas tertunda karena menunggu hasil survei harga penyedia.' }] },
-    { tiket: 'KRS-2026-0035', aset: 'Handy Talky (HT)', kodenup: '3060201006 · NUP 12', pelapor: 'Budi Santoso', unit: 'Regu Pengamanan (Rupam)', tanggal: '10 Agustus 2026', klasifikasi: 'Tinggi', status: 'Dilaporkan', sla: 'SLA terlampaui 2 hari', over: true, jenis: 'Kerusakan Komponen', deskripsi: 'Tombol pembicaraan tidak merespons dan suara terputus putus pada jarak lebih dari lima puluh meter.', dampak: 'Mengganggu sebagian layanan', dueVerifikasi: '11 Agustus 2026', duePrioritas: '17 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '10 Agu 2026, 19:25', pelaksana: 'Budi Santoso', catatan: 'Dilaporkan setelah pergantian regu jaga malam.' }], komentar: [] }
+    { tiket: 'KRS-2026-0040', aset: 'P.C Unit', kodenup: '3100102001 · NUP 7', pelapor: 'Ahmad Fauzi', unit: 'Subbag Tata Usaha', tanggal: '23 Agustus 2026', klasifikasi: 'Rutin', status: 'Dilaporkan', sla: 'Jatuh tempo hari ini', over: false, jenis: 'Berfungsi Sebagian', dampak: 'Mengganggu sebagian layanan', deskripsi: 'Komputer sering mati sendiri setelah dipakai sekitar dua jam. Berkas persuratan sempat hilang dua kali karena mati mendadak.', dueVerifikasi: '24 Agustus 2026', duePrioritas: '26 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '23 Agu 2026, 16:41', pelaksana: 'Ahmad Fauzi', catatan: 'Laporan awal disertai dua foto kondisi perangkat.' }], komentar: [] },
+    { tiket: 'KRS-2026-0039', aset: 'Hand Metal Detector', kodenup: '3050105029 · NUP 4', pelapor: 'Budi Santoso', unit: 'Portir / Pintu Utama (P2U)', tanggal: '21 Agustus 2026', klasifikasi: 'Tinggi', status: 'Prioritas Ditetapkan', sla: 'Prioritas ditetapkan tepat waktu', over: false, jenis: 'Kerusakan Komponen', dampak: 'Mengganggu sebagian layanan', deskripsi: 'Sensor tidak berbunyi saat pengujian dengan logam standar. Pemeriksaan pengunjung dialihkan sementara ke satu unit lain.', dueVerifikasi: '22 Agustus 2026', duePrioritas: '24 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '21 Agu 2026, 09:30', pelaksana: 'Budi Santoso', catatan: 'Ditemukan saat pengujian rutin sebelum jam kunjungan.' }, { status: 'Diverifikasi', waktu: '22 Agu 2026, 08:15', pelaksana: 'Mego Sukoco', catatan: 'Kerusakan sensor dikonfirmasi bersama teknisi internal.' }, { status: 'Prioritas Ditetapkan', waktu: '22 Agu 2026, 10:40', pelaksana: 'Mego Sukoco', catatan: 'Ditetapkan prioritas Tinggi karena menyangkut pemeriksaan pengunjung.' }], komentar: [] },
+    { tiket: 'KRS-2026-0038', aset: 'Printer (Peralatan Personal Komputer)', kodenup: '3100203003 · NUP 5', pelapor: 'Siti Nurhaliza', unit: 'Seksi Pembinaan Narapidana', tanggal: '19 Agustus 2026', klasifikasi: 'Rutin', status: 'Diusulkan Perbaikan', sla: 'Prioritas ditetapkan tepat waktu', over: false, jenis: 'Kerusakan Fisik', dampak: 'Tidak mengganggu layanan', deskripsi: 'Roller penarik kertas macet sehingga kertas tersangkut pada setiap cetakan. Pencetakan dialihkan ke unit lain.', dueVerifikasi: '20 Agustus 2026', duePrioritas: '22 Agustus 2026', biaya: 'Rp 850.000', justifikasi: 'Penggantian roller dan pembersihan mekanik oleh penyedia lokal.', hist: [{ status: 'Dilaporkan', waktu: '19 Agu 2026, 11:05', pelaksana: 'Siti Nurhaliza', catatan: 'Kertas tersangkut berulang sejak pekan lalu.' }, { status: 'Diverifikasi', waktu: '20 Agu 2026, 09:00', pelaksana: 'Mego Sukoco', catatan: 'Kerusakan mekanik dikonfirmasi.' }, { status: 'Prioritas Ditetapkan', waktu: '20 Agu 2026, 13:20', pelaksana: 'Mego Sukoco', catatan: 'Prioritas Rutin, tidak menghentikan layanan.' }, { status: 'Diusulkan Perbaikan', waktu: '21 Agu 2026, 15:10', pelaksana: 'Mego Sukoco', catatan: 'Usulan perbaikan diajukan dengan estimasi biaya Rp 850.000.' }], komentar: [] },
+    { tiket: 'KRS-2026-0037', aset: 'Lampu Emergency', kodenup: '3050206086 · NUP 9', pelapor: 'Budi Santoso', unit: 'Blok Hunian B', tanggal: '14 Agustus 2026', klasifikasi: 'Tinggi', status: 'Selesai', sla: 'Selesai tepat waktu', over: false, jenis: 'Gangguan Kelistrikan', dampak: 'Mengganggu sebagian layanan', deskripsi: 'Lampu darurat tidak menyala saat uji pemadaman. Baterai internal diduga habis.', dueVerifikasi: '15 Agustus 2026', duePrioritas: '17 Agustus 2026', biaya: 'Rp 420.000', hasil: 'Baterai internal diganti dan uji pemadaman ulang berhasil.', hist: [{ status: 'Dilaporkan', waktu: '14 Agu 2026, 20:15', pelaksana: 'Budi Santoso', catatan: 'Ditemukan saat uji pemadaman malam.' }, { status: 'Diverifikasi', waktu: '15 Agu 2026, 08:30', pelaksana: 'Mego Sukoco', catatan: 'Baterai internal tidak menahan daya.' }, { status: 'Prioritas Ditetapkan', waktu: '15 Agu 2026, 10:00', pelaksana: 'Mego Sukoco', catatan: 'Prioritas Tinggi karena menyangkut keselamatan blok hunian.' }, { status: 'Diusulkan Perbaikan', waktu: '16 Agu 2026, 09:20', pelaksana: 'Mego Sukoco', catatan: 'Usulan penggantian baterai diajukan.' }, { status: 'Selesai', waktu: '18 Agu 2026, 14:45', pelaksana: 'Yusuf Ramadhan', catatan: 'Baterai diganti, uji pemadaman ulang berhasil.' }], komentar: [{ aktor: 'Budi Santoso', waktu: '18 Agu 2026, 15:02', teks: 'Sudah dicek ulang pada patroli malam, lampu menyala normal.' }] },
+    { tiket: 'KRS-2026-0036', aset: 'Steamer (Alat Pengukus)', kodenup: '3050205030 · NUP 2', pelapor: 'Yusuf Ramadhan', unit: 'Dapur / Instalasi Gizi', tanggal: '11 Agustus 2026', klasifikasi: 'Kritis', status: 'Diverifikasi', sla: 'SLA terlampaui 12 hari', over: true, jenis: 'Tidak Berfungsi Total', dampak: 'Menghentikan layanan', deskripsi: 'Elemen pemanas tidak bekerja sehingga pengukusan bahan makanan dialihkan ke dandang manual. Waktu penyiapan makan bertambah dua jam.', dueVerifikasi: '12 Agustus 2026', duePrioritas: '14 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '11 Agu 2026, 06:40', pelaksana: 'Yusuf Ramadhan', catatan: 'Ditemukan saat persiapan makan pagi.' }, { status: 'Diverifikasi', waktu: '12 Agu 2026, 09:10', pelaksana: 'Mego Sukoco', catatan: 'Elemen pemanas dipastikan rusak, menunggu penetapan prioritas.' }], komentar: [{ aktor: 'Mego Sukoco', waktu: '20 Agu 2026, 08:00', teks: 'Penetapan prioritas tertunda karena menunggu hasil survei harga penyedia.' }] },
+    { tiket: 'KRS-2026-0035', aset: 'Handy Talky (HT)', kodenup: '3060201006 · NUP 12', pelapor: 'Budi Santoso', unit: 'Regu Pengamanan (Rupam)', tanggal: '10 Agustus 2026', klasifikasi: 'Tinggi', status: 'Dilaporkan', sla: 'SLA terlampaui 13 hari', over: true, jenis: 'Kerusakan Komponen', deskripsi: 'Tombol pembicaraan tidak merespons dan suara terputus putus pada jarak lebih dari lima puluh meter.', dampak: 'Mengganggu sebagian layanan', dueVerifikasi: '11 Agustus 2026', duePrioritas: '13 Agustus 2026', hist: [{ status: 'Dilaporkan', waktu: '10 Agu 2026, 19:25', pelaksana: 'Budi Santoso', catatan: 'Dilaporkan setelah pergantian regu jaga malam.' }], komentar: [] }
   ];
 
   jenisKerusakan = ['Tidak Berfungsi Total', 'Berfungsi Sebagian', 'Kerusakan Fisik', 'Kerusakan Komponen', 'Gangguan Kelistrikan', 'Lainnya'];
@@ -1338,8 +1340,8 @@ class Component extends DCLogic {
   ];
   urgensiOptions = [
     { v: 'Kritis', hari: 3, batas: 'Verifikasi maksimal 1 hari kerja, penetapan prioritas maksimal 3 hari kerja', contoh: 'Contoh: aset pengamanan, kesehatan, kelistrikan utama' },
-    { v: 'Tinggi', hari: 7, batas: 'Verifikasi maksimal 1 hari kerja, penetapan prioritas maksimal 7 hari kerja', contoh: 'Contoh: aset penunjang layanan harian' },
-    { v: 'Rutin', hari: 14, batas: 'Verifikasi maksimal 1 hari kerja, penetapan prioritas maksimal 14 hari kerja', contoh: 'Contoh: perlengkapan kantor umum' }
+    { v: 'Tinggi', hari: 3, batas: 'Verifikasi maksimal 1 hari kerja, penetapan prioritas maksimal 3 hari kerja', contoh: 'Contoh: aset penunjang layanan harian' },
+    { v: 'Rutin', hari: 3, batas: 'Verifikasi maksimal 1 hari kerja, penetapan prioritas maksimal 3 hari kerja', contoh: 'Contoh: perlengkapan kantor umum' }
   ];
   statusOrder = ['Dilaporkan', 'Diverifikasi', 'Prioritas Ditetapkan', 'Diusulkan Perbaikan', 'Selesai'];
 
@@ -1397,7 +1399,7 @@ class Component extends DCLogic {
 
   peranDesc = {
     'Administrator': 'Membuat dan menonaktifkan akun, mengatur peran dan unit kerja, mencabut perangkat, serta menjaga pencadangan data. Tidak melakukan verifikasi laporan.',
-    'Pengelola BMN': 'Memverifikasi laporan kerusakan, menetapkan prioritas, melengkapi data operasional, menjalankan opname fisik dan rekonsiliasi untuk seluruh unit kerja.',
+    'Pengelola BMN': 'Memverifikasi laporan kerusakan, menetapkan prioritas, melengkapi data operasional, menjalankan pemeriksaan fisik dan rekonsiliasi untuk seluruh unit kerja.',
     'Petugas Pemeriksa': 'Memindai QR, mencatat hasil pemeriksaan, dan melaporkan kerusakan. Hanya untuk barang pada unit kerjanya sendiri. Tidak dapat memverifikasi laporannya sendiri.',
     'Pimpinan': 'Melihat dashboard, ringkasan kondisi, dan status tindak lanjut. Tidak mengubah data operasional.'
   };
@@ -1461,7 +1463,7 @@ class Component extends DCLogic {
     return m[k] || m['Rutin'];
   }
 
-  navItems = ['Dashboard', 'Daftar Aset BMN', 'Pelaporan Kerusakan', 'Opname Fisik', 'Rekonsiliasi', 'Laporan', 'Pengaturan'];
+  navItems = ['Dashboard', 'Daftar Aset BMN', 'Pelaporan Kerusakan', 'Pemeriksaan Fisik', 'Rekonsiliasi', 'Laporan', 'Pengaturan'];
 
   neracaData = [
     { akun: '131111', nama: 'Tanah', qty: '88.545 m2', nilai: 'Rp 10.577.940.500', f: '131111 Tanah' },
@@ -1489,23 +1491,6 @@ class Component extends DCLogic {
     { tanggal: '18 Mei 2026', jenis: 'Preventif', pelaksana: 'PT Medika Teknik Nusantara', biaya: 'Rp 42.500.000', hasil: 'Kalibrasi tahunan selesai, seluruh parameter dalam batas toleransi' },
     { tanggal: '7 Februari 2026', jenis: 'Korektif', pelaksana: 'PT Medika Teknik Nusantara', biaya: 'Rp 18.900.000', hasil: 'Penggantian modul pendingin tabung, unit kembali beroperasi normal' },
     { tanggal: '20 November 2025', jenis: 'Preventif', pelaksana: 'Tim Teknis Internal', biaya: 'Rp 0', hasil: 'Pembersihan berkala dan pemeriksaan kelistrikan ruangan' }
-  ];
-
-  rekonData = [
-    { kode: '3100102001', nama: 'P.C Unit', siman: '35', simonbar: '34', selisih: '-1', keterangan: 'Satu unit dipindahkan ke Aula tanpa berita acara pemindahan', status: 'Dalam Penelusuran' },
-    { kode: '3060201006', nama: 'Handy Talky (HT)', siman: '44', simonbar: '42', selisih: '-2', keterangan: 'Dua unit sedang dalam perbaikan di penyedia', status: 'Sudah Ditindaklanjuti' },
-    { kode: '3050201003', nama: 'Kursi Besi/Metal', siman: '86', simonbar: '88', selisih: '+2', keterangan: 'Dua unit hasil hibah belum tercatat pada sistem resmi', status: 'Dalam Penelusuran' },
-    { kode: '3100203003', nama: 'Printer (Peralatan Personal Komputer)', siman: '13', simonbar: '12', selisih: '-1', keterangan: 'Satu unit rusak berat, menunggu usul penghapusan', status: 'Sudah Ditindaklanjuti' },
-    { kode: '3050206086', nama: 'Lampu Emergency', siman: '24', simonbar: '22', selisih: '-2', keterangan: 'Dua unit belum ditemukan di Blok Hunian C', status: 'Dalam Penelusuran' },
-    { kode: '3050105073', nama: 'Alat Sidik Jari', siman: '23', simonbar: '23', selisih: '0', keterangan: 'Kuantitas sesuai', status: 'Selesai' },
-    { kode: '3050204004', nama: 'A.C. Split', siman: '6', simonbar: '6', selisih: '0', keterangan: 'Kuantitas sesuai, satu unit berstatus rusak berat', status: 'Selesai' },
-    { kode: '3090402008', nama: 'Borgol', siman: '13', simonbar: '13', selisih: '0', keterangan: 'Kuantitas sesuai, data terbatas', status: 'Selesai' }
-  ];
-
-  rekonStats = [
-    { label: 'Data Sesuai', value: '1.541', sub: 'dari 1.560 NUP (98,8%)', pct: '98.8%', color: '#1a7f4f' },
-    { label: 'Selisih Ditemukan', value: '19', sub: 'kode barang perlu penelusuran', pct: '38%', color: '#b45309' },
-    { label: 'Sudah Ditindaklanjuti', value: '12', sub: 'dari 19 selisih (63%)', pct: '63%', color: '#1d4ed8' }
   ];
 
   opnameInit() {
@@ -1796,14 +1781,14 @@ class Component extends DCLogic {
     const openLap = st.laporan.filter(l => l.status !== 'Selesai');
 
     const lap = st.laporan.filter(l => l.tiket === st.krsId)[0] || st.laporan[0];
-    const titleOf = { dashboard: 'Dashboard Pimpinan', aset: 'Daftar Aset BMN', detail: detail.nama, kerusakan: 'Pelaporan Kerusakan', krsForm: 'Buat Laporan Baru', krsSukses: 'Laporan Terkirim', krsDetail: lap.tiket, opname: 'Opname Fisik', rekonsiliasi: 'Rekonsiliasi', Laporan: 'Laporan', Pengaturan: 'Pengaturan' };
+    const titleOf = { dashboard: 'Dashboard Pimpinan', aset: 'Daftar Aset BMN', detail: detail.nama, kerusakan: 'Pelaporan Kerusakan', krsForm: 'Buat Laporan Baru', krsSukses: 'Laporan Terkirim', krsDetail: lap.tiket, opname: 'Pemeriksaan Fisik', rekonsiliasi: 'Rekonsiliasi', Laporan: 'Laporan', Pengaturan: 'Pengaturan' };
     let crumbs;
     if (p === 'detail') crumbs = [{ label: 'Daftar Aset BMN', go: this.go('aset'), fg: '#8a9299', fw: 400, sep: '/' }, { label: detail.nama, go: () => {}, fg: '#1d2429', fw: 600, sep: '' }];
     else if (p === 'krsForm' || p === 'krsSukses' || p === 'krsDetail') crumbs = [{ label: 'Pelaporan Kerusakan', go: this.go('kerusakan'), fg: '#8a9299', fw: 400, sep: '/' }, { label: titleOf[p], go: () => {}, fg: '#1d2429', fw: 600, sep: '' }];
     else crumbs = [{ label: titleOf[p] || p, go: () => {}, fg: '#1d2429', fw: 600, sep: '' }];
     crumbs = [{ label: 'SIMONBAR', go: this.go('dashboard'), fg: '#8a9299', fw: 400, sep: '/' }].concat(crumbs);
 
-    const activeNav = { dashboard: 'Dashboard', aset: 'Daftar Aset BMN', detail: 'Daftar Aset BMN', kerusakan: 'Pelaporan Kerusakan', krsForm: 'Pelaporan Kerusakan', krsSukses: 'Pelaporan Kerusakan', krsDetail: 'Pelaporan Kerusakan', opname: 'Opname Fisik', rekonsiliasi: 'Rekonsiliasi' }[p] || p;
+    const activeNav = { dashboard: 'Dashboard', aset: 'Daftar Aset BMN', detail: 'Daftar Aset BMN', kerusakan: 'Pelaporan Kerusakan', krsForm: 'Pelaporan Kerusakan', krsSukses: 'Pelaporan Kerusakan', krsDetail: 'Pelaporan Kerusakan', opname: 'Pemeriksaan Fisik', rekonsiliasi: 'Rekonsiliasi' }[p] || p;
     const kolomKanban = ['Dilaporkan', 'Diverifikasi', 'Prioritas Ditetapkan', 'Diusulkan Perbaikan', 'Selesai'];
     const kolomColor = { 'Dilaporkan': '#8a9299', 'Diverifikasi': '#1d4ed8', 'Prioritas Ditetapkan': '#b45309', 'Diusulkan Perbaikan': '#0e5a72', 'Selesai': '#1a7f4f' };
     const dec = (k) => Object.assign({}, k, { kb: this.badge(k.klasifikasi), sb: this.badge(k.status), slaColor: k.over ? '#b42318' : '#14653f', go: () => this.setState({ page: 'krsDetail', krsId: k.tiket }) });
@@ -2212,7 +2197,7 @@ class Component extends DCLogic {
       topAssets: this.topAssetsData.map((t, i) => Object.assign({}, t, { go: this.goDetailId(this.topIds[i]) })),
       prioritas: st.assets.filter(a => a.prioritas === 'Kritis').slice(0, 5).map(a => Object.assign({}, a, { kb: this.badge(a.kondisi), go: this.goDetailId(a.id) })),
       openText: openLap.length + ' laporan belum selesai',
-      kerusakanTop: st.laporan.slice(0, 5).map(dec),
+      kerusakanTop: openLap.slice(0, 5).map(dec),
       kerusakan: st.laporan.map(dec),
       aktivitas: st.aktivitas.slice(0, 5),
 
@@ -2317,7 +2302,7 @@ class Component extends DCLogic {
       unitOptions: ['Semua Unit Kerja'].concat(this.unitList),
       opUnit: st.opUnit,
       onOpUnit: (e) => { const v = e.target.value; this.setState({ opUnit: v, opPage: 1 }); },
-      opProgressPct: opPct + '%', opProgressText: opShown.toLocaleString('id-ID') + ' dari 1.560 aset terperiksa (' + opPct + '%) · ' + opRows.length + ' NUP dimuat pada demo ini · Batas penyelesaian 30 September 2026',
+      opProgressPct: opPct + '%', opProgressText: opShown.toLocaleString('id-ID') + ' dari 1.560 aset terperiksa (' + opPct + '%) · ' + opRows.length + ' NUP dimuat pada demo ini · Frekuensi pemeriksaan mengikuti SOP satker',
       opPctLabel: opPct + '%',
       opRangeText: opRows.length === 0 ? 'Tidak ada aset pada unit kerja ini' : 'Menampilkan ' + (opStart + 1) + ' sampai ' + Math.min(opStart + 15, opRows.length) + ' dari ' + opRows.length + ' entri',
       opPager: opPager, opEmpty: opRows.length === 0,
@@ -2352,10 +2337,10 @@ class Component extends DCLogic {
       },
       simpanOpname: () => {
         this.askConfirm({
-          title: 'Simpan hasil opname?', message: 'Ringkasan hasil: ' + opStat.f + ' ditemukan, ' + opStat.h + ' tidak ditemukan, ' + opStat.b + ' beda lokasi pada data yang dimuat. Total ' + opShown.toLocaleString('id-ID') + ' dari 1.560 aset sudah diperiksa.', okLabel: 'Simpan', okBg: primary,
+          title: 'Simpan hasil pemeriksaan?', message: 'Ringkasan hasil: ' + opStat.f + ' ditemukan, ' + opStat.h + ' tidak ditemukan, ' + opStat.b + ' beda lokasi pada data yang dimuat. Total ' + opShown.toLocaleString('id-ID') + ' dari 1.560 aset sudah diperiksa.', okLabel: 'Simpan', okBg: primary,
           ok: () => {
-            this.setState(s => ({ confirm: null, aktivitas: [{ waktu: this.nowText(), aktor: 'Mego Sukoco', teks: 'menyimpan hasil opname fisik triwulan III dengan ' + opShown.toLocaleString('id-ID') + ' aset terperiksa.' }].concat(s.aktivitas) }));
-            this.toast('Hasil opname tersimpan');
+            this.setState(s => ({ confirm: null, aktivitas: [{ waktu: this.nowText(), aktor: 'Mego Sukoco', teks: 'menyimpan hasil pemeriksaan fisik dengan ' + opShown.toLocaleString('id-ID') + ' aset terperiksa.' }].concat(s.aktivitas) }));
+            this.toast('Hasil pemeriksaan fisik tersimpan');
           }
         });
       },

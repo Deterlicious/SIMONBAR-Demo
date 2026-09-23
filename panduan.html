@@ -57,7 +57,7 @@ table{border-collapse:collapse;width:100%}
 <p>SIMONBAR adalah satu aplikasi dengan dua pintu masuk. Alamat utama dibuka di komputer kantor oleh pengelola BMN dan pimpinan. Alamat petugas dibuka di HP oleh pegawai yang memeriksa barang di lapangan, dan alamat inilah yang tertanam pada setiap stiker QR. Keduanya memakai satu basis data, satu sistem login, dan satu catatan perubahan.</p>
 <table><tr><th>Peran</th><th>Kewenangan</th></tr>
 <tr><td>Administrator</td><td>Membuat dan menonaktifkan akun, mengatur peran dan unit kerja, mencabut perangkat, menjaga pencadangan data. Tidak memverifikasi laporan.</td></tr>
-<tr><td>Pengelola BMN</td><td>Memverifikasi laporan kerusakan, menetapkan prioritas, melengkapi data operasional, menjalankan opname fisik dan rekonsiliasi untuk seluruh unit kerja.</td></tr>
+<tr><td>Pengelola BMN</td><td>Memverifikasi laporan kerusakan, menetapkan prioritas, melengkapi data operasional, menjalankan pemeriksaan fisik dan rekonsiliasi untuk seluruh unit kerja.</td></tr>
 <tr><td>Petugas Pemeriksa</td><td>Memindai QR, mencatat hasil pemeriksaan, melaporkan kerusakan. Terbatas pada barang di unit kerjanya sendiri, dan tidak dapat memverifikasi laporannya sendiri.</td></tr>
 <tr><td>Pimpinan</td><td>Melihat dashboard, ringkasan kondisi, dan status tindak lanjut. Tidak mengubah data operasional.</td></tr></table>
 <p>Akun dibuat administrator melalui menu Pengaturan, bukan melalui pendaftaran mandiri. Unit kerja yang ditetapkan pada akun menentukan barang mana yang terlihat oleh pengguna tersebut. Pada demo ini peran contoh yang dipakai adalah <strong>Mego Sukoco, Pengelola BMN</strong> untuk sisi kantor dan <strong>Budi Santoso, Petugas Pemeriksa</strong> di Portir untuk sisi lapangan.</p>
@@ -102,7 +102,7 @@ table{border-collapse:collapse;width:100%}
 <img class="shot" src="panduan/10-s.png"><p class="cap">Papan status lima kolom (Dilaporkan sampai Selesai) dan tabel seluruh laporan. Setiap kartu dan nomor tiket bisa diklik menuju detail.</p>
 
 <h3>6.1 Membuat laporan</h3>
-<p>Formulir dibagi empat bagian: Identitas Aset (pencarian dengan saran ketik, kartu ringkas otomatis terisi dari master aset), Rincian Kerusakan (jenis, deskripsi minimal 20 karakter, dampak terhadap layanan), Klasifikasi dan Batas Waktu (kartu Kritis/Tinggi/Rutin yang menghitung otomatis jatuh tempo verifikasi dan penetapan prioritas), dan Dokumentasi/Pelapor.</p>
+<p>Formulir dibagi empat bagian: Identitas Aset (pencarian dengan saran ketik, kartu ringkas otomatis terisi dari master aset), Rincian Kerusakan (jenis, deskripsi minimal 20 karakter, dampak terhadap layanan), Klasifikasi dan Batas Waktu (kartu Kritis/Tinggi/Rutin yang menghitung otomatis jatuh tempo verifikasi dan penetapan prioritas sesuai standar layanan internal), dan Dokumentasi/Pelapor.</p>
 <img class="shot" src="panduan/04-f.png"><p class="cap">Kartu ringkas otomatis terisi dari master aset, dan pita peringatan saat aset berklasifikasi Kritis.</p>
 <img class="shot" src="panduan/05-f.png"><p class="cap">Pilihan Dampak terhadap Layanan berupa kartu klik, bukan dropdown, agar konsekuensi setiap pilihan terlihat jelas.</p>
 <img class="shot" src="panduan/16-s.png"><p class="cap">Tiga kartu Tingkat Urgensi dengan batas waktu dan contoh kasus; panel di bawahnya menghitung otomatis jatuh tempo begitu urgensi dipilih.</p>
@@ -113,13 +113,13 @@ table{border-collapse:collapse;width:100%}
 <img class="shot" src="panduan/13-s.png"><p class="cap">Rincian kerusakan, galeri foto placeholder, dan kolom komentar internal pada Detail Laporan.</p>
 <p><strong>Panel Tindakan</strong> berubah mengikuti status: Dilaporkan menampilkan Verifikasi/Tolak; Diverifikasi menampilkan Tetapkan Prioritas; Prioritas Ditetapkan menampilkan Usulkan Perbaikan; Diusulkan Perbaikan menampilkan Tandai Selesai; Selesai menampilkan ringkasan penyelesaian. Setiap tindakan memerlukan catatan wajib dan langsung memperbarui timeline, papan kanban, dan Dashboard.</p>
 
-<h2>7. Opname Fisik</h2>
-<p>Opname fisik mencocokkan keberadaan aset di lapangan dengan data tercatat, per triwulan.</p>
-<img class="shot" src="panduan/18-s.png"><p class="cap">Pratinjau Berita Acara Opname Fisik: ringkasan ditemukan, tidak ditemukan, beda lokasi, dan tempat tanda tangan.</p>
+<h2>7. Pemeriksaan Fisik</h2>
+<p>Pemeriksaan fisik mencocokkan keberadaan aset di lapangan dengan data tercatat. Frekuensinya diatur dalam SOP satker, bukan ditetapkan oleh aplikasi.</p>
+<img class="shot" src="panduan/18-s.png"><p class="cap">Pratinjau Berita Acara Pemeriksaan Fisik: ringkasan ditemukan, tidak ditemukan, beda lokasi, dan tempat tanda tangan.</p>
 <ul>
 <li>Checklist tiga pilihan per aset: <strong>Ditemukan</strong>, <strong>Tidak Ditemukan</strong> (memunculkan Keterangan wajib, baris memerah), <strong>Beda Lokasi</strong> (mengaktifkan input Lokasi Aktual wajib, baris menguning).</li>
 <li>Progress bar dan persentase di header bergerak langsung mengikuti pengisian, begitu pula ringkasan per unit kerja di panel kanan.</li>
-<li><strong>Tandai Semua Ditemukan</strong> untuk halaman yang tampil, dan <strong>Simpan Hasil Opname</strong> menampilkan ringkasan sebelum disimpan.</li>
+<li><strong>Tandai Semua Ditemukan</strong> untuk halaman yang tampil, dan <strong>Simpan Hasil Pemeriksaan</strong> menampilkan ringkasan sebelum disimpan.</li>
 </ul>
 
 <h2>8. Rekonsiliasi</h2>
@@ -149,7 +149,7 @@ Setelah mencentang pernyataan kebenaran informasi dan menekan <strong>Kirim Lapo
 Mego menambahkan komentar internal: permintaan sementara memakai kipas industri dari gudang sampai unit pengganti tersedia. Komentar ini hanya terlihat oleh pengelola dan pejabat terkait, terpisah dari catatan resmi penanganan.
 </div>
 <div class="case">
-<strong>Triwulan berikutnya</strong> — pada <strong>Opname Fisik</strong>, saat memeriksa Ruang Server, A.C. Split NUP 2 dicentang <strong>Ditemukan</strong> karena unit masih ada secara fisik meski dalam status rusak, sedangkan kondisinya sudah tercatat terpisah lewat laporan kerusakan yang berjalan.
+<strong>Pada pemeriksaan fisik berikutnya</strong> — di <strong>Pemeriksaan Fisik</strong>, saat memeriksa Ruang Server, A.C. Split NUP 2 dicentang <strong>Ditemukan</strong> karena unit masih ada secara fisik meski dalam status rusak, sedangkan kondisinya sudah tercatat terpisah lewat laporan kerusakan yang berjalan.
 </div>
 <div class="case">
 Pada <strong>Rekonsiliasi</strong> periode yang sama, karena kuantitas fisik A.C. Split tetap sesuai dengan Laporan Barang Pengguna (enam unit di kedua sisi), baris ini tidak memerlukan penelusuran selisih kuantitas. Yang berjalan paralel hanyalah proses perbaikannya di modul Pelaporan Kerusakan, menunjukkan bahwa Rekonsiliasi menjaga kebenaran <strong>jumlah</strong>, sementara Pelaporan Kerusakan menjaga kebenaran <strong>kondisi</strong> — dua hal yang berbeda dan keduanya perlu dipantau.
@@ -157,7 +157,7 @@ Pada <strong>Rekonsiliasi</strong> periode yang sama, karena kuantitas fisik A.C
 
 <h3>9.1 Studi kasus kedua: selisih kuantitas hasil hibah</h3>
 <div class="case">
-Pada Triwulan III 2026, hasil opname fisik menemukan <strong>88 unit Kursi Besi/Metal</strong> di lapangan, sedangkan Laporan Barang Pengguna SIMAN masih mencatat <strong>86 unit</strong>. Selisih dua unit ini ditelusuri: keduanya berasal dari kegiatan kerja sama pembinaan dan diterima sebagai hibah, tetapi dokumen hibah dari SIMAN belum diterbitkan.
+Pada Triwulan III 2026, hasil pemeriksaan fisik menemukan <strong>88 unit Kursi Besi/Metal</strong> di lapangan, sedangkan Laporan Barang Pengguna SIMAN masih mencatat <strong>86 unit</strong>. Selisih dua unit ini ditelusuri: keduanya berasal dari kegiatan kerja sama pembinaan dan diterima sebagai hibah, tetapi dokumen hibah dari SIMAN belum diterbitkan.
 </div>
 <div class="case">
 Pada halaman <strong>Rekonsiliasi</strong>, baris kode barang 3050201003 berstatus <strong>Dalam Penelusuran</strong> dengan keterangan tersebut. Mego menekan <strong>Catat Penelusuran</strong>, mengisi tanggal, petugas, temuan (dua kursi teridentifikasi berasal dari hibah), dan rencana tindak lanjut (mengajukan pencatatan hibah melalui SIMAN). Prinsip batas kewenangan tetap dijaga: SIMONBAR mencatat dan menelusuri, tetapi <strong>tidak mencatat mutasi resmi maupun menambah aset</strong> — pencatatan resmi hibah tetap harus diajukan lewat SIMAN sesuai ketentuan.
@@ -181,7 +181,7 @@ Begitu proses administrasi di SIMAN selesai dan kuantitas kedua sistem sama, bar
 <ol style="padding-left:20px">
 <li>SIMONBAR melengkapi, bukan menggantikan, sistem resmi SIMAN dan SAKTI — setiap halaman detail aset memisahkan tegas data read only dari data operasional.</li>
 <li>Setiap aset punya penanggung jawab dan kondisi yang jelas, terlihat langsung dari Daftar Aset maupun Detail Aset.</li>
-<li>Kerusakan punya batas waktu penanganan yang terukur (Kritis 3 hari kerja, Tinggi 7 hari kerja, Rutin 14 hari kerja), dihitung otomatis dan ditampilkan sebagai sisa SLA.</li>
+<li>Kerusakan punya batas waktu penanganan yang terukur (verifikasi maksimal 1 hari kerja, penetapan prioritas maksimal 3 hari kerja untuk semua klasifikasi), dihitung otomatis dan ditampilkan sebagai sisa SLA.</li>
 <li>Setiap perubahan terekam jejaknya secara permanen lewat Log Perubahan pada tingkat aset dan Aktivitas Terakhir pada tingkat sistem.</li>
 <li>Pimpinan bisa melihat gambaran menyeluruh dalam satu layar lewat Dashboard, dengan setiap angka dapat ditelusuri lebih lanjut ke data pendukungnya.</li>
 <li>Stiker QR pada barang bukan sekadar hiasan — petugas memindainya dari HP dan langsung mencatat hasil pemeriksaan di tempat, tanpa perlu menyalin ulang dari kertas di kantor.</li>

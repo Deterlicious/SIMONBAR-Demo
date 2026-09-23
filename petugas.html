@@ -99,7 +99,7 @@
 
 <div class="card" style="padding:16px;margin-bottom:14px">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:11px">
-<div><div style="font:600 14px 'IBM Plex Sans';color:#16211c">Daftar Periksa Triwulan III</div><div style="font:400 12px 'IBM Plex Sans';color:#7b858d;margin-top:3px">Batas waktu 30 September 2026</div></div>
+<div><div style="font:600 14px 'IBM Plex Sans';color:#16211c">Daftar Pemeriksaan</div><div style="font:400 12px 'IBM Plex Sans';color:#7b858d;margin-top:3px">Barang pada unit kerja Anda</div></div>
 <div style="text-align:right"><div style="font:600 23px/1 'IBM Plex Sans';color:#0f4c3a;font-variant-numeric:tabular-nums">{{ pctLabel }}</div></div>
 </div>
 <div style="height:9px;background:#eef0f2;border-radius:99px;overflow:hidden;margin-bottom:9px"><div style="height:100%;width:{{ pctLabel }};background:#1a7f4f;border-radius:99px;transition:width .3s"></div></div>
@@ -505,8 +505,8 @@ class Component extends DCLogic {
 
   dampakDefs = [
     { v: 'Menghentikan layanan', label: 'Layanan berhenti', desc: 'Barang tidak bisa dipakai dan pekerjaan terhenti', kelas: 'Kritis', hari: 3 },
-    { v: 'Mengganggu sebagian layanan', label: 'Terganggu sebagian', desc: 'Masih jalan tapi harus dialihkan ke barang lain', kelas: 'Tinggi', hari: 7 },
-    { v: 'Tidak mengganggu layanan', label: 'Tidak terganggu', desc: 'Pekerjaan tetap berjalan normal', kelas: 'Rutin', hari: 14 }
+    { v: 'Mengganggu sebagian layanan', label: 'Terganggu sebagian', desc: 'Masih jalan tapi harus dialihkan ke barang lain', kelas: 'Tinggi', hari: 3 },
+    { v: 'Tidak mengganggu layanan', label: 'Tidak terganggu', desc: 'Pekerjaan tetap berjalan normal', kelas: 'Rutin', hari: 3 }
   ];
 
   bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
@@ -659,7 +659,7 @@ class Component extends DCLogic {
       periksa: ['Periksa Barang', 'Isi sesuai yang Anda lihat di lapangan'],
       sukses: ['Selesai', 'Hasil pemeriksaan sudah masuk'],
       daftar: ['Daftar Periksa', this.akun.unit],
-      riwayat: ['Sudah Diperiksa', selesai.length + ' barang triwulan ini'],
+      riwayat: ['Sudah Diperiksa', selesai.length + ' barang tercatat'],
       lapor: ['Lapor Kerusakan', 'Laporan diteruskan ke pengelola BMN'],
       laporSukses: ['Laporan Terkirim', 'Simpan nomor tiket Anda'],
       akun: ['Akun Saya', this.akun.unit]
