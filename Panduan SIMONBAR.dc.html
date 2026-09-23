@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>doc-page:not(:defined){visibility:hidden}
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif}
+a{color:#14603f}a:hover{color:#0b3a2c}
+h1,h2,h3{font-family:'IBM Plex Sans',system-ui,sans-serif;color:#16211c}
+table{border-collapse:collapse;width:100%}
+.tag{display:inline-block;padding:2px 9px;border-radius:4px;font:600 11px 'IBM Plex Sans';margin-right:6px}
+.shot{width:100%;border:1px solid #dfe3e6;border-radius:6px;box-shadow:0 3px 10px rgba(16,24,40,.06);margin:10px 0 4px}
+.cap{font:400 11.5px 'IBM Plex Sans';color:#7b858d;margin:0 0 20px}
+.box{border:1px solid #e3e6e9;border-radius:6px;padding:16px 18px;margin:14px 0;background:#fafbfc}
+.warn{border:1px solid #f0dcb0;background:#fdf4e3;color:#7a5300}
+.good{border:1px solid #bfe3cd;background:#e7f5ec;color:#14653f}
+.case{border-left:3px solid #0f4c3a;padding:2px 0 2px 16px;margin:16px 0}
+</style>
+<script src="doc-page.js"></script>
+</helmet>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0f4c3a"/><text x="50" y="58" font-size="34" text-anchor="middle" fill="#fff" font-family="sans-serif" font-weight="700">PDF</text></svg></template>
+
+<doc-page margin="0.9in" style="font-size:13.5px;line-height:1.6;color:#1d2429">
+
+<div style="text-align:center;padding:30px 0 26px;border-bottom:3px solid #0f4c3a;margin-bottom:26px">
+<div style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.22em;color:#7b858d;margin-bottom:14px">PANDUAN PENGGUNA</div>
+<h1 style="font-size:34px;margin:0 0 10px">SIMONBAR</h1>
+<div style="font-size:15px;color:#3a4249;margin-bottom:16px">Sistem Monitoring Barang Milik Negara</div>
+<div style="font-size:12.5px;color:#5b646c">Lapas Narkotika Kelas IIA Kasongan · Kementerian Imigrasi dan Pemasyarakatan</div>
+</div>
+
+<h2>1. Apa itu SIMONBAR</h2>
+<p>SIMONBAR adalah lapisan monitoring operasional untuk Barang Milik Negara (BMN) di Lapas Narkotika Kelas IIA Kasongan. SIMONBAR <strong>bukan pengganti</strong> SIMAN (Sistem Informasi Manajemen Aset Negara milik Kementerian Keuangan) maupun SAKTI. Kedua sistem resmi itu tetap menjadi rujukan administrasi untuk identitas barang, nilai perolehan, dan status BMN.</p>
+<p>SIMONBAR menjawab pertanyaan operasional yang tidak dijawab sistem resmi: barang ada di ruangan mana persisnya, siapa penanggung jawabnya, bagaimana kondisi terkininya, dan apakah ada laporan kerusakan yang belum ditindaklanjuti.</p>
+
+<table style="margin:14px 0 22px">
+<thead><tr><th style="text-align:left;padding:8px 10px;background:#f1f3f4;font-size:11.5px;border-bottom:2px solid #dfe3e6">Dijawab SIMAN / SAKTI</th><th style="text-align:left;padding:8px 10px;background:#eef3f0;font-size:11.5px;border-bottom:2px solid #cfdcd6">Dijawab SIMONBAR</th></tr></thead>
+<tbody style="font-size:12.5px">
+<tr><td style="padding:7px 10px;border-bottom:1px solid #eef0f2">Barang apa, berapa jumlah dan nilainya</td><td style="padding:7px 10px;border-bottom:1px solid #eef0f2">Barang ada di ruangan mana persisnya</td></tr>
+<tr><td style="padding:7px 10px;border-bottom:1px solid #eef0f2">Status BMN aktif atau tidak</td><td style="padding:7px 10px;border-bottom:1px solid #eef0f2">Siapa PIC atau penanggung jawabnya</td></tr>
+<tr><td style="padding:7px 10px;border-bottom:1px solid #eef0f2">Kondisi umum: Baik atau Rusak</td><td style="padding:7px 10px;border-bottom:1px solid #eef0f2">Foto kondisi terkini, kapan terakhir diperiksa</td></tr>
+<tr><td style="padding:7px 10px">Saldo per periode pelaporan</td><td style="padding:7px 10px">Ada laporan kerusakan terbuka, sudah ditindaklanjuti atau belum</td></tr>
+</tbody>
+</table>
+
+<div class="box warn">Pada setiap halaman detail aset, data yang bersumber dari SIMAN ditampilkan dengan label "Read Only" dan tidak dapat diedit. Data operasional SIMONBAR ditampilkan terpisah dan dapat diperbarui pengguna, dengan alasan perubahan yang wajib diisi dan tercatat permanen.</div>
+
+<h2>2. Peran dan Akses</h2>
+<p>SIMONBAR adalah satu aplikasi dengan dua pintu masuk. Alamat utama dibuka di komputer kantor oleh pengelola BMN dan pimpinan. Alamat petugas dibuka di HP oleh pegawai yang memeriksa barang di lapangan, dan alamat inilah yang tertanam pada setiap stiker QR. Keduanya memakai satu basis data, satu sistem login, dan satu catatan perubahan.</p>
+<table><tr><th>Peran</th><th>Kewenangan</th></tr>
+<tr><td>Administrator</td><td>Membuat dan menonaktifkan akun, mengatur peran dan unit kerja, mencabut perangkat, menjaga pencadangan data. Tidak memverifikasi laporan.</td></tr>
+<tr><td>Pengelola BMN</td><td>Memverifikasi laporan kerusakan, menetapkan prioritas, melengkapi data operasional, menjalankan opname fisik dan rekonsiliasi untuk seluruh unit kerja.</td></tr>
+<tr><td>Petugas Pemeriksa</td><td>Memindai QR, mencatat hasil pemeriksaan, melaporkan kerusakan. Terbatas pada barang di unit kerjanya sendiri, dan tidak dapat memverifikasi laporannya sendiri.</td></tr>
+<tr><td>Pimpinan</td><td>Melihat dashboard, ringkasan kondisi, dan status tindak lanjut. Tidak mengubah data operasional.</td></tr></table>
+<p>Akun dibuat administrator melalui menu Pengaturan, bukan melalui pendaftaran mandiri. Unit kerja yang ditetapkan pada akun menentukan barang mana yang terlihat oleh pengguna tersebut. Pada demo ini peran contoh yang dipakai adalah <strong>Mego Sukoco, Pengelola BMN</strong> untuk sisi kantor dan <strong>Budi Santoso, Petugas Pemeriksa</strong> di Portir untuk sisi lapangan.</p>
+<img class="shot" src="panduan/02-s.png"><p class="cap">Halaman Masuk. Menampilkan identitas satker dan peringatan keamanan kata sandi.</p>
+
+<h2>3. Dashboard Pimpinan</h2>
+<p>Dashboard adalah ringkasan satu layar bagi pimpinan untuk melihat posisi BMN secara menyeluruh tanpa membuka setiap modul.</p>
+<img class="shot" src="panduan/03-s.png"><p class="cap">Empat kartu statistik utama dan empat kartu akun neraca. Semua kartu bisa diklik dan membuka Daftar Aset dengan filter yang sesuai.</p>
+
+<h3>Fungsi tiap bagian</h3>
+<ul>
+<li><strong>Kartu statistik</strong> (Total Nilai BMN, Total Aset, Kerusakan Terbuka, Aset Perlu Perhatian) — angka ringkas real time. Kerusakan Terbuka naik otomatis setiap ada laporan baru; Aset Perlu Perhatian menghitung aset berkondisi tidak Baik.</li>
+<li><strong>Kartu akun neraca</strong> (Tanah, Peralatan dan Mesin, Gedung dan Bangunan, Aset Tetap Lainnya) — klik untuk membuka Daftar Aset yang sudah tersaring pada akun tersebut.</li>
+<li><strong>Donut Komposisi Kondisi Aset</strong> — proporsi Baik, Rusak Ringan, Rusak Berat. Arahkan kursor ke legenda untuk tooltip jumlah pasti; klik untuk membuka daftar aset dengan kondisi itu.</li>
+<li><strong>Lima Aset Bernilai Tertinggi</strong> — batang yang bisa diklik menuju halaman detail aset bersangkutan.</li>
+<li><strong>Aset Prioritas Kritis</strong> dan <strong>Kerusakan Terbuka</strong> — dua panel kerja cepat menuju daftar terfilter dan detail laporan.</li>
+<li><strong>Aktivitas Terakhir</strong> — log hidup. Setiap perubahan data aset, laporan kerusakan baru, atau penutupan rekonsiliasi di halaman manapun langsung tercatat di sini.</li>
+</ul>
+<img class="shot" src="panduan/04-s.png"><p class="cap">Donut kondisi aset, lima aset bernilai tertinggi, dan dua panel kerja cepat pada bagian tengah Dashboard.</p>
+
+<h2>4. Daftar Aset BMN</h2>
+<p>Daftar Aset menampilkan seluruh NUP yang tercatat, dengan identitas mengikuti SIMAN dan kolom operasional (Lokasi, PIC, Kondisi, Prioritas) dikelola SIMONBAR.</p>
+<img class="shot" src="panduan/06-s.png"><p class="cap">Filter sidebar, pencarian langsung, pengurutan kolom, dan paginasi lengkap.</p>
+<ul>
+<li><strong>Filter</strong> — Akun Neraca, Kondisi, Unit Kerja, Prioritas, Status Verifikasi. Filter aktif tampil sebagai chip yang bisa dihapus satu per satu.</li>
+<li><strong>Pencarian</strong> — mengetik nama, kode barang, atau NUP langsung menyaring tabel.</li>
+<li><strong>Pengurutan</strong> — klik judul kolom untuk mengurutkan naik atau turun.</li>
+<li><strong>Aksi massal</strong> — centang beberapa baris untuk memperbarui PIC atau lokasi sekaligus, atau mencetak label QR terpilih.</li>
+<li><strong>Tambah Data Operasional</strong> — <em>bukan</em> menambah aset baru (itu kewenangan SIMAN/SAKTI), melainkan melengkapi lokasi, PIC, dan kondisi untuk aset yang sudah tercatat resmi tetapi belum lengkap datanya di SIMONBAR.</li>
+<li><strong>Ekspor Excel/PDF</strong> dan <strong>Cetak Label QR</strong> — modal pilihan kolom, rentang data, ukuran label.</li>
+</ul>
+
+<h2>5. Detail Aset</h2>
+<p>Halaman ini adalah inti pemisahan tanggung jawab data: kolom kiri abu abu berlabel "Sumber: SIMAN — Read Only" tidak dapat diedit; kolom kanan putih adalah data operasional SIMONBAR dengan tombol Perbarui Data.</p>
+<img class="shot" src="panduan/08-s.png"><p class="cap">Detail Aset CT Scanner. Data SIMAN di kiri (abu, read only), data operasional SIMONBAR di kanan (dapat diperbarui).</p>
+<p>Setiap kali data operasional diperbarui, pengguna wajib mengisi <strong>Alasan Perubahan</strong>. Sistem otomatis menulis entri baru pada tab Log Perubahan, berisi tanggal, pengubah, field yang berubah, nilai lama menjadi nilai baru, dan alasan.</p>
+<img class="shot" src="panduan/09-s.png"><p class="cap">Tab Log Perubahan: riwayat permanen setiap penyesuaian data operasional, tidak dapat dihapus.</p>
+<p>Tiga tab tersedia: Foto Kondisi, Riwayat Pemeliharaan, dan Log Perubahan. Navigasi Aset Sebelumnya/Berikutnya di pojok kanan atas memudahkan pemeriksaan berurutan tanpa kembali ke daftar.</p>
+
+<h2>6. Pelaporan Kerusakan</h2>
+<p>Laporan kerusakan adalah dokumen resmi internal, sehingga dibuat lewat halaman formulir tersendiri, bukan modal singkat.</p>
+<img class="shot" src="panduan/10-s.png"><p class="cap">Papan status lima kolom (Dilaporkan sampai Selesai) dan tabel seluruh laporan. Setiap kartu dan nomor tiket bisa diklik menuju detail.</p>
+
+<h3>6.1 Membuat laporan</h3>
+<p>Formulir dibagi empat bagian: Identitas Aset (pencarian dengan saran ketik, kartu ringkas otomatis terisi dari master aset), Rincian Kerusakan (jenis, deskripsi minimal 20 karakter, dampak terhadap layanan), Klasifikasi dan Batas Waktu (kartu Kritis/Tinggi/Rutin yang menghitung otomatis jatuh tempo verifikasi dan penetapan prioritas), dan Dokumentasi/Pelapor.</p>
+<img class="shot" src="panduan/04-f.png"><p class="cap">Kartu ringkas otomatis terisi dari master aset, dan pita peringatan saat aset berklasifikasi Kritis.</p>
+<img class="shot" src="panduan/05-f.png"><p class="cap">Pilihan Dampak terhadap Layanan berupa kartu klik, bukan dropdown, agar konsekuensi setiap pilihan terlihat jelas.</p>
+<img class="shot" src="panduan/16-s.png"><p class="cap">Tiga kartu Tingkat Urgensi dengan batas waktu dan contoh kasus; panel di bawahnya menghitung otomatis jatuh tempo begitu urgensi dipilih.</p>
+<p>Setelah Kirim Laporan, sistem meminta konfirmasi, membuat nomor tiket baru (format KRS-2026-00XX), dan mengarahkan ke halaman konfirmasi terkirim.</p>
+
+<h3>6.2 Detail dan tindak lanjut laporan</h3>
+<p>Klik nomor tiket manapun membuka halaman detail: timeline riwayat penanganan, rincian kerusakan, galeri foto, kartu informasi aset read only, dan komentar internal.</p>
+<img class="shot" src="panduan/13-s.png"><p class="cap">Rincian kerusakan, galeri foto placeholder, dan kolom komentar internal pada Detail Laporan.</p>
+<p><strong>Panel Tindakan</strong> berubah mengikuti status: Dilaporkan menampilkan Verifikasi/Tolak; Diverifikasi menampilkan Tetapkan Prioritas; Prioritas Ditetapkan menampilkan Usulkan Perbaikan; Diusulkan Perbaikan menampilkan Tandai Selesai; Selesai menampilkan ringkasan penyelesaian. Setiap tindakan memerlukan catatan wajib dan langsung memperbarui timeline, papan kanban, dan Dashboard.</p>
+
+<h2>7. Opname Fisik</h2>
+<p>Opname fisik mencocokkan keberadaan aset di lapangan dengan data tercatat, per triwulan.</p>
+<img class="shot" src="panduan/18-s.png"><p class="cap">Pratinjau Berita Acara Opname Fisik: ringkasan ditemukan, tidak ditemukan, beda lokasi, dan tempat tanda tangan.</p>
+<ul>
+<li>Checklist tiga pilihan per aset: <strong>Ditemukan</strong>, <strong>Tidak Ditemukan</strong> (memunculkan Keterangan wajib, baris memerah), <strong>Beda Lokasi</strong> (mengaktifkan input Lokasi Aktual wajib, baris menguning).</li>
+<li>Progress bar dan persentase di header bergerak langsung mengikuti pengisian, begitu pula ringkasan per unit kerja di panel kanan.</li>
+<li><strong>Tandai Semua Ditemukan</strong> untuk halaman yang tampil, dan <strong>Simpan Hasil Opname</strong> menampilkan ringkasan sebelum disimpan.</li>
+</ul>
+
+<h2>8. Rekonsiliasi</h2>
+<p>Rekonsiliasi membandingkan kuantitas SIMONBAR dengan Laporan Barang Pengguna SIMAN, per triwulan (I sampai IV 2026 tersedia di demo).</p>
+<img class="shot" src="panduan/19-s.png"><p class="cap">Tabel perbandingan kuantitas SIMAN dan SIMONBAR dengan filter status dan tombol Catat Penelusuran per baris.</p>
+<img class="shot" src="panduan/20-s.png"><p class="cap">Panel samping saat baris diklik: rincian selisih, NUP bermasalah, kronologi, dan riwayat penelusuran.</p>
+<p>Klik baris membuka panel rincian selisih. Baris berstatus Dalam Penelusuran mempunyai tombol Catat Penelusuran (tanggal, petugas, temuan, rencana tindak lanjut). Centang beberapa baris lalu Tandai Selesai untuk menutupnya setelah didukung penelusuran, dengan konfirmasi terlebih dahulu. Prinsip yang selalu berlaku: <strong>apabila terdapat perbedaan, data resmi SIMAN menjadi rujukan administrasi</strong> dan selisih wajib ditelusuri, tidak pernah ditulis ulang begitu saja.</p>
+
+<div style="page-break-before:always"></div>
+<h2>9. Studi Kasus: Satu Siklus Penuh</h2>
+<p>Berikut simulasi penggunaan SIMONBAR dari temuan kerusakan sampai penutupan, memakai data yang sama dengan demo, untuk menunjukkan bagaimana modul modul di atas saling terhubung dalam satu peristiwa nyata di lapangan.</p>
+
+<div class="case">
+<strong>Senin, 24 Agustus 2026, pukul 07.10 — Ruang Server</strong><br>
+Dedi Kurniawan, Operator CCTV, mendapati unit A.C. Split (kode 3050204004, NUP 2) mati total. Suhu ruangan naik ke 31 derajat dan alarm perangkat jaringan berbunyi. Ia membuka <strong>Pelaporan Kerusakan → Buat Laporan Kerusakan</strong>, mengetik "A.C. Split" pada Identitas Aset, dan memilih unit yang tepat dari saran yang muncul. Kartu ringkas otomatis menampilkan lokasi tercatat (Ruang Server) dan PIC (Dedi Kurniawan).
+</div>
+<div class="case">
+Pada bagian Rincian Kerusakan ia menuliskan deskripsi kejadian, memilih dampak <strong>Menghentikan layanan</strong>, lalu pada Klasifikasi ia memilih kartu <strong>Kritis</strong> karena menyangkut kelistrikan utama ruang server. Panel otomatis menghitung jatuh tempo verifikasi 25 Agustus dan penetapan prioritas 27 Agustus. Karena klasifikasi Kritis, sistem mewajibkan foto sebelum laporan dapat dikirim.
+</div>
+<div class="case">
+Setelah mencentang pernyataan kebenaran informasi dan menekan <strong>Kirim Laporan</strong>, muncul konfirmasi, lalu tiket <strong>KRS-2026-0041</strong> terbit. Angka Kerusakan Terbuka pada Dashboard bertambah menjadi tujuh laporan, dan entri baru muncul pada panel Aktivitas Terakhir.
+</div>
+<div class="case">
+<strong>Selasa, 25 Agustus, pukul 08.05</strong> — Mego Sukoco, Pengelola BMN, membuka detail laporan KRS-2026-0041 dan menekan <strong>Verifikasi Laporan</strong> setelah memastikan kerusakan di lapangan, dengan catatan verifikasi wajib diisi. Status berubah menjadi Diverifikasi dan tercatat pada timeline riwayat penanganan.
+</div>
+<div class="case">
+Mego menambahkan komentar internal: permintaan sementara memakai kipas industri dari gudang sampai unit pengganti tersedia. Komentar ini hanya terlihat oleh pengelola dan pejabat terkait, terpisah dari catatan resmi penanganan.
+</div>
+<div class="case">
+<strong>Triwulan berikutnya</strong> — pada <strong>Opname Fisik</strong>, saat memeriksa Ruang Server, A.C. Split NUP 2 dicentang <strong>Ditemukan</strong> karena unit masih ada secara fisik meski dalam status rusak, sedangkan kondisinya sudah tercatat terpisah lewat laporan kerusakan yang berjalan.
+</div>
+<div class="case">
+Pada <strong>Rekonsiliasi</strong> periode yang sama, karena kuantitas fisik A.C. Split tetap sesuai dengan Laporan Barang Pengguna (enam unit di kedua sisi), baris ini tidak memerlukan penelusuran selisih kuantitas. Yang berjalan paralel hanyalah proses perbaikannya di modul Pelaporan Kerusakan, menunjukkan bahwa Rekonsiliasi menjaga kebenaran <strong>jumlah</strong>, sementara Pelaporan Kerusakan menjaga kebenaran <strong>kondisi</strong> — dua hal yang berbeda dan keduanya perlu dipantau.
+</div>
+
+<h3>9.1 Studi kasus kedua: selisih kuantitas hasil hibah</h3>
+<div class="case">
+Pada Triwulan III 2026, hasil opname fisik menemukan <strong>88 unit Kursi Besi/Metal</strong> di lapangan, sedangkan Laporan Barang Pengguna SIMAN masih mencatat <strong>86 unit</strong>. Selisih dua unit ini ditelusuri: keduanya berasal dari kegiatan kerja sama pembinaan dan diterima sebagai hibah, tetapi dokumen hibah dari SIMAN belum diterbitkan.
+</div>
+<div class="case">
+Pada halaman <strong>Rekonsiliasi</strong>, baris kode barang 3050201003 berstatus <strong>Dalam Penelusuran</strong> dengan keterangan tersebut. Mego menekan <strong>Catat Penelusuran</strong>, mengisi tanggal, petugas, temuan (dua kursi teridentifikasi berasal dari hibah), dan rencana tindak lanjut (mengajukan pencatatan hibah melalui SIMAN). Prinsip batas kewenangan tetap dijaga: SIMONBAR mencatat dan menelusuri, tetapi <strong>tidak mencatat mutasi resmi maupun menambah aset</strong> — pencatatan resmi hibah tetap harus diajukan lewat SIMAN sesuai ketentuan.
+</div>
+<div class="case">
+Begitu proses administrasi di SIMAN selesai dan kuantitas kedua sistem sama, baris ini dapat ditandai <strong>Sudah Ditindaklanjuti</strong> lalu ditutup sebagai <strong>Selesai</strong> setelah dokumen berita acara rekonsiliasi diunduh sebagai bukti pemeriksaan.
+</div>
+
+<h2>10. Mode Petugas di HP</h2>
+<p>Mode petugas adalah tampilan SIMONBAR untuk pegawai yang memeriksa barang sambil berjalan di lapangan. Dibuka di HP, bukan di komputer. Petugas masuk sekali dengan akun yang dibuatkan administrator, mencentang <strong>Ingat perangkat ini</strong>, lalu untuk seterusnya cukup memindai QR tanpa mengetik kata sandi lagi.</p>
+<h3>10.1 Alur sekali pemeriksaan</h3>
+<p>Petugas menekan <strong>Pindai QR Barang</strong>, mengarahkan kamera ke stiker pada barang, dan halaman barang itu langsung terbuka. Bila stiker rusak atau hilang, tersedia pencarian manual dengan mengetik nama atau kode barang.</p>
+<p>Halaman pemeriksaan menampilkan data tercatat saat ini (lokasi, penanggung jawab, kondisi terakhir, tanggal periksa terakhir) lalu mengajukan pertanyaan berurutan dengan bahasa sehari hari: barang ada di lokasi ini atau tidak, lalu bagaimana kondisinya. Pertanyaan berikutnya baru muncul setelah yang sebelumnya dijawab, sehingga layar tidak penuh sekaligus.</p>
+<p>Bila petugas memilih <strong>Ada, tapi di tempat lain</strong>, muncul pilihan lokasi aktual yang wajib diisi. Bila memilih <strong>Tidak ditemukan</strong>, muncul kolom keterangan wajib yang nantinya ditelusuri pengelola BMN pada rekonsiliasi. Bila kondisi dinilai rusak, foto menjadi wajib dan sistem menawarkan sekalian membuat laporan kerusakan dengan foto yang sama.</p>
+<p>Setelah disimpan, nama petugas dan waktu pemeriksaan tercatat otomatis pada riwayat barang dan tidak dapat dihapus. Progres di halaman depan langsung bergerak, misalnya dari 4 menjadi 5 dari 12 barang.</p>
+<h3>10.2 Batas kewenangan petugas</h3>
+<p>Petugas hanya melihat barang pada unit kerjanya sendiri, sesuai unit yang ditetapkan administrator pada akunnya. Petugas mencatat temuan, tetapi tidak memverifikasi laporannya sendiri dan tidak mengubah data resmi SIMAN. Verifikasi tetap dilakukan pengelola BMN di sisi kantor.</p>
+<p>Pada menu Akun, petugas dapat melihat perangkat yang terdaftar atas namanya dan mencabut perangkat lama. Administrator juga dapat mencabut seluruh perangkat seorang pengguna dari menu Pengaturan, misalnya ketika HP hilang atau petugas berganti tugas.</p>
+
+<h2>11. Yang Disampaikan Demo Ini kepada Penilai</h2>
+<ol style="padding-left:20px">
+<li>SIMONBAR melengkapi, bukan menggantikan, sistem resmi SIMAN dan SAKTI — setiap halaman detail aset memisahkan tegas data read only dari data operasional.</li>
+<li>Setiap aset punya penanggung jawab dan kondisi yang jelas, terlihat langsung dari Daftar Aset maupun Detail Aset.</li>
+<li>Kerusakan punya batas waktu penanganan yang terukur (Kritis 3 hari kerja, Tinggi 7 hari kerja, Rutin 14 hari kerja), dihitung otomatis dan ditampilkan sebagai sisa SLA.</li>
+<li>Setiap perubahan terekam jejaknya secara permanen lewat Log Perubahan pada tingkat aset dan Aktivitas Terakhir pada tingkat sistem.</li>
+<li>Pimpinan bisa melihat gambaran menyeluruh dalam satu layar lewat Dashboard, dengan setiap angka dapat ditelusuri lebih lanjut ke data pendukungnya.</li>
+<li>Stiker QR pada barang bukan sekadar hiasan — petugas memindainya dari HP dan langsung mencatat hasil pemeriksaan di tempat, tanpa perlu menyalin ulang dari kertas di kantor.</li>
+<li>Hak akses berbasis peran benar benar diterapkan: akun dibuat administrator, unit kerja pada akun menentukan barang yang terlihat, dan setiap pembuatan atau perubahan akun ikut tercatat pada Aktivitas Terakhir.</li>
+</ol>
+
+<div class="box good" style="margin-top:26px">Dokumen ini menyertai demo frontend SIMONBAR sebagai bahan presentasi tugas akuntabilitas kinerja pelatihan aparatur. Seluruh data pada demo bersifat contoh (hardcoded) dan tidak terhubung ke basis data SIMAN atau SAKTI sesungguhnya.</div>
+
+</doc-page>
+
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>*{box-sizing:border-box}body{margin:0;background:#e6e9ea;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}input,select,button,textarea{font-family:inherit}@keyframes fin{from{opacity:0}to{opacity:1}}@keyframes tin{from{opacity:0;transform:translateY(10px)}to{opacity:1}}@keyframes pop{0%{transform:scale(.72);opacity:0}62%{transform:scale(1.07)}100%{transform:scale(1);opacity:1}}@keyframes sweep{from{top:10%}to{top:86%}}@keyframes blip{0%,100%{opacity:.35}50%{opacity:1}}
+.shell{min-height:100vh;display:flex;align-items:center;justify-content:center}
+.phone{width:100%;max-width:430px;min-height:100vh;background:#f4f5f6;display:flex;flex-direction:column;overflow:hidden}
+@media(min-width:760px){.shell{padding:26px 16px}.phone{min-height:0;height:840px;max-height:calc(100vh - 52px);border-radius:28px;box-shadow:0 26px 64px rgba(16,24,40,.28);border:1px solid #cdd3d6}}
+.scroll{flex:1;overflow-y:auto}
+.card{background:#fff;border:1px solid #e3e6e9;border-radius:12px}
+.opt{width:100%;display:flex;align-items:flex-start;gap:12px;padding:14px;border:1.5px solid #dfe3e6;border-radius:11px;background:#fff;cursor:pointer;text-align:left;transition:border-color .12s,background .12s}
+.opt:active{transform:scale(.988)}
+.btn{width:100%;padding:15px;border:none;border-radius:11px;background:#0f4c3a;color:#fff;font:600 15px 'IBM Plex Sans';cursor:pointer;transition:background .12s}
+.btn:hover{background:#0b3a2c}.btn:active{transform:scale(.99)}
+.btn2{width:100%;padding:14px;border:1.5px solid #c9d1d4;border-radius:11px;background:#fff;color:#16211c;font:600 14.5px 'IBM Plex Sans';cursor:pointer}
+.btn2:hover{background:#f4f6f7}
+.tab{display:flex;flex-direction:column;align-items:center;gap:5px;padding:9px 2px 4px;border:none;background:none;cursor:pointer}
+.field{width:100%;padding:13px 13px;border:1.5px solid #d5dade;border-radius:10px;font:400 15px 'IBM Plex Sans';color:#1d2429;background:#fff}
+.field:focus{outline:none;border-color:#0f4c3a}
+.vf{position:relative;width:100%;aspect-ratio:1/1;background:#11171a;border-radius:16px;overflow:hidden;cursor:pointer}
+.vfc{position:absolute;width:40px;height:40px;border:3px solid #5fd39b}
+.vfl{position:absolute;left:8%;right:8%;height:2px;background:linear-gradient(90deg,transparent,#5fd39b,transparent);animation:sweep 1.9s ease-in-out infinite alternate}
+.lbl{display:block;font:600 13px 'IBM Plex Sans';color:#3a4249;margin-bottom:7px}
+.hint{font:400 12.5px/1.6 'IBM Plex Sans';color:#7b858d}
+.err{font:500 12.5px 'IBM Plex Sans';color:#b42318;margin-top:7px}
+</style></helmet>
+
+<sc-if value="{{ isLogin }}" hint-placeholder-val="{{ true }}">
+<div class="shell">
+<div class="phone" style="background:#0d3f30">
+<div class="scroll" style="padding:34px 24px 30px;display:flex;flex-direction:column;color:#eef3f0">
+<div style="display:flex;align-items:center;gap:11px;margin-bottom:auto"><div style="width:30px;height:30px;background:#eef3f0;border-radius:4px"></div><div><div style="font:600 15px/1 'IBM Plex Sans';letter-spacing:.15em">SIMONBAR</div><div style="font:400 11px/1.5 'IBM Plex Sans';color:#8fb8a8;margin-top:3px">Mode Petugas</div></div></div>
+
+<div style="padding:34px 0 26px">
+<h1 style="font:600 27px/1.32 'IBM Plex Sans';margin:0 0 10px">Masuk untuk mulai memeriksa barang</h1>
+<p style="font:400 14px/1.65 'IBM Plex Sans';color:#c2d6cd;margin:0">Gunakan akun yang dibuatkan administrator. Akun tidak bisa didaftarkan sendiri.</p>
+</div>
+
+<label style="display:block;font:600 12.5px 'IBM Plex Sans';color:#c2d6cd;margin-bottom:7px">Nama Pengguna</label>
+<input defaultValue="budi.santoso" class="field" style="margin-bottom:16px">
+<label style="display:block;font:600 12.5px 'IBM Plex Sans';color:#c2d6cd;margin-bottom:7px">Kata Sandi</label>
+<input type="password" defaultValue="petugas2026" class="field" style="margin-bottom:18px">
+
+<div style="padding:14px;background:rgba(255,255,255,.08);border:1px solid rgba(238,243,240,.2);border-radius:11px;margin-bottom:20px">
+<label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer"><input type="checkbox" checked="{{ ingat }}" onChange="{{ toggleIngat }}" style="margin-top:2px;width:17px;height:17px;accent-color:#5fd39b;flex:none"><span><span style="display:block;font:600 13.5px 'IBM Plex Sans';color:#eef3f0">Ingat perangkat ini</span><span style="display:block;font:400 12px/1.6 'IBM Plex Sans';color:#a9c6ba;margin-top:4px">Anda cukup masuk sekali. Setelah itu pindai QR langsung terbuka tanpa mengetik kata sandi lagi.</span></span></label>
+</div>
+
+<button type="button" onClick="{{ doLogin }}" class="btn" style="background:#eef3f0;color:#0d3f30">Masuk</button>
+<div style="margin-top:18px;font:400 11.5px/1.65 'IBM Plex Sans';color:#8fb8a8;text-align:center">Jangan bagikan kata sandi Anda kepada siapa pun.<br>Jika perangkat hilang, segera hubungi administrator.</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isApp }}" hint-placeholder-val="{{ true }}">
+<div class="shell">
+<div class="phone">
+
+<div style="flex:none;background:#0f4c3a;color:#fff;padding:15px 16px 16px">
+<div style="display:flex;align-items:center;gap:12px">
+<sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{ goBack }}" style="flex:none;width:34px;height:34px;border:1px solid rgba(255,255,255,.26);border-radius:9px;background:transparent;color:#fff;font:400 19px/1 'IBM Plex Sans';cursor:pointer">‹</button>
+</sc-if>
+<div style="min-width:0;flex:1">
+<div style="font:600 17px/1.3 'IBM Plex Sans'">{{ hdrTitle }}</div>
+<div style="font:400 12px/1.5 'IBM Plex Sans';color:#a9c6ba;margin-top:2px">{{ hdrSub }}</div>
+</div>
+<sc-if value="{{ isBeranda }}" hint-placeholder-val="{{ true }}">
+<div style="flex:none;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font:600 13px 'IBM Plex Sans'">{{ inisial }}</div>
+</sc-if>
+</div>
+</div>
+
+<div class="scroll" style="padding:16px 16px 24px">
+
+<sc-if value="{{ isBeranda }}" hint-placeholder-val="{{ true }}">
+<sc-if value="{{ tipOn }}" hint-placeholder-val="{{ true }}">
+<div style="padding:14px;background:#e6f0f4;border:1px solid #c4dbe4;border-radius:11px;margin-bottom:14px;display:flex;gap:11px;align-items:flex-start">
+<div style="flex:none;width:22px;height:22px;border-radius:50%;background:#0e5a72;color:#fff;font:600 13px/22px 'IBM Plex Sans';text-align:center">i</div>
+<div style="flex:1;min-width:0">
+<div style="font:600 13px 'IBM Plex Sans';color:#0e5a72;margin-bottom:4px">Baru pertama memakai?</div>
+<div style="font:400 12.5px/1.65 'IBM Plex Sans';color:#2f5c6b">Ketuk tombol <strong>Pindai QR</strong>, lalu arahkan kamera ke stiker QR yang tertempel pada barang. Data barang akan terbuka sendiri.</div>
+<button type="button" onClick="{{ tutupTip }}" style="margin-top:9px;padding:6px 12px;border:1px solid #9fc2d0;border-radius:7px;background:#fff;font:600 12px 'IBM Plex Sans';color:#0e5a72;cursor:pointer">Mengerti</button>
+</div>
+</div>
+</sc-if>
+
+<button type="button" onClick="{{ goPindai }}" class="btn" style="display:flex;align-items:center;justify-content:center;gap:11px;padding:19px;font-size:16.5px;margin-bottom:14px">
+<span style="display:grid;grid-template-columns:repeat(3,5px);grid-template-rows:repeat(3,5px);gap:2px;flex:none">
+<span style="background:#fff"></span><span style="background:rgba(255,255,255,.35)"></span><span style="background:#fff"></span>
+<span style="background:rgba(255,255,255,.35)"></span><span style="background:#fff"></span><span style="background:rgba(255,255,255,.35)"></span>
+<span style="background:#fff"></span><span style="background:rgba(255,255,255,.35)"></span><span style="background:#fff"></span>
+</span>Pindai QR Barang</button>
+
+<div class="card" style="padding:16px;margin-bottom:14px">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:11px">
+<div><div style="font:600 14px 'IBM Plex Sans';color:#16211c">Daftar Periksa Triwulan III</div><div style="font:400 12px 'IBM Plex Sans';color:#7b858d;margin-top:3px">Batas waktu 30 September 2026</div></div>
+<div style="text-align:right"><div style="font:600 23px/1 'IBM Plex Sans';color:#0f4c3a;font-variant-numeric:tabular-nums">{{ pctLabel }}</div></div>
+</div>
+<div style="height:9px;background:#eef0f2;border-radius:99px;overflow:hidden;margin-bottom:9px"><div style="height:100%;width:{{ pctLabel }};background:#1a7f4f;border-radius:99px;transition:width .3s"></div></div>
+<div style="font:400 12.5px 'IBM Plex Sans';color:#5b646c">{{ progresText }}</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+<button type="button" onClick="{{ goDaftar }}" class="card" style="padding:14px;text-align:left;cursor:pointer">
+<div style="font:600 22px/1 'IBM Plex Sans';color:#b45309;font-variant-numeric:tabular-nums">{{ sisaCount }}</div>
+<div style="font:400 12px/1.5 'IBM Plex Sans';color:#5b646c;margin-top:5px">Belum diperiksa</div>
+</button>
+<button type="button" onClick="{{ goRiwayat }}" class="card" style="padding:14px;text-align:left;cursor:pointer">
+<div style="font:600 22px/1 'IBM Plex Sans';color:#1a7f4f;font-variant-numeric:tabular-nums">{{ selesaiCount }}</div>
+<div style="font:400 12px/1.5 'IBM Plex Sans';color:#5b646c;margin-top:5px">Sudah diperiksa</div>
+</button>
+</div>
+
+<div style="font:600 13px 'IBM Plex Sans';color:#3a4249;margin-bottom:9px">Perlu diperiksa berikutnya</div>
+<sc-for list="{{ berikutnya }}" as="b" hint-placeholder-count="3">
+<button type="button" onClick="{{ b.go }}" class="card" style="width:100%;padding:13px 14px;margin-bottom:9px;display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left">
+<div style="flex:1;min-width:0">
+<div style="font:600 13.5px/1.4 'IBM Plex Sans';color:#16211c">{{ b.nama }}</div>
+<div style="font:400 11.5px 'IBM Plex Mono',monospace;color:#8a9299;margin-top:3px">{{ b.kode }} · NUP {{ b.nup }}</div>
+</div>
+<span style="flex:none;padding:3px 9px;border-radius:5px;background:{{ b.pb.bg }};border:1px solid {{ b.pb.bd }};color:{{ b.pb.fg }};font:600 11px 'IBM Plex Sans'">{{ b.prioritas }}</span>
+<span style="flex:none;color:#c0c6ca;font:400 17px/1 'IBM Plex Sans'">›</span>
+</button>
+</sc-for>
+
+<button type="button" onClick="{{ goLaporLangsung }}" class="btn2" style="margin-top:6px">Lapor Kerusakan Barang</button>
+</sc-if>
+
+<sc-if value="{{ isPindai }}" hint-placeholder-val="{{ false }}">
+<div class="vf" onClick="{{ simulasiPindai }}">
+<div class="vfc" style="top:16px;left:16px;border-right:none;border-bottom:none;border-radius:8px 0 0 0"></div>
+<div class="vfc" style="top:16px;right:16px;border-left:none;border-bottom:none;border-radius:0 8px 0 0"></div>
+<div class="vfc" style="bottom:16px;left:16px;border-right:none;border-top:none;border-radius:0 0 0 8px"></div>
+<div class="vfc" style="bottom:16px;right:16px;border-left:none;border-top:none;border-radius:0 0 8px 0"></div>
+<div class="vfl"></div>
+<div style="position:absolute;left:0;right:0;bottom:26px;text-align:center;font:500 13px/1.6 'IBM Plex Sans';color:#cfe6dc;padding:0 30px">Arahkan kamera ke stiker QR<br>pada barang</div>
+</div>
+<div style="margin-top:14px;padding:12px 14px;background:#fdf4e3;border:1px solid #f0dcb0;border-radius:10px;font:400 12.5px/1.6 'IBM Plex Sans';color:#7a5300">Tampilan demo. Ketuk kotak di atas untuk mensimulasikan hasil pemindaian.</div>
+
+<div style="margin-top:20px;padding-top:18px;border-top:1px solid #e3e6e9">
+<div style="font:600 13.5px 'IBM Plex Sans';color:#16211c;margin-bottom:5px">Stiker QR rusak atau hilang?</div>
+<div class="hint" style="margin-bottom:11px">Cari barang secara manual dengan mengetik namanya.</div>
+<input value="{{ cari }}" onChange="{{ setCari }}" placeholder="Ketik nama atau kode barang" class="field" style="margin-bottom:11px">
+<sc-for list="{{ hasilCari }}" as="h" hint-placeholder-count="3">
+<button type="button" onClick="{{ h.go }}" class="card" style="width:100%;padding:12px 13px;margin-bottom:8px;display:flex;align-items:center;gap:10px;cursor:pointer;text-align:left">
+<div style="flex:1;min-width:0"><div style="font:600 13px/1.4 'IBM Plex Sans';color:#16211c">{{ h.nama }}</div><div style="font:400 11px 'IBM Plex Mono',monospace;color:#8a9299;margin-top:3px">{{ h.kode }} · NUP {{ h.nup }}</div></div>
+<span style="flex:none;color:#c0c6ca;font:400 17px/1 'IBM Plex Sans'">›</span>
+</button>
+</sc-for>
+<sc-if value="{{ cariKosong }}" hint-placeholder-val="{{ false }}">
+<div style="padding:18px;text-align:center;font:400 13px 'IBM Plex Sans';color:#8a9299">Tidak ada barang yang cocok.</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPeriksa }}" hint-placeholder-val="{{ false }}">
+<div style="padding:14px;background:#0f4c3a;border-radius:12px;color:#fff;margin-bottom:16px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+<div style="min-width:0"><div style="font:600 16px/1.35 'IBM Plex Sans'">{{ pk.nama }}</div><div style="font:400 11.5px 'IBM Plex Mono',monospace;color:#a9c6ba;margin-top:4px">{{ pk.kode }} · NUP {{ pk.nup }}</div></div>
+<span style="flex:none;padding:3px 9px;border-radius:5px;background:rgba(255,255,255,.18);font:600 11px 'IBM Plex Sans'">{{ pk.prioritas }}</span>
+</div>
+</div>
+
+<div class="card" style="padding:14px;margin-bottom:18px;background:#fafbfc">
+<div style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#7b858d;margin-bottom:10px">DATA TERCATAT SAAT INI</div>
+<sc-for list="{{ pk.info }}" as="i" hint-placeholder-count="4">
+<div style="display:flex;justify-content:space-between;gap:14px;padding:5px 0"><span style="font:400 12.5px 'IBM Plex Sans';color:#7b858d;flex:none">{{ i.k }}</span><span style="font:500 12.5px/1.5 'IBM Plex Sans';color:#3a4249;text-align:right">{{ i.v }}</span></div>
+</sc-for>
+</div>
+
+<div style="font:600 15px 'IBM Plex Sans';color:#16211c;margin-bottom:4px">1. Barang ada di lokasi ini?</div>
+<div class="hint" style="margin-bottom:11px">Pilih salah satu sesuai yang Anda lihat.</div>
+<sc-for list="{{ adaOpts }}" as="o" hint-placeholder-count="3">
+<div onClick="{{ o.pick }}" class="opt" style="margin-bottom:9px;border-color:{{ o.bd }};background:{{ o.bg }}">
+<span style="flex:none;width:21px;height:21px;border-radius:50%;border:2px solid {{ o.dot }};background:{{ o.fill }};margin-top:1px"></span>
+<span style="flex:1;min-width:0"><span style="display:block;font:600 14px 'IBM Plex Sans';color:#16211c">{{ o.label }}</span><span style="display:block;font:400 12.5px/1.55 'IBM Plex Sans';color:#7b858d;margin-top:3px">{{ o.desc }}</span></span>
+</div>
+</sc-for>
+<sc-if value="{{ errAda }}" hint-placeholder-val="{{ false }}"><div class="err">Pilih dulu keberadaan barangnya</div></sc-if>
+
+<sc-if value="{{ showLokasi }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:16px;padding:14px;background:#fdf4e3;border:1px solid #f0dcb0;border-radius:11px">
+<label class="lbl" style="color:#7a5300">Barang ini sekarang ada di mana?</label>
+<select value="{{ lokasiAktual }}" onChange="{{ setLokasi }}" class="field">
+<sc-for list="{{ unitOpts }}" as="u" hint-placeholder-count="5"><option>{{ u }}</option></sc-for>
+</select>
+<sc-if value="{{ errLokasi }}" hint-placeholder-val="{{ false }}"><div class="err">Pilih lokasi barang sekarang</div></sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ showKet }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:16px;padding:14px;background:#fdecea;border:1px solid #f4cdc9;border-radius:11px">
+<label class="lbl" style="color:#a3231b">Ceritakan singkat apa yang Anda temukan</label>
+<textarea value="{{ keterangan }}" onChange="{{ setKeterangan }}" rows="3" placeholder="Contoh: sudah dicari di gudang dan ruang jaga, barang tidak ada" class="field" style="resize:vertical"></textarea>
+<div class="hint" style="margin-top:7px">Keterangan ini akan ditelusuri pengelola BMN pada rekonsiliasi.</div>
+<sc-if value="{{ errKet }}" hint-placeholder-val="{{ false }}"><div class="err">Mohon isi keterangan minimal 10 huruf</div></sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ showKondisi }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:22px;font:600 15px 'IBM Plex Sans';color:#16211c;margin-bottom:4px">2. Bagaimana kondisinya?</div>
+<div class="hint" style="margin-bottom:11px">Lihat fisik barangnya, bukan catatan lama.</div>
+<sc-for list="{{ kondisiOpts }}" as="k" hint-placeholder-count="3">
+<div onClick="{{ k.pick }}" class="opt" style="margin-bottom:9px;border-color:{{ k.bd }};background:{{ k.bg }}">
+<span style="flex:none;width:21px;height:21px;border-radius:50%;border:2px solid {{ k.dot }};background:{{ k.fill }};margin-top:1px"></span>
+<span style="flex:1;min-width:0"><span style="display:block;font:600 14px 'IBM Plex Sans';color:#16211c">{{ k.label }}</span><span style="display:block;font:400 12.5px/1.55 'IBM Plex Sans';color:#7b858d;margin-top:3px">{{ k.desc }}</span></span>
+</div>
+</sc-for>
+<sc-if value="{{ errKondisi }}" hint-placeholder-val="{{ false }}"><div class="err">Pilih dulu kondisi barangnya</div></sc-if>
+</sc-if>
+
+<sc-if value="{{ showFoto }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:22px;font:600 15px 'IBM Plex Sans';color:#16211c;margin-bottom:4px">3. Foto kondisi {{ fotoWajibLabel }}</div>
+<div class="hint" style="margin-bottom:11px">{{ fotoHint }}</div>
+<sc-for list="{{ fotoList }}" as="f" hint-placeholder-count="2">
+<div class="card" style="padding:11px 13px;margin-bottom:8px;display:flex;align-items:center;gap:11px">
+<div style="flex:none;width:40px;height:40px;border-radius:7px;background:#eef0f2;border:1px dashed #c8cdd1"></div>
+<div style="flex:1;min-width:0;font:400 12px 'IBM Plex Mono',monospace;color:#5b646c;overflow:hidden">{{ f.nama }}</div>
+<button type="button" onClick="{{ f.hapus }}" style="flex:none;padding:5px 10px;border:1px solid #e6c9c5;border-radius:7px;background:#fff;font:600 11.5px 'IBM Plex Sans';color:#a3231b;cursor:pointer">Hapus</button>
+</div>
+</sc-for>
+<button type="button" onClick="{{ ambilFoto }}" class="btn2" style="border-style:dashed">Ambil Foto</button>
+<sc-if value="{{ errFoto }}" hint-placeholder-val="{{ false }}"><div class="err">Foto wajib untuk barang yang rusak</div></sc-if>
+</sc-if>
+
+<sc-if value="{{ showCatatan }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:22px">
+<label class="lbl">Catatan tambahan <span style="font-weight:400;color:#8a9299">(boleh dikosongkan)</span></label>
+<textarea value="{{ catatan }}" onChange="{{ setCatatan }}" rows="2" placeholder="Contoh: kabel power perlu diganti" class="field" style="resize:vertical"></textarea>
+</div>
+</sc-if>
+
+<sc-if value="{{ tawarLapor }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:18px;padding:14px;background:#fdf0e3;border:1px solid #f2d6b6;border-radius:11px">
+<label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer"><input type="checkbox" checked="{{ buatLaporan }}" onChange="{{ toggleLaporan }}" style="margin-top:2px;width:17px;height:17px;accent-color:#0f4c3a;flex:none"><span><span style="display:block;font:600 13.5px 'IBM Plex Sans';color:#9a4a06">Sekalian buat laporan kerusakan</span><span style="display:block;font:400 12.5px/1.6 'IBM Plex Sans';color:#8a5a2b;margin-top:4px">Laporan akan langsung masuk ke pengelola BMN untuk diverifikasi, lengkap dengan foto yang Anda ambil.</span></span></label>
+</div>
+</sc-if>
+</sc-if>
+
+<sc-if value="{{ isSukses }}" hint-placeholder-val="{{ false }}">
+<div style="text-align:center;padding:26px 6px 22px">
+<div style="width:74px;height:74px;margin:0 auto 18px;border-radius:50%;background:#e7f5ec;border:2px solid #bfe3cd;display:flex;align-items:center;justify-content:center;animation:pop .35s ease"><span style="font:600 34px/1 'IBM Plex Sans';color:#1a7f4f">✓</span></div>
+<div style="font:600 21px/1.35 'IBM Plex Sans';color:#16211c;margin-bottom:8px">Pemeriksaan tersimpan</div>
+<div style="font:400 13.5px/1.65 'IBM Plex Sans';color:#5b646c;max-width:30em;margin:0 auto">{{ suksesText }}</div>
+</div>
+
+<div class="card" style="padding:15px;margin-bottom:14px">
+<sc-for list="{{ suksesRingkas }}" as="s" hint-placeholder-count="4">
+<div style="display:flex;justify-content:space-between;gap:14px;padding:6px 0"><span style="font:400 12.5px 'IBM Plex Sans';color:#7b858d;flex:none">{{ s.k }}</span><span style="font:600 12.5px/1.5 'IBM Plex Sans';color:{{ s.c }};text-align:right">{{ s.v }}</span></div>
+</sc-for>
+</div>
+
+<div class="card" style="padding:14px;margin-bottom:16px;background:#fafbfc">
+<div style="font:400 12.5px/1.65 'IBM Plex Sans';color:#5b646c">Nama Anda dan waktu pemeriksaan sudah dicatat otomatis pada riwayat barang ini. Catatan tersebut tidak dapat dihapus.</div>
+</div>
+
+<div style="height:9px;background:#eef0f2;border-radius:99px;overflow:hidden;margin-bottom:9px"><div style="height:100%;width:{{ pctLabel }};background:#1a7f4f;border-radius:99px"></div></div>
+<div style="font:400 12.5px 'IBM Plex Sans';color:#5b646c;text-align:center;margin-bottom:18px">{{ progresText }}</div>
+
+<sc-if value="{{ suksesPerluLapor }}" hint-placeholder-val="{{ false }}">
+<div style="padding:14px;background:#fdf0e3;border:1px solid #f2d6b6;border-radius:11px;margin-bottom:14px;font:400 12.5px/1.7 'IBM Plex Sans';color:#8a5a2b">Barang ini Anda tandai rusak, tetapi laporan kerusakannya belum dikirim. Lanjutkan agar pengelola BMN dapat menindaklanjuti.</div>
+<button type="button" onClick="{{ lanjutLapor }}" class="btn" style="margin-bottom:10px">Buat Laporan Kerusakan</button>
+<button type="button" onClick="{{ goPindai }}" class="btn2" style="margin-bottom:10px">Nanti Saja, Pindai Berikutnya</button>
+</sc-if>
+<sc-if value="{{ suksesTanpaLapor }}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{ goPindai }}" class="btn" style="margin-bottom:10px">Pindai Barang Berikutnya</button>
+</sc-if>
+<button type="button" onClick="{{ goDaftar }}" class="btn2">Kembali ke Daftar Periksa</button>
+</sc-if>
+
+<sc-if value="{{ isDaftar }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:8px;margin-bottom:14px">
+<sc-for list="{{ tabFilter }}" as="t" hint-placeholder-count="3">
+<button type="button" onClick="{{ t.go }}" style="flex:1;padding:10px 6px;border:1.5px solid {{ t.bd }};border-radius:9px;background:{{ t.bg }};color:{{ t.fg }};font:600 12.5px 'IBM Plex Sans';cursor:pointer">{{ t.label }}</button>
+</sc-for>
+</div>
+
+<sc-for list="{{ daftarRows }}" as="d" hint-placeholder-count="6">
+<button type="button" onClick="{{ d.go }}" class="card" style="width:100%;padding:13px 14px;margin-bottom:9px;display:flex;align-items:center;gap:11px;cursor:pointer;text-align:left;border-left:3px solid {{ d.tone }}">
+<div style="flex:1;min-width:0">
+<div style="font:600 13.5px/1.4 'IBM Plex Sans';color:#16211c">{{ d.nama }}</div>
+<div style="font:400 11px 'IBM Plex Mono',monospace;color:#8a9299;margin-top:3px">{{ d.kode }} · NUP {{ d.nup }}</div>
+<div style="font:400 12px 'IBM Plex Sans';color:#7b858d;margin-top:5px">{{ d.ket }}</div>
+</div>
+<span style="flex:none;padding:3px 9px;border-radius:5px;background:{{ d.sb.bg }};border:1px solid {{ d.sb.bd }};color:{{ d.sb.fg }};font:600 11px 'IBM Plex Sans'">{{ d.statusLabel }}</span>
+</button>
+</sc-for>
+<sc-if value="{{ daftarKosong }}" hint-placeholder-val="{{ false }}">
+<div style="padding:40px 20px;text-align:center"><div style="font:600 14px 'IBM Plex Sans';color:#3a4249;margin-bottom:6px">Tidak ada barang di sini</div><div class="hint">Coba pilih tab yang lain.</div></div>
+</sc-if>
+</sc-if>
+
+<sc-if value="{{ isLapor }}" hint-placeholder-val="{{ false }}">
+<div class="card" style="padding:13px 14px;margin-bottom:18px;background:#fafbfc">
+<div style="font:600 13.5px/1.4 'IBM Plex Sans';color:#16211c">{{ lp.nama }}</div>
+<div style="font:400 11px 'IBM Plex Mono',monospace;color:#8a9299;margin-top:3px">{{ lp.kode }} · NUP {{ lp.nup }} · {{ lp.lokasi }}</div>
+</div>
+
+<div style="margin-bottom:18px">
+<label class="lbl">Kerusakannya seperti apa?</label>
+<select value="{{ lapJenis }}" onChange="{{ setLapJenis }}" class="field">
+<sc-for list="{{ jenisOpts }}" as="j" hint-placeholder-count="5"><option>{{ j }}</option></sc-for>
+</select>
+<sc-if value="{{ errLapJenis }}" hint-placeholder-val="{{ false }}"><div class="err">Pilih jenis kerusakan</div></sc-if>
+</div>
+
+<div style="margin-bottom:18px">
+<label class="lbl">Ceritakan kejadiannya</label>
+<textarea value="{{ lapDeskripsi }}" onChange="{{ setLapDeskripsi }}" rows="4" placeholder="Kapan mulai rusak, apa yang terjadi, apakah masih bisa dipakai" class="field" style="resize:vertical"></textarea>
+<div class="hint" style="margin-top:7px">{{ lapHitung }}</div>
+<sc-if value="{{ errLapDeskripsi }}" hint-placeholder-val="{{ false }}"><div class="err">Mohon tulis minimal 20 huruf agar pengelola BMN paham</div></sc-if>
+</div>
+
+<div style="margin-bottom:18px">
+<label class="lbl">Seberapa mengganggu layanan?</label>
+<sc-for list="{{ dampakOpts }}" as="d" hint-placeholder-count="3">
+<div onClick="{{ d.pick }}" class="opt" style="margin-bottom:9px;border-color:{{ d.bd }};background:{{ d.bg }}">
+<span style="flex:none;width:21px;height:21px;border-radius:50%;border:2px solid {{ d.dot }};background:{{ d.fill }};margin-top:1px"></span>
+<span style="flex:1;min-width:0"><span style="display:block;font:600 14px 'IBM Plex Sans';color:#16211c">{{ d.label }}</span><span style="display:block;font:400 12.5px/1.55 'IBM Plex Sans';color:#7b858d;margin-top:3px">{{ d.desc }}</span></span>
+</div>
+</sc-for>
+<sc-if value="{{ errLapDampak }}" hint-placeholder-val="{{ false }}"><div class="err">Pilih dampaknya terhadap layanan</div></sc-if>
+</div>
+
+<sc-if value="{{ lapAdaTenggat }}" hint-placeholder-val="{{ false }}">
+<div style="padding:14px;background:#e6f0f4;border:1px solid #c4dbe4;border-radius:11px;margin-bottom:18px">
+<div style="font:600 12.5px 'IBM Plex Sans';color:#0e5a72;margin-bottom:7px">Laporan ini dinilai {{ lapKelas }}</div>
+<div style="font:400 12.5px/1.7 'IBM Plex Sans';color:#2f5c6b">Diverifikasi pengelola BMN paling lambat <strong>{{ lapDueVerif }}</strong>, penetapan prioritas paling lambat <strong>{{ lapDuePrioritas }}</strong>.</div>
+</div>
+</sc-if>
+
+<div style="margin-bottom:18px">
+<label class="lbl">Foto kerusakan {{ lapFotoWajib }}</label>
+<sc-for list="{{ lapFotoList }}" as="f" hint-placeholder-count="2">
+<div class="card" style="padding:11px 13px;margin-bottom:8px;display:flex;align-items:center;gap:11px">
+<div style="flex:none;width:40px;height:40px;border-radius:7px;background:#eef0f2;border:1px dashed #c8cdd1"></div>
+<div style="flex:1;min-width:0;font:400 12px 'IBM Plex Mono',monospace;color:#5b646c;overflow:hidden">{{ f.nama }}</div>
+<button type="button" onClick="{{ f.hapus }}" style="flex:none;padding:5px 10px;border:1px solid #e6c9c5;border-radius:7px;background:#fff;font:600 11.5px 'IBM Plex Sans';color:#a3231b;cursor:pointer">Hapus</button>
+</div>
+</sc-for>
+<button type="button" onClick="{{ lapAmbilFoto }}" class="btn2" style="border-style:dashed">Ambil Foto</button>
+<sc-if value="{{ errLapFoto }}" hint-placeholder-val="{{ false }}"><div class="err">Foto wajib untuk kerusakan yang mengganggu layanan</div></sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLaporSukses }}" hint-placeholder-val="{{ false }}">
+<div style="text-align:center;padding:26px 6px 22px">
+<div style="width:74px;height:74px;margin:0 auto 18px;border-radius:50%;background:#e7f5ec;border:2px solid #bfe3cd;display:flex;align-items:center;justify-content:center;animation:pop .35s ease"><span style="font:600 34px/1 'IBM Plex Sans';color:#1a7f4f">✓</span></div>
+<div style="font:600 21px/1.35 'IBM Plex Sans';color:#16211c;margin-bottom:8px">Laporan terkirim</div>
+<div style="font:400 13.5px/1.65 'IBM Plex Sans';color:#5b646c">Nomor tiket Anda</div>
+<div style="font:600 19px 'IBM Plex Mono',monospace;color:#0f4c3a;margin-top:6px">{{ tiketBaru }}</div>
+</div>
+<div class="card" style="padding:15px;margin-bottom:16px">
+<div style="font:400 12.5px/1.75 'IBM Plex Sans';color:#5b646c">Simpan nomor tiket ini. Anda bisa menanyakan perkembangannya kepada pengelola BMN. Pemberitahuan akan muncul di aplikasi begitu laporan diverifikasi.</div>
+</div>
+<button type="button" onClick="{{ goBeranda }}" class="btn" style="margin-bottom:10px">Kembali ke Beranda</button>
+<button type="button" onClick="{{ goPindai }}" class="btn2">Periksa Barang Lain</button>
+</sc-if>
+
+<sc-if value="{{ isAkun }}" hint-placeholder-val="{{ false }}">
+<div class="card" style="padding:18px;margin-bottom:14px;text-align:center">
+<div style="width:62px;height:62px;margin:0 auto 12px;border-radius:50%;background:#0f4c3a;color:#fff;display:flex;align-items:center;justify-content:center;font:600 21px 'IBM Plex Sans'">{{ inisial }}</div>
+<div style="font:600 17px 'IBM Plex Sans';color:#16211c">{{ akun.nama }}</div>
+<div style="font:400 12.5px 'IBM Plex Sans';color:#7b858d;margin-top:4px">{{ akun.jabatan }}</div>
+<div style="display:inline-block;margin-top:10px;padding:4px 11px;border-radius:6px;background:#e7f5ec;border:1px solid #bfe3cd;font:600 11.5px 'IBM Plex Sans';color:#14653f">{{ akun.peran }}</div>
+</div>
+
+<div class="card" style="padding:16px;margin-bottom:14px">
+<div style="font:600 13px 'IBM Plex Sans';color:#16211c;margin-bottom:11px">Akun Anda</div>
+<sc-for list="{{ akunInfo }}" as="a" hint-placeholder-count="4">
+<div style="display:flex;justify-content:space-between;gap:14px;padding:6px 0;border-bottom:1px solid #f1f3f4"><span style="font:400 12.5px 'IBM Plex Sans';color:#7b858d;flex:none">{{ a.k }}</span><span style="font:500 12.5px/1.5 'IBM Plex Sans';color:#3a4249;text-align:right">{{ a.v }}</span></div>
+</sc-for>
+<div class="hint" style="margin-top:12px">Peran dan unit kerja hanya bisa diubah oleh administrator.</div>
+</div>
+
+<div class="card" style="padding:16px;margin-bottom:14px">
+<div style="font:600 13px 'IBM Plex Sans';color:#16211c;margin-bottom:5px">Perangkat Terdaftar</div>
+<div class="hint" style="margin-bottom:12px">Perangkat yang pernah Anda pakai masuk tanpa kata sandi ulang.</div>
+<sc-for list="{{ perangkatList }}" as="p" hint-placeholder-count="2">
+<div style="padding:12px;border:1px solid #e3e6e9;border-radius:10px;margin-bottom:9px;display:flex;align-items:center;gap:11px">
+<div style="flex:1;min-width:0"><div style="font:600 13px 'IBM Plex Sans';color:#16211c">{{ p.nama }}</div><div style="font:400 11.5px 'IBM Plex Sans';color:#8a9299;margin-top:3px">{{ p.ket }}</div></div>
+<sc-if value="{{ p.bisaCabut }}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{ p.cabut }}" style="flex:none;padding:7px 11px;border:1px solid #e6c9c5;border-radius:8px;background:#fff;font:600 11.5px 'IBM Plex Sans';color:#a3231b;cursor:pointer">Cabut</button>
+</sc-if>
+<sc-if value="{{ p.iniPerangkat }}" hint-placeholder-val="{{ false }}">
+<span style="flex:none;padding:4px 9px;border-radius:5px;background:#e7f5ec;border:1px solid #bfe3cd;font:600 11px 'IBM Plex Sans';color:#14653f">Sekarang</span>
+</sc-if>
+</div>
+</sc-for>
+</div>
+
+<div style="padding:14px;background:#fdf4e3;border:1px solid #f0dcb0;border-radius:11px;margin-bottom:16px;font:400 12.5px/1.7 'IBM Plex Sans';color:#7a5300">Jika HP Anda hilang, segera hubungi administrator agar perangkat itu dicabut aksesnya.</div>
+
+<button type="button" onClick="{{ doKeluar }}" class="btn2" style="border-color:#e6c9c5;color:#a3231b">Keluar dari Aplikasi</button>
+</sc-if>
+
+<sc-if value="{{ isRiwayat }}" hint-placeholder-val="{{ false }}">
+<sc-for list="{{ riwayatRows }}" as="r" hint-placeholder-count="4">
+<div class="card" style="padding:13px 14px;margin-bottom:9px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+<div style="flex:1;min-width:0"><div style="font:600 13.5px/1.4 'IBM Plex Sans';color:#16211c">{{ r.nama }}</div><div style="font:400 11px 'IBM Plex Mono',monospace;color:#8a9299;margin-top:3px">{{ r.kode }} · NUP {{ r.nup }}</div></div>
+<span style="flex:none;padding:3px 9px;border-radius:5px;background:{{ r.kb.bg }};border:1px solid {{ r.kb.bd }};color:{{ r.kb.fg }};font:600 11px 'IBM Plex Sans'">{{ r.kondisi }}</span>
+</div>
+<div style="margin-top:9px;padding-top:9px;border-top:1px solid #f1f3f4;font:400 12px/1.6 'IBM Plex Sans';color:#7b858d">{{ r.jejak }}</div>
+</div>
+</sc-for>
+<sc-if value="{{ riwayatKosong }}" hint-placeholder-val="{{ false }}">
+<div style="padding:44px 20px;text-align:center"><div style="font:600 14px 'IBM Plex Sans';color:#3a4249;margin-bottom:6px">Belum ada pemeriksaan</div><div class="hint">Mulai dengan memindai QR pada barang.</div></div>
+</sc-if>
+</sc-if>
+
+</div>
+
+<sc-if value="{{ showAksi }}" hint-placeholder-val="{{ false }}">
+<div style="flex:none;padding:12px 16px;border-top:1px solid #e3e6e9;background:#fff;box-shadow:0 -4px 14px rgba(16,24,40,.05)">
+<button type="button" onClick="{{ aksiUtama }}" class="btn">{{ aksiLabel }}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ showTab }}" hint-placeholder-val="{{ true }}">
+<nav style="flex:none;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #e3e6e9;background:#fff">
+<sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+<button type="button" onClick="{{ t.go }}" class="tab">
+<span style="width:100%;height:3px;border-radius:99px;background:{{ t.bar }};margin-top:-9px"></span>
+<span style="width:7px;height:7px;border-radius:2px;background:{{ t.dot }};margin-top:6px"></span>
+<span style="font:{{ t.fw }} 11.5px 'IBM Plex Sans';color:{{ t.fg }}">{{ t.label }}</span>
+</button>
+</sc-for>
+</nav>
+</sc-if>
+
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ confirmOpen }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ closeConfirm }}" style="position:fixed;inset:0;z-index:90;background:rgba(16,24,40,.46);display:flex;align-items:flex-end;justify-content:center;padding:18px;animation:fin .14s ease">
+<div onClick="{{ stop }}" style="width:100%;max-width:398px;background:#fff;border-radius:16px;overflow:hidden;animation:tin .2s ease">
+<div style="padding:20px 20px 16px">
+<div style="font:600 16.5px/1.35 'IBM Plex Sans';color:#16211c;margin-bottom:8px">{{ cf.title }}</div>
+<div style="font:400 13.5px/1.65 'IBM Plex Sans';color:#5b646c">{{ cf.message }}</div>
+</div>
+<div style="padding:0 16px 16px;display:flex;flex-direction:column;gap:9px">
+<button type="button" onClick="{{ okConfirm }}" class="btn" style="background:{{ cf.okBg }}">{{ cf.okLabel }}</button>
+<button type="button" onClick="{{ closeConfirm }}" class="btn2">Batal</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+<div style="position:fixed;left:0;right:0;top:16px;z-index:95;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;padding:0 16px">
+<sc-for list="{{ toasts }}" as="t" hint-placeholder-count="1">
+<div style="max-width:398px;width:100%;display:flex;align-items:center;gap:10px;padding:12px 15px;background:#16211c;color:#fff;border-radius:11px;box-shadow:0 10px 26px rgba(16,24,40,.26);font:500 13px/1.45 'IBM Plex Sans';animation:tin .2s ease">
+<span style="flex:none;width:8px;height:8px;border-radius:50%;background:{{ t.dot }}"></span>{{ t.msg }}
+</div>
+</sc-for>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;halamanAwal&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Login&quot;,&quot;Beranda&quot;,&quot;Pindai QR&quot;,&quot;Periksa Barang&quot;,&quot;Daftar Periksa&quot;,&quot;Akun Saya&quot;],&quot;default&quot;:&quot;Login&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Demo&quot;}}">
+class Component extends DCLogic {
+  pageOf = { 'Login': 'login', 'Beranda': 'beranda', 'Pindai QR': 'pindai', 'Periksa Barang': 'periksa', 'Daftar Periksa': 'daftar', 'Akun Saya': 'akun' };
+
+  akun = {
+    nama: 'Budi Santoso', jabatan: 'Komandan Regu Pengamanan', peran: 'Petugas Pemeriksa',
+    username: 'budi.santoso', unit: 'Portir / Pintu Utama (P2U)', dibuat: '3 Agustus 2026 oleh Administrator'
+  };
+
+  unitList = ['Klinik/Poliklinik Lapas', 'Portir / Pintu Utama (P2U)', 'Ruang CCTV / Monitoring', 'Ruang Kepala Lapas', 'Subbag Tata Usaha', 'Seksi Pembinaan Narapidana', 'Seksi Kegiatan Kerja', 'Seksi Administrasi Keamanan dan Ketertiban', 'Regu Pengamanan (Rupam)', 'Blok Hunian A', 'Blok Hunian B', 'Blok Hunian C', 'Dapur / Instalasi Gizi', 'Gudang Umum', 'Ruang Kunjungan', 'Masjid / Tempat Ibadah', 'Ruang Server', 'Aula', 'Rumah Dinas'];
+
+  daftarAwal = [
+    { id: '3050105012.1', kode: '3050105012', nup: '1', nama: 'Alat Detektor Barang Terlarang/X Ray', prioritas: 'Kritis', kondisi: 'Baik', terakhir: '18 Juli 2026', status: 'belum' },
+    { id: '3050105029.4', kode: '3050105029', nup: '4', nama: 'Hand Metal Detector', prioritas: 'Tinggi', kondisi: 'Rusak Ringan', terakhir: '21 Agustus 2026', status: 'belum' },
+    { id: '3050105029.5', kode: '3050105029', nup: '5', nama: 'Hand Metal Detector', prioritas: 'Tinggi', kondisi: 'Baik', terakhir: '10 Agustus 2026', status: 'belum' },
+    { id: '3050105073.2', kode: '3050105073', nup: '2', nama: 'Alat Sidik Jari', prioritas: 'Tinggi', kondisi: 'Baik', terakhir: '12 Agustus 2026', status: 'belum' },
+    { id: '3050105007.2', kode: '3050105007', nup: '2', nama: 'CCTV Camera Control Television System', prioritas: 'Tinggi', kondisi: 'Baik', terakhir: '15 Agustus 2026', status: 'belum' },
+    { id: '3050105007.3', kode: '3050105007', nup: '3', nama: 'CCTV Camera Control Television System', prioritas: 'Tinggi', kondisi: 'Baik', terakhir: '15 Agustus 2026', status: 'belum' },
+    { id: '3060201006.3', kode: '3060201006', nup: '3', nama: 'Handy Talky (HT)', prioritas: 'Tinggi', kondisi: 'Baik', terakhir: '17 Agustus 2026', status: 'belum' },
+    { id: '3060201006.4', kode: '3060201006', nup: '4', nama: 'Handy Talky (HT)', prioritas: 'Tinggi', kondisi: 'Baik', terakhir: '17 Agustus 2026', status: 'belum' },
+    { id: '3020102002.1', kode: '3020102002', nup: '1', nama: 'Micro Bus (Penumpang 15 S/D 29 Orang)', prioritas: 'Tinggi', kondisi: 'Baik', terakhir: '8 Agustus 2026', status: 'selesai', hasil: 'Ditemukan · Baik', jejak: 'Diperiksa 19 Agustus 2026 oleh Budi Santoso' },
+    { id: '3020101003.1', kode: '3020101003', nup: '1', nama: 'Station Wagon', prioritas: 'Tinggi', kondisi: 'Baik', terakhir: '19 Agustus 2026', status: 'selesai', hasil: 'Ditemukan · Baik', jejak: 'Diperiksa 19 Agustus 2026 oleh Budi Santoso' },
+    { id: '4040104001.2', kode: '4040104001', nup: '2', nama: 'Pagar Permanen', prioritas: 'Tinggi', kondisi: 'Rusak Ringan', terakhir: '21 Agustus 2026', status: 'selesai', hasil: 'Ditemukan · Rusak Ringan', jejak: 'Diperiksa 21 Agustus 2026 oleh Budi Santoso' },
+    { id: '3050201003.11', kode: '3050201003', nup: '11', nama: 'Kursi Besi/Metal', prioritas: 'Rutin', kondisi: 'Baik', terakhir: '24 Agustus 2026', status: 'selesai', hasil: 'Ditemukan · Baik', jejak: 'Diperiksa 24 Agustus 2026 oleh Budi Santoso' }
+  ];
+
+  adaDefs = [
+    { v: 'ada', label: 'Ada di lokasi ini', desc: 'Barang ditemukan sesuai catatan' },
+    { v: 'beda', label: 'Ada, tapi di tempat lain', desc: 'Barang ditemukan di lokasi berbeda' },
+    { v: 'hilang', label: 'Tidak ditemukan', desc: 'Barang tidak ada saat diperiksa' }
+  ];
+
+  kondisiDefs = [
+    { v: 'Baik', label: 'Baik', desc: 'Berfungsi normal, tidak ada kerusakan' },
+    { v: 'Rusak Ringan', label: 'Rusak Ringan', desc: 'Masih bisa dipakai, ada kerusakan kecil' },
+    { v: 'Rusak Berat', label: 'Rusak Berat', desc: 'Tidak bisa dipakai sama sekali' }
+  ];
+
+  jenisOpts = ['Pilih jenis kerusakan', 'Tidak Berfungsi Total', 'Berfungsi Sebagian', 'Kerusakan Fisik', 'Kerusakan Komponen', 'Gangguan Kelistrikan', 'Lainnya'];
+
+  dampakDefs = [
+    { v: 'Menghentikan layanan', label: 'Layanan berhenti', desc: 'Barang tidak bisa dipakai dan pekerjaan terhenti', kelas: 'Kritis', hari: 3 },
+    { v: 'Mengganggu sebagian layanan', label: 'Terganggu sebagian', desc: 'Masih jalan tapi harus dialihkan ke barang lain', kelas: 'Tinggi', hari: 7 },
+    { v: 'Tidak mengganggu layanan', label: 'Tidak terganggu', desc: 'Pekerjaan tetap berjalan normal', kelas: 'Rutin', hari: 14 }
+  ];
+
+  bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+  hariIni = new Date(2026, 7, 26);
+  fmt(d) { return d.getDate() + ' ' + this.bulan[d.getMonth()] + ' ' + d.getFullYear(); }
+  plusHari(n) { const d = new Date(this.hariIni.getTime()); d.setDate(d.getDate() + n); return this.fmt(d); }
+
+  pfInit() { return { ada: '', lokasiAktual: 'Pilih unit kerja', keterangan: '', kondisi: '', foto: [], catatan: '', buatLaporan: true }; }
+  lapInit() { return { jenis: 'Pilih jenis kerusakan', deskripsi: '', dampak: '', foto: [] }; }
+
+  state = {
+    page: this.pageOf[this.props.halamanAwal] || 'login',
+    ingat: true, tipOn: true,
+    daftar: this.daftarAwal.slice(),
+    aktifId: '3050105012.1',
+    pf: this.pfInit(), pfErr: {},
+    lap: this.lapInit(), lapErr: {}, lapDariPeriksa: false,
+    tiketSeq: 41, tiketBaru: '', suksesInfo: null,
+    cari: '', tabDaftar: 'Belum', trail: [],
+    perangkat: [
+      { nama: 'Redmi Note 12 — Android 13', ket: 'Perangkat yang Anda pakai sekarang', iniPerangkat: true, bisaCabut: false },
+      { nama: 'Oppo A57 — Android 12', ket: 'Terakhir dipakai 2 Agustus 2026', iniPerangkat: false, bisaCabut: true }
+    ],
+    toasts: [], confirm: null
+  };
+
+  toastSeq = 0;
+  timers = [];
+
+  componentWillUnmount() { this.timers.forEach(t => clearTimeout(t)); }
+
+  toast(msg, kind) {
+    const id = ++this.toastSeq;
+    const dot = kind === 'warn' ? '#d9a227' : (kind === 'err' ? '#e5675c' : '#5fd39b');
+    this.setState(s => ({ toasts: s.toasts.concat([{ id, msg, dot }]) }));
+    this.timers.push(setTimeout(() => this.setState(s => ({ toasts: s.toasts.filter(t => t.id !== id) })), 2800));
+  }
+
+  badge(k) {
+    const m = {
+      'Baik': { bg: '#e7f5ec', fg: '#14653f', bd: '#bfe3cd' },
+      'Rusak Ringan': { bg: '#fdf4e3', fg: '#8a5300', bd: '#f0dcb0' },
+      'Rusak Berat': { bg: '#fdecea', fg: '#a3231b', bd: '#f4cdc9' },
+      'Kritis': { bg: '#f8e0dd', fg: '#7a1512', bd: '#eeb8b2' },
+      'Tinggi': { bg: '#fdf0e3', fg: '#9a4a06', bd: '#f2d6b6' },
+      'Rutin': { bg: '#eef0f2', fg: '#4a5259', bd: '#dfe3e6' },
+      'Sudah': { bg: '#e7f5ec', fg: '#14653f', bd: '#bfe3cd' },
+      'Belum': { bg: '#fdf4e3', fg: '#8a5300', bd: '#f0dcb0' }
+    };
+    return m[k] || m['Rutin'];
+  }
+
+  nav(p, keep) {
+    this.setState(s => ({ page: p, trail: keep ? s.trail.concat([s.page]) : [] }));
+  }
+
+  goBack = () => {
+    const st = this.state;
+    if (st.page === 'periksa' && (st.pf.ada || st.pf.kondisi)) {
+      this.setState({ confirm: { title: 'Keluar tanpa menyimpan?', message: 'Hasil pemeriksaan yang sudah Anda isi akan hilang.', okLabel: 'Ya, keluar', okBg: '#b42318', ok: () => this.setState({ page: 'daftar', pf: this.pfInit(), pfErr: {}, confirm: null, trail: [] }) } });
+      return;
+    }
+    if (st.page === 'lapor' && (st.lap.deskripsi || st.lap.dampak)) {
+      this.setState({ confirm: { title: 'Batalkan laporan?', message: 'Isian laporan kerusakan akan hilang.', okLabel: 'Ya, batalkan', okBg: '#b42318', ok: () => this.setState({ page: st.trail.length ? st.trail[st.trail.length - 1] : 'beranda', lap: this.lapInit(), lapErr: {}, confirm: null, trail: [] }) } });
+      return;
+    }
+    const prev = st.trail.length ? st.trail[st.trail.length - 1] : 'beranda';
+    this.setState(s => ({ page: prev, trail: s.trail.slice(0, -1), pf: this.pfInit(), pfErr: {}, lap: this.lapInit(), lapErr: {} }));
+  };
+
+  bukaPeriksa = (id) => () => {
+    this.setState(s => ({ page: 'periksa', aktifId: id, pf: this.pfInit(), pfErr: {}, trail: s.page === 'periksa' ? s.trail : s.trail.concat([s.page]) }));
+  };
+
+  aktif() { return this.state.daftar.filter(d => d.id === this.state.aktifId)[0] || this.state.daftar[0]; }
+
+  simpanPeriksa = () => {
+    const pf = this.state.pf;
+    const err = {};
+    if (!pf.ada) err.ada = true;
+    if (pf.ada === 'beda' && (!pf.lokasiAktual || pf.lokasiAktual === 'Pilih unit kerja')) err.lokasi = true;
+    if (pf.ada === 'hilang' && pf.keterangan.trim().length < 10) err.ket = true;
+    if (pf.ada && pf.ada !== 'hilang' && !pf.kondisi) err.kondisi = true;
+    if (pf.kondisi && pf.kondisi !== 'Baik' && pf.foto.length === 0) err.foto = true;
+    if (Object.keys(err).length) { this.setState({ pfErr: err }); this.toast('Masih ada isian yang perlu dilengkapi', 'err'); return; }
+
+    const a = this.aktif();
+    const tglIni = this.fmt(this.hariIni);
+    const hasil = pf.ada === 'hilang' ? 'Tidak ditemukan' : (pf.ada === 'beda' ? ('Beda lokasi · ' + pf.kondisi) : ('Ditemukan · ' + pf.kondisi));
+    const info = [
+      { k: 'Barang', v: a.nama, c: '#3a4249' },
+      { k: 'Keberadaan', v: pf.ada === 'ada' ? 'Ada di lokasi' : (pf.ada === 'beda' ? ('Pindah ke ' + pf.lokasiAktual) : 'Tidak ditemukan'), c: pf.ada === 'hilang' ? '#a3231b' : '#3a4249' },
+      { k: 'Kondisi', v: pf.kondisi || 'Belum dinilai', c: pf.kondisi === 'Rusak Berat' ? '#a3231b' : (pf.kondisi === 'Rusak Ringan' ? '#8a5300' : '#14653f') },
+      { k: 'Foto', v: pf.foto.length + ' berkas', c: '#3a4249' },
+      { k: 'Waktu', v: tglIni, c: '#3a4249' }
+    ];
+
+    this.setState(s => ({
+      daftar: s.daftar.map(d => d.id === a.id ? Object.assign({}, d, {
+        status: 'selesai', hasil, kondisi: pf.kondisi || d.kondisi, terakhir: tglIni,
+        jejak: 'Diperiksa ' + tglIni + ' oleh ' + this.akun.nama
+      }) : d),
+      suksesInfo: {
+        ringkas: info,
+        teks: pf.ada === 'hilang' ? 'Barang ini ditandai tidak ditemukan dan akan ditelusuri pengelola BMN.' : 'Data kondisi dan lokasi barang sudah diperbarui.',
+        perluLapor: !!pf.kondisi && pf.kondisi !== 'Baik' && pf.buatLaporan,
+        foto: pf.foto.slice()
+      },
+      page: 'sukses', trail: []
+    }));
+    this.toast('Hasil pemeriksaan tersimpan');
+  };
+
+  lanjutLapor = () => {
+    const si = this.state.suksesInfo;
+    this.setState({ page: 'lapor', lap: Object.assign({}, this.lapInit(), { foto: si ? si.foto : [] }), lapErr: {}, lapDariPeriksa: true, trail: ['beranda'] });
+  };
+
+  kirimLaporan = () => {
+    const lap = this.state.lap;
+    const err = {};
+    if (!lap.jenis || lap.jenis === 'Pilih jenis kerusakan') err.jenis = true;
+    if (lap.deskripsi.trim().length < 20) err.deskripsi = true;
+    if (!lap.dampak) err.dampak = true;
+    const d = this.dampakDefs.filter(x => x.v === lap.dampak)[0];
+    if (d && d.kelas !== 'Rutin' && lap.foto.length === 0) err.foto = true;
+    if (Object.keys(err).length) { this.setState({ lapErr: err }); this.toast('Masih ada isian yang perlu dilengkapi', 'err'); return; }
+
+    this.setState(s => {
+      const n = s.tiketSeq + 1;
+      return { tiketSeq: n, tiketBaru: 'KRS-2026-00' + n, page: 'laporSukses', lap: this.lapInit(), lapErr: {}, lapDariPeriksa: false, trail: [] };
+    });
+    this.toast('Laporan terkirim ke pengelola BMN');
+  };
+
+  renderVals() {
+    const st = this.state;
+    const page = st.page;
+    const a = this.aktif();
+    const pf = st.pf;
+    const lap = st.lap;
+
+    const selesai = st.daftar.filter(d => d.status === 'selesai');
+    const belum = st.daftar.filter(d => d.status !== 'selesai');
+    const pct = Math.round((selesai.length / st.daftar.length) * 100);
+
+    const judul = {
+      beranda: ['Selamat datang', this.akun.nama + ' · ' + this.akun.unit],
+      pindai: ['Pindai QR Barang', 'Arahkan kamera ke stiker pada barang'],
+      periksa: ['Periksa Barang', 'Isi sesuai yang Anda lihat di lapangan'],
+      sukses: ['Selesai', 'Hasil pemeriksaan sudah masuk'],
+      daftar: ['Daftar Periksa', this.akun.unit],
+      riwayat: ['Sudah Diperiksa', selesai.length + ' barang triwulan ini'],
+      lapor: ['Lapor Kerusakan', 'Laporan diteruskan ke pengelola BMN'],
+      laporSukses: ['Laporan Terkirim', 'Simpan nomor tiket Anda'],
+      akun: ['Akun Saya', this.akun.unit]
+    }[page] || ['SIMONBAR', ''];
+
+    const tabDefs = [['Beranda', 'beranda'], ['Pindai', 'pindai'], ['Daftar', 'daftar'], ['Akun', 'akun']];
+
+    const dampakAktif = this.dampakDefs.filter(x => x.v === lap.dampak)[0];
+    const filtered = st.tabDaftar === 'Semua' ? st.daftar : (st.tabDaftar === 'Belum' ? belum : selesai);
+    const q = st.cari.trim().toLowerCase();
+    const hasilCari = q.length < 2 ? [] : st.daftar.filter(d => (d.nama + ' ' + d.kode + ' ' + d.nup).toLowerCase().indexOf(q) >= 0).slice(0, 5);
+
+    return {
+      isLogin: page === 'login',
+      isApp: page !== 'login',
+      isBeranda: page === 'beranda', isPindai: page === 'pindai', isPeriksa: page === 'periksa',
+      isSukses: page === 'sukses', isDaftar: page === 'daftar', isRiwayat: page === 'riwayat',
+      isLapor: page === 'lapor', isLaporSukses: page === 'laporSukses', isAkun: page === 'akun',
+
+      ingat: st.ingat,
+      toggleIngat: () => this.setState(s => ({ ingat: !s.ingat })),
+      doLogin: () => { this.setState({ page: 'beranda' }); this.toast(st.ingat ? 'Perangkat ini diingat, tidak perlu masuk lagi' : 'Berhasil masuk'); },
+
+      hdrTitle: judul[0], hdrSub: judul[1],
+      canBack: ['periksa', 'lapor', 'riwayat'].indexOf(page) >= 0,
+      goBack: this.goBack,
+      inisial: this.akun.nama.split(' ').map(w => w.charAt(0)).join('').slice(0, 2).toUpperCase(),
+
+      tipOn: st.tipOn,
+      tutupTip: () => this.setState({ tipOn: false }),
+
+      pctLabel: pct + '%',
+      progresText: selesai.length + ' dari ' + st.daftar.length + ' barang sudah diperiksa',
+      sisaCount: String(belum.length), selesaiCount: String(selesai.length),
+
+      berikutnya: belum.slice(0, 3).map(d => Object.assign({}, d, { pb: this.badge(d.prioritas), go: this.bukaPeriksa(d.id) })),
+
+      goPindai: () => this.nav('pindai'),
+      goBeranda: () => this.nav('beranda'),
+      goDaftar: () => this.setState({ page: 'daftar', tabDaftar: 'Belum', trail: [] }),
+      goRiwayat: () => this.setState(s => ({ page: 'riwayat', trail: s.trail.concat(['beranda']) })),
+      goLaporLangsung: () => this.setState(s => ({ page: 'lapor', lap: this.lapInit(), lapErr: {}, lapDariPeriksa: false, trail: s.trail.concat([s.page]) })),
+
+      cari: st.cari,
+      setCari: (e) => { const v = e.target.value; this.setState({ cari: v }); },
+      hasilCari: hasilCari.map(d => Object.assign({}, d, { go: this.bukaPeriksa(d.id) })),
+      cariKosong: q.length >= 2 && hasilCari.length === 0,
+      simulasiPindai: () => {
+        const target = belum.length ? belum[0] : st.daftar[0];
+        this.setState(s => ({ page: 'periksa', aktifId: target.id, pf: this.pfInit(), pfErr: {}, cari: '', trail: ['beranda'] }));
+        this.toast('QR terbaca: ' + target.nama);
+      },
+
+      pk: {
+        nama: a.nama, kode: a.kode, nup: a.nup, prioritas: a.prioritas,
+        info: [
+          { k: 'Lokasi tercatat', v: this.akun.unit },
+          { k: 'Penanggung jawab', v: this.akun.nama },
+          { k: 'Kondisi terakhir', v: a.kondisi },
+          { k: 'Terakhir diperiksa', v: a.terakhir }
+        ]
+      },
+
+      adaOpts: this.adaDefs.map(o => {
+        const on = pf.ada === o.v;
+        return Object.assign({}, o, {
+          bd: on ? '#0f4c3a' : '#dfe3e6', bg: on ? '#f2f8f5' : '#fff',
+          dot: on ? '#0f4c3a' : '#c0c6ca', fill: on ? '#0f4c3a' : 'transparent',
+          pick: () => this.setState(s => ({ pf: Object.assign({}, s.pf, { ada: o.v, kondisi: o.v === 'hilang' ? '' : s.pf.kondisi }), pfErr: Object.assign({}, s.pfErr, { ada: false }) }))
+        });
+      }),
+      errAda: !!st.pfErr.ada,
+
+      showLokasi: pf.ada === 'beda',
+      unitOpts: ['Pilih unit kerja'].concat(this.unitList),
+      lokasiAktual: pf.lokasiAktual,
+      setLokasi: (e) => { const v = e.target.value; this.setState(s => ({ pf: Object.assign({}, s.pf, { lokasiAktual: v }), pfErr: Object.assign({}, s.pfErr, { lokasi: false }) })); },
+      errLokasi: !!st.pfErr.lokasi,
+
+      showKet: pf.ada === 'hilang',
+      keterangan: pf.keterangan,
+      setKeterangan: (e) => { const v = e.target.value; this.setState(s => ({ pf: Object.assign({}, s.pf, { keterangan: v }), pfErr: Object.assign({}, s.pfErr, { ket: false }) })); },
+      errKet: !!st.pfErr.ket,
+
+      showKondisi: !!pf.ada && pf.ada !== 'hilang',
+      kondisiOpts: this.kondisiDefs.map(k => {
+        const on = pf.kondisi === k.v;
+        const b = this.badge(k.v);
+        return Object.assign({}, k, {
+          bd: on ? b.fg : '#dfe3e6', bg: on ? b.bg : '#fff',
+          dot: on ? b.fg : '#c0c6ca', fill: on ? b.fg : 'transparent',
+          pick: () => this.setState(s => ({ pf: Object.assign({}, s.pf, { kondisi: k.v }), pfErr: Object.assign({}, s.pfErr, { kondisi: false, foto: false }) }))
+        });
+      }),
+      errKondisi: !!st.pfErr.kondisi,
+
+      showFoto: !!pf.ada && pf.ada !== 'hilang' && !!pf.kondisi,
+      fotoWajibLabel: pf.kondisi && pf.kondisi !== 'Baik' ? '' : '(boleh dikosongkan)',
+      fotoHint: pf.kondisi && pf.kondisi !== 'Baik' ? 'Wajib untuk barang yang rusak. Foto jadi bukti saat pengelola BMN memverifikasi.' : 'Foto memudahkan pengelola BMN memeriksa tanpa harus datang.',
+      fotoList: pf.foto.map((f, i) => ({ nama: f.nama, hapus: () => this.setState(s => ({ pf: Object.assign({}, s.pf, { foto: s.pf.foto.filter((x, j) => j !== i) }) })) })),
+      ambilFoto: () => {
+        if (pf.foto.length >= 3) { this.toast('Maksimal 3 foto', 'warn'); return; }
+        const n = pf.foto.length + 1;
+        this.setState(s => ({ pf: Object.assign({}, s.pf, { foto: s.pf.foto.concat([{ nama: 'IMG_20260826_10' + n + '.jpg' }]) }), pfErr: Object.assign({}, s.pfErr, { foto: false }) }));
+        this.toast('Foto ditambahkan');
+      },
+      errFoto: !!st.pfErr.foto,
+
+      showCatatan: !!pf.ada,
+      catatan: pf.catatan,
+      setCatatan: (e) => { const v = e.target.value; this.setState(s => ({ pf: Object.assign({}, s.pf, { catatan: v }) })); },
+
+      tawarLapor: !!pf.kondisi && pf.kondisi !== 'Baik',
+      buatLaporan: pf.buatLaporan,
+      toggleLaporan: () => this.setState(s => ({ pf: Object.assign({}, s.pf, { buatLaporan: !s.pf.buatLaporan }) })),
+
+      suksesText: st.suksesInfo ? st.suksesInfo.teks : '',
+      suksesRingkas: st.suksesInfo ? st.suksesInfo.ringkas : [],
+      suksesPerluLapor: !!(st.suksesInfo && st.suksesInfo.perluLapor),
+      suksesTanpaLapor: !(st.suksesInfo && st.suksesInfo.perluLapor),
+      lanjutLapor: this.lanjutLapor,
+
+      tabFilter: ['Belum', 'Sudah', 'Semua'].map(t => {
+        const on = st.tabDaftar === t;
+        return { label: t === 'Belum' ? ('Belum (' + belum.length + ')') : (t === 'Sudah' ? ('Sudah (' + selesai.length + ')') : 'Semua'), bd: on ? '#0f4c3a' : '#dfe3e6', bg: on ? '#0f4c3a' : '#fff', fg: on ? '#fff' : '#5b646c', go: () => this.setState({ tabDaftar: t }) };
+      }),
+      daftarRows: filtered.map(d => ({
+        nama: d.nama, kode: d.kode, nup: d.nup,
+        ket: d.status === 'selesai' ? d.jejak : ('Kondisi tercatat ' + d.kondisi + ' · ' + d.terakhir),
+        statusLabel: d.status === 'selesai' ? 'Sudah' : 'Belum',
+        sb: this.badge(d.status === 'selesai' ? 'Sudah' : 'Belum'),
+        tone: d.status === 'selesai' ? '#1a7f4f' : '#d9a227',
+        go: this.bukaPeriksa(d.id)
+      })),
+      daftarKosong: filtered.length === 0,
+
+      riwayatRows: selesai.map(d => ({ nama: d.nama, kode: d.kode, nup: d.nup, kondisi: d.kondisi, kb: this.badge(d.kondisi), jejak: d.jejak || '' })),
+      riwayatKosong: selesai.length === 0,
+
+      lp: { nama: a.nama, kode: a.kode, nup: a.nup, lokasi: this.akun.unit },
+      jenisOpts: this.jenisOpts,
+      lapJenis: lap.jenis,
+      setLapJenis: (e) => { const v = e.target.value; this.setState(s => ({ lap: Object.assign({}, s.lap, { jenis: v }), lapErr: Object.assign({}, s.lapErr, { jenis: false }) })); },
+      errLapJenis: !!st.lapErr.jenis,
+      lapDeskripsi: lap.deskripsi,
+      setLapDeskripsi: (e) => { const v = e.target.value; this.setState(s => ({ lap: Object.assign({}, s.lap, { deskripsi: v }), lapErr: Object.assign({}, s.lapErr, { deskripsi: false }) })); },
+      lapHitung: lap.deskripsi.trim().length + ' huruf. Minimal 20 huruf.',
+      errLapDeskripsi: !!st.lapErr.deskripsi,
+      dampakOpts: this.dampakDefs.map(d => {
+        const on = lap.dampak === d.v;
+        return Object.assign({}, d, {
+          bd: on ? '#0f4c3a' : '#dfe3e6', bg: on ? '#f2f8f5' : '#fff',
+          dot: on ? '#0f4c3a' : '#c0c6ca', fill: on ? '#0f4c3a' : 'transparent',
+          pick: () => this.setState(s => ({ lap: Object.assign({}, s.lap, { dampak: d.v }), lapErr: Object.assign({}, s.lapErr, { dampak: false, foto: false }) }))
+        });
+      }),
+      errLapDampak: !!st.lapErr.dampak,
+      lapAdaTenggat: !!dampakAktif,
+      lapKelas: dampakAktif ? dampakAktif.kelas : '',
+      lapDueVerif: this.plusHari(1),
+      lapDuePrioritas: dampakAktif ? this.plusHari(dampakAktif.hari) : '',
+      lapFotoWajib: dampakAktif && dampakAktif.kelas !== 'Rutin' ? '' : '(boleh dikosongkan)',
+      lapFotoList: lap.foto.map((f, i) => ({ nama: f.nama, hapus: () => this.setState(s => ({ lap: Object.assign({}, s.lap, { foto: s.lap.foto.filter((x, j) => j !== i) }) })) })),
+      lapAmbilFoto: () => {
+        if (lap.foto.length >= 3) { this.toast('Maksimal 3 foto', 'warn'); return; }
+        const n = lap.foto.length + 1;
+        this.setState(s => ({ lap: Object.assign({}, s.lap, { foto: s.lap.foto.concat([{ nama: 'IMG_20260826_20' + n + '.jpg' }]) }), lapErr: Object.assign({}, s.lapErr, { foto: false }) }));
+        this.toast('Foto ditambahkan');
+      },
+      errLapFoto: !!st.lapErr.foto,
+      tiketBaru: st.tiketBaru,
+
+      akun: this.akun,
+      akunInfo: [
+        { k: 'Nama pengguna', v: this.akun.username },
+        { k: 'Unit kerja', v: this.akun.unit },
+        { k: 'Peran', v: this.akun.peran },
+        { k: 'Akun dibuat', v: this.akun.dibuat }
+      ],
+      perangkatList: st.perangkat.map((p, i) => Object.assign({}, p, {
+        cabut: () => this.setState({ confirm: { title: 'Cabut akses perangkat?', message: p.nama + ' tidak akan bisa masuk tanpa kata sandi lagi.', okLabel: 'Cabut akses', okBg: '#b42318', ok: () => { this.setState(s => ({ perangkat: s.perangkat.filter((x, j) => j !== i), confirm: null })); this.toast('Akses perangkat dicabut'); } } })
+      })),
+      doKeluar: () => this.setState({ confirm: { title: 'Keluar dari aplikasi?', message: 'Anda perlu memasukkan nama pengguna dan kata sandi lagi untuk masuk.', okLabel: 'Keluar', okBg: '#b42318', ok: () => { this.setState({ page: 'login', confirm: null, trail: [] }); } } }),
+
+      showAksi: page === 'periksa' || page === 'lapor',
+      aksiLabel: page === 'periksa' ? 'Simpan Hasil Pemeriksaan' : 'Kirim Laporan',
+      aksiUtama: page === 'periksa' ? this.simpanPeriksa : this.kirimLaporan,
+
+      showTab: ['periksa', 'lapor'].indexOf(page) < 0,
+      tabs: tabDefs.map(([label, key]) => {
+        const on = page === key || (key === 'daftar' && page === 'riwayat');
+        return { label, bar: on ? '#0f4c3a' : 'transparent', dot: on ? '#0f4c3a' : '#c0c6ca', fg: on ? '#0f4c3a' : '#8a9299', fw: on ? 600 : 400, go: () => this.setState({ page: key, trail: [] }) };
+      }),
+
+      stop: (e) => { if (e && e.stopPropagation) e.stopPropagation(); },
+      toasts: st.toasts,
+      confirmOpen: !!st.confirm,
+      cf: st.confirm || { title: '', message: '', okLabel: 'Lanjutkan', okBg: '#0f4c3a' },
+      closeConfirm: () => this.setState({ confirm: null }),
+      okConfirm: () => { const c = st.confirm; this.setState({ confirm: null }); if (c && c.ok) c.ok(); }
+    };
+  }
+}
+</script>
+</body>
+</html>
